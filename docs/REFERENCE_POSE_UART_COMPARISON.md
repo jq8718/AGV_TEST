@@ -25,4 +25,12 @@ UART v6数据格式、CRC16/CCITT-FALSE、999→0帧号回绕、前导零保留�
 
 结果记录在reference_pose_uart_validation.json。主机验证不代表UART电气收发已实测。
 
+## UI与USB通信复核
+
+当前scan_usb.c相对参考的差异为AGV头文件、尺寸断言、新增@BOARD/@LIGHT命令及按传感器选择USB序列号后缀。原有CDC结果、快照头、JPEG、图片CRC及@SNAP/@DEBUGOFF路径保持参考格式；scan_usb.h、scan_uart.h以及STM32解析器C/H与参考一致（允许换行符差异）。新增板级命令不改变既有报文。
+
+参考ov9281_debugger/protocol.py接受1280×720、1024×1024及512×512图片，图片UI支持切换尺寸。但其默认内参仍是OV9281参数，E6须导入自己的标定。参考stm32_uart_debugger/uart_protocol.py和app.py将标定分辨率固定为1280×720，FULL坐标范围也按1280×720检查；因此原版STM32 UI可对接当前OV9281，不能直接视为兼容E6全部功能。切换E6需要适配UI的尺寸检查与标定窗口。此限制属于参考UI实现，固件的命令名称、字段顺序和单位保持通用。
+
+@CAL,GET/SET及@OUT命令通过GPIO UART；USB CDC用于图片、角点及调试命令，两条通道用途与参考一致。参考UI接线提示中的GPIO41应按本板改接GPIO43。此次为源码及既有C协议验证结果，未实际操作桌面UI进行端到端验收。
+
 IDF6通用固件编译及COM62烧录哈希校验通过；reference_pose_uart_boot.log记录实际启动识别OV9281、加载参考默认内参、UART0 GPIO43/42初始化及921600字节首帧。GPIO35/36、供电、灯控、双传感器自动识别和解码流程本次保持既有实现。固件包dist/auto_sensor_20261124包含本次实烧文件与SHA256清单。用户选择本轮仅验证OV9281，E6实机复验仍待完成。
