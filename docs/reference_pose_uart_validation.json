@@ -1,0 +1,67 @@
+{
+  "passed": true,
+  "pose_cases": 135,
+  "byte_identical_uart_frames": 270,
+  "crc": "All frames independently checked CRC16/CCITT-FALSE",
+  "default_calibration": [
+    1280.0,
+    720.0,
+    733.2424926757812,
+    732.5115356445312,
+    589.2736206054688,
+    359.37603759765625,
+    0.11944799870252609,
+    -0.22312499582767487,
+    0.0001630000042496249,
+    -0.0005959999980404973,
+    0.08336199820041656
+  ],
+  "e6_no_reference_intrinsics": true,
+  "command_replies": [
+    {
+      "command": "@OUT,GET",
+      "reply": "@OUT,DATA,COMPACT\r\n"
+    },
+    {
+      "command": "@OUT,FULL",
+      "reply": "@OUT,DATA,FULL\r\n"
+    },
+    {
+      "command": "@OUT,GET",
+      "reply": "@OUT,DATA,FULL\r\n"
+    },
+    {
+      "command": "@OUT,COMPACT",
+      "reply": "@OUT,DATA,COMPACT\r\n"
+    },
+    {
+      "command": "@OUT,BAD",
+      "reply": "@OUT,ERR,command\r\n"
+    },
+    {
+      "command": "@CAL,GET",
+      "reply": "@CAL,DATA,1280,720,733.242493,732.511536,589.273621,359.376038,0.1194480,-0.2231250,0.0001630,-0.0005960,0.0833620\r\n"
+    },
+    {
+      "command": "@CAL,SET,1024,1024,800,800,511,511,0,0,0,0,0",
+      "reply": "@CAL,ERR,resolution\r\n"
+    },
+    {
+      "command": "@CAL,SET,1280,720,800,800,639,359,0,0,0,0,0",
+      "reply": "@CAL,DATA,1280,720,800.000000,800.000000,639.000000,359.000000,0.0000000,0.0000000,0.0000000,0.0000000,0.0000000\r\n"
+    },
+    {
+      "command": "@CAL,GET",
+      "reply": "@CAL,DATA,1280,720,800.000000,800.000000,639.000000,359.000000,0.0000000,0.0000000,0.0000000,0.0000000,0.0000000\r\n"
+    }
+  ],
+  "saved_calibration_priority": true,
+  "current_wiring": 4342,
+  "reference_wiring": 14142,
+  "uart_examples": [
+    "@SCAN,6,C,999,1,012345,-30000,278,-214*8B1A\r\n",
+    "@SCAN,6,F,999,1,012345,6546,3492,7051,3496,7121,4106,6612,4128,-30000,-10000,0,353,350,278,45,-214*2E9A\r\n"
+  ],
+  "current_source_sha256": "42d0115872ac19e9a5ab3060d8dc7ad9417bc74065b13bf6bbd80e38da94cc75",
+  "limitations": "Platform/UART/NVS mocked; verifies actual C calculations and protocol bytes, not electrical UART or lens accuracy"
+}

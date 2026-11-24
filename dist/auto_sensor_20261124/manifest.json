@@ -5,14 +5,13 @@
     "0x10": "E6 OV01C1B, chip_id 0x56014311, 1024x1024",
     "0x60": "OV9281, chip_id 0x9281, 1280x720"
   },
-  "elf_sha256": "bb5300a46de64a280be49d3be9bfbb7c933dbe05faf53ef93c886844ddcf0e5a",
+  "elf_sha256": "9a6380cd0cd7232dcb027050729f49f8c6e96a38ea99b0fde57cdf2694cba2ae",
   "hardware_validation": {
     "ov9281": "COM62 flashed and hash verified; native UVC, CDC refined geometry and off/on/off illumination verified",
     "e6": "Runtime profile/pose host tests passed; user chose OV9281-only hardware validation"
   },
   "limitations": [
-    "OV9281 lens calibration required for metric pose",
-    "External illumination not connected",
+    "OV9281 reference calibration enabled; actual lens metric accuracy requires measured calibration",
     "UART electrical interface not tested",
     "UVC streaming and CDC lighting performance measured separately after restart"
   ],
@@ -29,12 +28,14 @@
     "docs/reference_decoder_alignment.json",
     "docs/reference_decoder_replay_validation.json",
     "docs/reference_aligned_ov9281_boot.log",
-    "docs/reference_aligned_ov9281_live_validation.json"
+    "docs/reference_aligned_ov9281_live_validation.json",
+    "docs/reference_pose_uart_validation.json",
+    "docs/reference_pose_uart_boot.log"
   ],
   "files": {
     "agv_scan_auto.bin": {
-      "bytes": 954560,
-      "sha256": "1de4c87938e8203363bbffc2c393d4621649f2e03cc9158dd06ea0c6c659849a"
+      "bytes": 954992,
+      "sha256": "874646242530949bdb96d9e1f78f095fd2b17edd9f54780705f431b4b15a21f1"
     },
     "bootloader.bin": {
       "bytes": 23632,
@@ -75,5 +76,15 @@
     ],
     "reference_report": "docs/reference_decoder_alignment.json",
     "comparison": "docs/REFERENCE_DECODER_COMPARISON.md"
+  },
+  "pose_uart_alignment": {
+    "reference": "ESP32P4_XCF_OV9281",
+    "pose_cases": 135,
+    "byte_identical_uart_frames": 270,
+    "saved_calibration_priority": true,
+    "ov9281_default": "reference factory intrinsics",
+    "e6_default": "requires own calibration",
+    "uart": "UART0 TX43 RX42 921600 8N1",
+    "comparison": "docs/REFERENCE_POSE_UART_COMPARISON.md"
   }
 }

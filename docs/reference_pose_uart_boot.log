@@ -1,0 +1,126 @@
+I (163) esp_image: segment 5: paddr=000e9b08 vaddr=4ff25140 sizeESP-ROM:esp32p4-eco7-20260109
+Build:Jan  9 2026
+rst:0x17 (CHIP_USB_UART_RESET),boot:0x30c (SPI_FAST_FLASH_BOOT)
+Core0 Saved PC:0x4ff25fb0
+Core1 Saved PC:0x4006bf40
+SPI mode:DIO, clock div:1
+load:0x4ffb60d0,len:0x168c
+load:0x4ffac2c0,len:0xf68
+load:0x4ffaefc0,len:0x3608
+entry 0x4ffac2ca
+I (27) boot: ESP-IDF v6.0-dirty 2nd stage bootloader
+I (27) boot: compile time Nov 24 2026 13:21:10
+I (28) boot: Multicore bootloader
+I (29) boot: chip revision: v3.2
+I (29) boot: efuse block revision: v1.2
+I (29) boot.esp32p4: SPI Speed      : 80MHz
+I (30) boot.esp32p4: SPI Mode       : DIO
+I (30) boot.esp32p4: SPI Flash Size : 16MB
+I (30) boot: Enabling RNG early entropy source...
+I (31) boot: Partition Table:
+I (31) boot: ## Label            Usage          Type ST Offset   Length
+I (31) boot:  0 nvs              WiFi data        01 02 00009000 00006000
+I (32) boot:  1 phy_init         RF data          01 01 0000f000 00001000
+I (32) boot:  2 factory          factory app      00 00 00010000 00400000
+I (33) boot:  3 samples          Unknown data     01 40 00410000 00a00000
+I (34) boot: End of partition table
+I (34) esp_image: segment 0: paddr=00010020 vaddr=400b0020 size=2ad14h (175380) map
+I (60) esp_image: segment 1: paddr=0003ad3c vaddr=30100000 size=00144h (   324) load
+I (61) esp_image: segment 2: paddr=0003ae88 vaddr=30100150 size=00048h (    72) load
+I (62) esp_image: segment 3: paddr=0003aed8 vaddr=4ff20000 size=05140h ( 20800) load
+I (67) esp_image: segment 4: paddr=00040020 vaddr=40000020 size=a9ae0h (695008) map
+I (163) esp_image: segment 5: paddr=000e9b08 vaddr=4ff25140 size=0c734h ( 50996) load
+I (172) esp_image: segment 6: paddr=000f6244 vaddr=4ff31880 size=03004h ( 12292) load
+I (179) boot: Loaded app from partition at offset 0x10000
+I (179) boot: Disabling RNG early entropy source...
+I (182) hex_psram: vendor id    : 0x0d (AP)
+I (183) hex_psram: Latency      : 0x01 (Fixed)
+I (183) hex_psram: DriveStr.    : 0x00 (25 Ohm)
+I (183) hex_psram: dev id       : 0x03 (generation 4)
+I (184) hex_psram: density      : 0x07 (256 Mbit)
+I (184) hex_psram: good-die     : 0x06 (Pass)
+I (184) hex_psram: SRF          : 0x02 (Slow Refresh)
+I (185) hex_psram: BurstType    : 0x00 ( Wrap)
+I (185) hex_psram: BurstLen     : 0x03 (2048 Byte)
+I (185) hex_psram: BitMode      : 0x01 (X16 Mode)
+I (186) hex_psram: Readlatency  : 0x06 (18 cycles@Fixed)
+I (186) hex_psram: DriveStrength: 0x00 (1/1)
+I (186) MSPI Timing: Enter psram timing tuning
+I (337) esp_psram: Found 32MB PSRAM device
+I (338) esp_psram: Speed: 250MHz
+I (340) hex_psram: psram CS IO is dedicated
+I (341) cpu_start: Multicore app
+I (1126) esp_psram: SPI SRAM memory test OK
+I (1310) cpu_start: Pro cpu start user code
+I (1311) cpu_start: cpu freq: 400000000 Hz
+I (1311) app_init: Application information:
+I (1311) app_init: Project name:     agv_scan_auto
+I (1311) app_init: App version:      auto-sensor-20261124-2-g70863bd
+I (1311) app_init: Compile time:     Nov 24 2026 14:54:04
+I (1312) app_init: ELF file SHA256:  9a6380cd0...
+I (1312) app_init: ESP-IDF:          v6.0-dirty
+I (1312) efuse_init: Min chip rev:     v3.1
+I (1312) efuse_init: Max chip rev:     v3.99
+I (1312) efuse_init: Chip rev:         v3.2
+I (1313) heap_init: Initializing. RAM available for dynamic allocation:
+I (1313) heap_init: At 4FF40640 len 0007A980 (490 KiB): RETENT_RAM
+I (1313) heap_init: At 4FFBAFC0 len 00004BF0 (18 KiB): RAM
+I (1314) heap_init: At 50108080 len 00007F80 (31 KiB): RTCRAM
+I (1314) heap_init: At 30100198 len 00001E68 (7 KiB): TCM
+I (1314) esp_psram: Adding pool of 32768K of PSRAM memory to heap allocator
+I (1315) spi_flash: detected chip: gd
+I (1315) spi_flash: flash io: dio
+I (1316) sleep_gpio: Configure to isolate all GPIO pins in sleep state
+I (1316) sleep_gpio: Enable automatic switching of GPIO sleep configuration
+I (1317) main_task: Started on CPU0
+I (1318) esp_psram: Reserving pool of 32K of internal memory for DMA/internal allocations
+I (1318) main_task: Calling app_main()
+I (1318) agv_board: VDDO_4 configured=3300mV; supplies VDD_IO_5 GPIO39..48
+ESP LDO Channel State:
+Index ID    ref_cnt    voltage_mv   adjustable
+0     1     1          3300         no
+1     2     1          1800         no
+2     -1    0          0            yes
+3     4     1          3300         no
+I (1322) p4scan_live: starting camera live XCF pipeline
+I (1322) p4scan_feedback: active-low status LEDs: OK=GPIO4 ERR=GPIO53
+I (1322) p4scan_live: init step: feedback ready
+I (1322) p4scan_live: init step: camera init begin
+I (1338) agv_e6_power: AW36515 ID=0x30
+I (1340) agv_e6_power: AGV camera power ready; VSYS active-low; GPIO21 static oscillator enable
+I (1342) p4scan_camera: sensor selected: OV9281 address=0x60 chip_id=0x00009281 mode=1280x720
+I (1343) ov9281: Detected Camera sensor PID=0x9281
+I (1392) esp_video_init: video create callback=0x4001f01c after sensor format
+I (1392) csi_video: CSI init: requested=50424752 isp_bypass=0 csi_in=1279412050 csi_out=1279412050
+I (1396) p4scan_camera: OV9281 video initialized: 1280x720 ISP RAW8 @ 50 fps
+I (1396) p4scan_live: init step: camera init done: OV9281
+I (1442) p4scan_usb: init memory ready preview=2764800 jpeg=1843200 transfer=1843200
+I (1443) p4scan_usb: init JPEG encoder ready
+I (1443) p4scan_usb: init UVC config ready
+W (1443) usb_phy: Using UTMI PHY instead of requested internal PHY
+I (1444) usbd_uvc: UVC1 task idle: app_streaming=0 tinyusb_streaming=0 frame=0
+I (1444) usbd_uvc: UVC Device Start, Version: 1.2.0
+I (1444) p4scan_usb: init UVC device ready
+I (1445) usbd_uvc: UVC1 task idle: app_streaming=0 tinyusb_streaming=0 frame=0
+I (1445) p4scan_usb: init USB worker tasks ready
+I (1445) p4scan_usb: HS UVC+CDC ready serial=E8F60AE81249-OV9281 protocol=CSV/CR
+I (1445) scan_pose: using reference OV9281 factory calibration; send @CAL,SET to save measured intrinsics
+I (1446) usbd_uvc: UVC1 task idle: app_streaming=0 tinyusb_streaming=0 frame=0
+I (1446) p4scan_uart: UART0 TX=GPIO43 RX=GPIO42 921600 8N1; integer CRC16 COMPACT; @OUT,FULL/COMPACT/GET; @CAL,GET/SET
+I (1447) usbd_uvc: UVC1 task idle: app_streaming=0 tinyusb_streaming=0 frame=0
+I (1447) p4scan_live: init step: USB ready
+I (1447) p4scan_camera: capture format: 1280x720 RAW8 stride=1280 sizeimage=0
+I (1448) usbd_uvc: UVC1 task idle: app_streaming=0 tinyusb_streaming=0 frame=0
+I (1449) usbd_uvc: UVC1 task idle: app_streaming=0 tinyusb_streaming=0 frame=0
+I (1450) usbd_uvc: UVC1 task idle: app_streaming=0 tinyusb_streaming=0 frame=0
+I (1451) usbd_uvc: UVC1 task idle: app_streaming=0 tinyusb_streaming=0 frame=0
+I (1489) p4scan_camera: CSI stream started with 4 MMAP buffers
+I (1490) p4scan_live: init step: camera stream started
+I (1508) p4scan_camera: frame signal confirmed: sequence=0 buffer=0 bytes=921600
+I (1508) p4scan_live: init step: first frame ready
+I (1508) agv_e6_power: light outputs AIM18=0 INTERNAL19=0 STROBE22=0 AW=ready
+I (1509) p4scan_agv: frame_stages=1 capture=core0 backend+refine=core1 pending=latest-only max_age=100ms free_psram=23295936
+I (1509) p4scan_agv: button: illumination toggles on press; aiming follows hold; debounce=30ms; continuous capture
+I (1510) main_task: Returned from app_main()
+I (1652) usbd_uvc: Mount
+I (1653) p4scan_usb: CDC ready=1 dtr=0 speed=HS

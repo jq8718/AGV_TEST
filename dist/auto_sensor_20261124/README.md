@@ -9,7 +9,7 @@
 - 无设备、同时两个地址应答、ID不符或I2C错误：报错并清理相机供电，禁止继续用错误模式启动。
 - UVC在探测后枚举原生分辨率，USB序列号按传感器区分，避免Windows缓存另一分辨率。OV9281当前CDC为COM69，烧录为COM62。
 - VDDO_4=3.3V；GPIO33低有效VSYS；补光/瞄准依赖VSYS；GPIO35按钮规则保留。
-- E6标定scan_pose，OV9281标定pose_ov9281；未标定不输出有效物理位姿。
+- E6标定scan_pose，OV9281标定pose_ov9281；OV9281默认使用参考内参，本机已保存标定优先；E6未标定不输出有效物理位姿。
 
 本包与COM62实烧二进制相同，SHA256见manifest.json。OV9281已实测；用户选择本轮暂不换回E6，E6仅完成自动选择与定位主机回归。
 
@@ -29,3 +29,5 @@ python -m esptool --chip esp32p4 -p COM62 --before default-reset --after hard-re
 保留NVS；切换传感器不需要重新烧录。
 
 当前解码核心已恢复为ESP32P4_XCF_OV9281原文件，两种sensor共用参考解码算法；E6专用搜索/ROI滤波已移除，E6成像曝光仍保留。101文件一致性及阶段检查通过；OV9281实机10秒214/214处理帧成功，详细证据见工程docs/REFERENCE_DECODER_COMPARISON.md。
+
+角度、距离计算及UART v6对齐参考工程：135组位姿和270条串口帧一致，见docs/REFERENCE_POSE_UART_COMPARISON.md。

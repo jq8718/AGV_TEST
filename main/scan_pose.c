@@ -45,16 +45,30 @@ void scan_pose_init(void)
 {
     s_calibration.width = P4SCAN_CAMERA_DEFAULT_WIDTH;
     s_calibration.height = P4SCAN_CAMERA_DEFAULT_HEIGHT;
+    /* Match the reference OV9281 default calibration. A saved calibration
+     * still takes priority. Never apply these intrinsics to the E6 sensor. */
+    bool reference_default = s_calibration.width == 1280 && s_calibration.height == 720;
+    if (reference_default) {
+        s_calibration = (scan_camera_calibration_t) {
+            .width = 1280, .height = 720,
+            .fx = 733.242515f, .fy = 732.511533f,
+            .cx = 589.273600f, .cy = 359.376026f,
+            .k1 = 0.119448f, .k2 = -0.223125f,
+            .p1 = 0.000163f, .p2 = -0.000596f, .k3 = 0.083362f,
+        };
+    }
     esp_err_t err = nvs_flash_init();
     if (err != ESP_OK) {
-        ESP_LOGW(TAG, "NVS unavailable (%s); metric pose requires calibration in RAM", esp_err_to_name(err));
+        ESP_LOGW(TAG, "NVS unavailable (%s); %s", esp_err_to_name(err),
+                 reference_default ? "using reference OV9281 calibration in RAM" : "E6 metric pose requires calibration");
         return;
     }
     s_nvs_ready = true;
     nvs_handle_t handle;
     err = nvs_open(P4SCAN_CAMERA_CAL_NAMESPACE, NVS_READONLY, &handle);
     if (err != ESP_OK) {
-        ESP_LOGI(TAG, "Camera calibration required; send @CAL,SET; metric pose remains invalid");
+        ESP_LOGI(TAG, "%s; send @CAL,SET to save measured intrinsics",
+                 reference_default ? "using reference OV9281 factory calibration" : "E6 calibration required; metric pose remains invalid");
         return;
     }
     stored_calibration_t stored;
@@ -68,7 +82,8 @@ void scan_pose_init(void)
         portEXIT_CRITICAL(&s_calibration_lock);
         ESP_LOGI(TAG, "loaded camera calibration from NVS");
     } else if (err != ESP_ERR_NVS_NOT_FOUND) {
-        ESP_LOGW(TAG, "stored camera calibration invalid; metric pose remains invalid");
+        ESP_LOGW(TAG, "stored camera calibration invalid; %s",
+                 reference_default ? "using reference OV9281 calibration" : "E6 metric pose remains invalid");
     }
 }
 
