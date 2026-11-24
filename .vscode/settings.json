@@ -1,8 +1,20 @@
 {
     "idf.currentSetup": "C:\\esp\\v6.0\\esp-idf",
     "idf.flashType": "UART",
-    "C_Cpp.default.compileCommands": "${workspaceFolder}/build_e6/compile_commands.json",
-    "idf.buildPathWin": "${workspaceFolder}/build_e6",
-    "idf.cmakeCompilerArgs": ["-DSDKCONFIG=sdkconfig.e6"],
-    "idf.port": "COM62"
+    "C_Cpp.default.compileCommands": "${workspaceFolder}/build_auto/compile_commands.json",
+    "idf.buildPath": "${workspaceFolder}/build_auto",
+    "idf.cmakeCompilerArgs": [
+        "-G", "Ninja",
+        "-DPYTHON_DEPS_CHECKED=1",
+        "-DESP_PLATFORM=1",
+        "-DSDKCONFIG=sdkconfig.auto",
+        "-DP4SCAN_PROJECT_NAME=agv_scan_auto"
+    ],
+    "idf.port": "COM70",
+    "clangd.path": "C:\\Espressif\\tools\\esp-clang\\esp-20.1.1_20250829\\esp-clang\\bin\\clangd.exe",
+    "clangd.arguments": [
+      "--background-index",
+      "--query-driver=**",
+      "--compile-commands-dir=d:\\XC\\2026\\P4SCAN\\AGV_SCAN\\AGV_SCAN_CODE/build_auto"
+    ]
 }
