@@ -22,7 +22,7 @@ ROOT = Path(__file__).resolve().parents[1]
 from geometry import estimate_pose
 
 
-def compile_probe(folder, width, height, namespace):
+def compile_probe(folder, width, height, namespace, auto=False):
     folder.mkdir(parents=True, exist_ok=True)
     stubs = {
         "p4scan_camera_capture.h": f'#define P4SCAN_CAMERA_DEFAULT_WIDTH {width}\n#define P4SCAN_CAMERA_DEFAULT_HEIGHT {height}\n#define P4SCAN_CAMERA_CAL_NAMESPACE "{namespace}"\n',
@@ -53,6 +53,12 @@ static inline int nvs_set_blob(int h, const char *k, const void *v, size_t s) { 
 static inline int nvs_commit(int h) { return 0; }
 ''',
     }
+    if auto:
+        stubs['sdkconfig.h'] = '#define CONFIG_P4SCAN_SENSOR_AUTO 1\n'
+        stubs['p4scan_camera_capture.h'] = ('#include "sdkconfig.h"\n#include "p4scan_sensor_profile.h"\n'
+            '#define P4SCAN_CAMERA_DEFAULT_WIDTH (p4scan_sensor_profile()->width)\n'
+            '#define P4SCAN_CAMERA_DEFAULT_HEIGHT (p4scan_sensor_profile()->height)\n'
+            '#define P4SCAN_CAMERA_CAL_NAMESPACE (p4scan_sensor_profile()->cal_namespace)\n')
     for name, content in stubs.items():
         target = folder / name
         target.parent.mkdir(parents=True, exist_ok=True)
@@ -80,13 +86,17 @@ __declspec(dllexport) int probe(const float *points, int prefix, float *values) 
     return 1;
 }
 '''.replace('SOURCE', source.as_posix()), encoding='utf-8')
+    if auto:
+        with wrapper.open('a', encoding='utf8') as stream:
+            stream.write('\n#include "' + (ROOT / 'port/components/p4scan_sensor_profile/p4scan_sensor_profile.c').as_posix() + '"\n'
+                '__declspec(dllexport) int select_sensor(int ov) { return p4scan_sensor_select(ov ? 0x60 : 0x10, ov ? 0x9281 : 0x56014311); }\n')
     vswhere = Path('C:/Program Files (x86)/Microsoft Visual Studio/Installer/vswhere.exe')
     vs = subprocess.check_output([str(vswhere), '-latest', '-property', 'installationPath'], text=True).strip()
     vcvars = Path(vs) / 'VC/Auxiliary/Build/vcvars64.bat'
     batch = folder / 'compile.cmd'
     batch.write_text(f'@echo off\ncall "{vcvars}" >nul\n'
                      f'cl /nologo /O2 /std:c11 /LD /W3 /I"{folder}" '
-                     f'/I"{ROOT / "port/components/xcr_decoder/include"}" '
+                     f'/I"{ROOT / "port/components/xcr_decoder/include"}" /I"{ROOT / "port/components/p4scan_sensor_profile/include"}" '
                      f'"{wrapper}" /link /OUT:"{folder / "pose_probe.dll"}"\n', encoding='utf-8')
     result = subprocess.run(['cmd', '/c', str(batch)], cwd=folder, text=True, errors='replace', capture_output=True)
     if result.returncode:
@@ -99,11 +109,14 @@ __declspec(dllexport) int probe(const float *points, int prefix, float *values) 
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--auto', action='store_true', help='Test runtime profile selection using actual profile C code')
     parser.add_argument('--sensor', choices=['e6', 'ov9281'], default='e6')
     opts = parser.parse_args()
     width, height, namespace = (1280, 720, 'pose_ov9281') if opts.sensor == 'ov9281' else (1024, 1024, 'scan_pose')
-    folder = ROOT / f'build_{opts.sensor}/pose_validation'
-    library = compile_probe(folder, width, height, namespace)
+    folder = ROOT / (f'build_auto/pose_validation_{opts.sensor}' if opts.auto else f'build_{opts.sensor}/pose_validation')
+    library = compile_probe(folder, width, height, namespace, opts.auto)
+    if opts.auto:
+        assert library.select_sensor(int(opts.sensor == "ov9281")) == 1
     calibration = {
         'camera_matrix': np.array([[800., 0., (width-1)/2], [0., 800., (height-1)/2], [0., 0., 1.]]),
         'dist_coeffs': np.zeros(5), 'image_size': [width, height], 'qr_size_mm': 30.,

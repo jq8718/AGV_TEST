@@ -1,4 +1,4 @@
-param([ValidateSet('e6', 'ov9281')][string]$Sensor = 'e6')
+param([ValidateSet('auto', 'e6', 'ov9281')][string]$Sensor = 'auto')
 $ErrorActionPreference = 'Stop'
 $env:PROCESSOR_ARCHITECTURE = 'AMD64'
 . C:\Espressif\tools\Microsoft.v6.0.PowerShell_profile.ps1

@@ -10,6 +10,7 @@
 #include <math.h>
 #include <stdio.h>
 #include <string.h>
+#include "p4scan_sensor_profile.h"
 #include <fcntl.h>
 #include <sys/ioctl.h>
 #include <sys/mman.h>
@@ -453,10 +454,11 @@ static void config_color(esp_video_isp_t *isp, esp_ipa_metadata_t *metadata)
 
 static void config_exposure_and_gain(esp_video_isp_t *isp, esp_ipa_metadata_t *metadata)
 {
-#if CONFIG_CAMERA_OV01C1B /* E6 RAW8 feedback in the capture task owns AE. */
-    metadata->flags &= ~(IPA_METADATA_FLAGS_GN | IPA_METADATA_FLAGS_ET);
-    return;
-#endif
+/* E6 RAW8 feedback owns AE; OV9281 retains its IPA exposure/gain path. */
+    if (p4scan_sensor_is_e6()) {
+        metadata->flags &= ~(IPA_METADATA_FLAGS_GN | IPA_METADATA_FLAGS_ET);
+        return;
+    }
     float target_gain = 0.0;
     int32_t gain_index = -1;
     struct v4l2_ext_controls controls;

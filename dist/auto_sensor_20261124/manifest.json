@@ -1,0 +1,49 @@
+{
+  "profile": "auto",
+  "date": "2026-11-24",
+  "sensor_detection": {
+    "0x10": "E6 OV01C1B, chip_id 0x56014311, 1024x1024",
+    "0x60": "OV9281, chip_id 0x9281, 1280x720"
+  },
+  "elf_sha256": "3628d6da8ef0ed53162fd94ff82b8f3e4b937ea4d4111354a34d88ef7c6cb4bb",
+  "hardware_validation": {
+    "ov9281": "COM62 flashed and hash verified; native UVC, CDC refined geometry and off/on/off illumination verified",
+    "e6": "Runtime profile/pose host tests passed; user chose OV9281-only hardware validation"
+  },
+  "limitations": [
+    "OV9281 lens calibration required for metric pose",
+    "External illumination not connected",
+    "UART electrical interface not tested",
+    "UVC streaming and CDC lighting performance measured separately after restart"
+  ],
+  "reports": [
+    "docs/auto_ov9281_boot.log",
+    "docs/auto_ov9281_lighting_validation.json",
+    "docs/auto_ov9281_uvc_validation.json",
+    "docs/sensor_auto_host_validation.json",
+    "docs/e6_pose_auto_validation.json",
+    "docs/ov9281_pose_auto_validation.json"
+  ],
+  "files": {
+    "agv_scan_auto.bin": {
+      "bytes": 951664,
+      "sha256": "ce12dc97b8323e6dca71832fec557178f5a28ee6ffdffc8bb6beec351388e81e"
+    },
+    "bootloader.bin": {
+      "bytes": 23632,
+      "sha256": "e69908ff22afdcf588f2d35c0d2514d9481b32eed31287353818f268eee88f49"
+    },
+    "flash_args": {
+      "bytes": 131,
+      "sha256": "62a05d570173a914d367e42247bb087704193f5cf101b5de7056cb2a776793b0"
+    },
+    "partition-table.bin": {
+      "bytes": 3072,
+      "sha256": "f69ab3a7a27256a9b02a121906b4d09488f62af845d539a445145a0fe1f1d3ce"
+    },
+    "sdkconfig.auto": {
+      "bytes": 91619,
+      "sha256": "9b773c6e92950d3f333f920d54e010976c894335d1a3cd26ceece273cf4127ef"
+    }
+  }
+}

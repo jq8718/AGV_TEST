@@ -211,13 +211,15 @@ static void capture_task(void *argument)
         /* E6 RAW8 brightness feedback also follows physical lamp changes.
          * Sample a uniform grid; no full-frame copy or previous-frame ROI. */
 #if CONFIG_CAMERA_OV01C1B
-        uint32_t brightness_sum = 0, brightness_count = 0;
-        for (int y = 16; y < FRAME_HEIGHT; y += 32)
-            for (int x = 16; x < FRAME_WIDTH; x += 32) {
-                brightness_sum += frame.pixels[y * frame.stride + x];
-                brightness_count++;
-            }
-        p4scan_camera_adjust_search_exposure(camera, brightness_sum / brightness_count);
+        if (p4scan_sensor_is_e6()) {
+            uint32_t brightness_sum = 0, brightness_count = 0;
+            for (int y = 16; y < FRAME_HEIGHT; y += 32)
+                for (int x = 16; x < FRAME_WIDTH; x += 32) {
+                    brightness_sum += frame.pixels[y * frame.stride + x];
+                    brightness_count++;
+                }
+            p4scan_camera_adjust_search_exposure(camera, brightness_sum / brightness_count);
+        }
 #endif
         /* Preview and CDC snapshots are generated after this frame decodes. */
         slot->begin_us = capture_cycle_us;

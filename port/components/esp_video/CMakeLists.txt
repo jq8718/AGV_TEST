@@ -10,7 +10,7 @@ set(srcs "src/esp_video_buffer.c"
 set(include_dirs "include")
 set(priv_include_dirs "private_include")
 set(priv_requires "vfs" "esp_timer")
-set(requires "esp_driver_cam" "esp_cam_sensor" "lwip")
+set(requires "p4scan_sensor_profile" "esp_driver_cam" "esp_cam_sensor" "lwip")
 
 if(CONFIG_IDF_TARGET_ESP32P4)
     if(CONFIG_ESP_VIDEO_ENABLE_SWAP_SHORT)

@@ -1,7 +1,7 @@
 menuconfig CAMERA_OV01C1B
     bool "OV01C1B"
-    default y if P4SCAN_SENSOR_E6
-    depends on SOC_MIPI_CSI_SUPPORTED && P4SCAN_SENSOR_E6
+    default y if P4SCAN_SENSOR_E6 || P4SCAN_SENSOR_AUTO
+    depends on SOC_MIPI_CSI_SUPPORTED && (P4SCAN_SENSOR_E6 || P4SCAN_SENSOR_AUTO)
     help
         Enable support for the OV01C1B CMOS image sensor.
 

@@ -5,6 +5,7 @@
  */
 
 #include "sdkconfig.h"
+#include "p4scan_sensor_profile.h"
 #include <string.h>
 #include <inttypes.h>
 #include <sys/lock.h>
@@ -922,6 +923,9 @@ esp_err_t esp_video_init_with_flags(const esp_video_init_config_t *config, uint3
     esp_cam_sensor_detect_get_array(&array_start, &array_end);
 
     for (esp_cam_sensor_detect_fn_t *p = array_start; p < array_end; ++p) {
+#if CONFIG_P4SCAN_SENSOR_AUTO
+        if (p->port == ESP_CAM_SENSOR_MIPI_CSI && p->sccb_addr != p4scan_sensor_profile()->address) continue;
+#endif
 #if CONFIG_ESP_VIDEO_ENABLE_MIPI_CSI_VIDEO_DEVICE
         if (flags & ESP_VIDEO_INIT_FLAGS_MIPI_CSI) {
             if (!(s_video_device_inited_flags & ESP_VIDEO_INIT_FLAGS_MIPI_CSI) && p->port == ESP_CAM_SENSOR_MIPI_CSI && config->csi != NULL) {

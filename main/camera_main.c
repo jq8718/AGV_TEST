@@ -838,7 +838,7 @@ static int scan_select_rois(const p4scan_camera_frame_t *frame,
                             scan_roi_candidate_t *candidates,
                             int candidate_capacity)
 {
-    uint32_t row_scores[P4SCAN_CAMERA_DEFAULT_HEIGHT] = {0};
+    uint32_t row_scores[1024] = {0}; /* Maximum height across supported sensors. */
     int candidate_count = 0;
 
     if (!frame || !frame->pixels || !candidates || candidate_capacity <= 0 ||
@@ -1578,22 +1578,22 @@ void app_main(void)
     ESP_ERROR_CHECK(scan_log_init());
     p4scan_camera_config_t config;
     p4scan_camera_config_default(&config);
-    ESP_LOGI(TAG, "starting " P4SCAN_CAMERA_SENSOR_NAME " live XCF pipeline");
+    ESP_LOGI(TAG, "starting camera live XCF pipeline");
     ESP_ERROR_CHECK(p4scan_feedback_init());
     ESP_LOGI(TAG, "init step: feedback ready");
+    ESP_LOGI(TAG, "init step: camera init begin");
+    ESP_ERROR_CHECK(p4scan_camera_init(&s_camera, &config));
+    ESP_LOGI(TAG, "init step: camera init done: %s", P4SCAN_CAMERA_SENSOR_NAME);
     ESP_ERROR_CHECK(scan_usb_init());
     ESP_ERROR_CHECK(scan_uart_init());
     ESP_LOGI(TAG, "init step: USB ready");
-    ESP_LOGI(TAG, "init step: camera init begin");
-    ESP_ERROR_CHECK(p4scan_camera_init(&s_camera, &config));
-    ESP_LOGI(TAG, "init step: camera init done");
     ESP_ERROR_CHECK(p4scan_camera_start(&s_camera));
     ESP_LOGI(TAG, "init step: camera stream started");
     esp_err_t first_frame = p4scan_camera_wait_for_frame(&s_camera, 3000);
     if (first_frame != ESP_OK) {
         p4scan_ov01c1b_log_sensor_state(s_camera.i2c_bus);
-        ESP_LOGE(TAG, P4SCAN_CAMERA_SENSOR_NAME " CSI has no frame: %s; check MIPI lane wiring, XCLK and reset",
-                 esp_err_to_name(first_frame));
+        ESP_LOGE(TAG, "%s CSI has no frame: %s; check MIPI lane wiring, XCLK and reset",
+                 P4SCAN_CAMERA_SENSOR_NAME, esp_err_to_name(first_frame));
         p4scan_feedback_set_state(P4SCAN_FEEDBACK_ERROR);
         esp_err_t cleanup = p4scan_camera_deinit(&s_camera);
         ESP_LOGW(TAG, "camera powered down after first-frame failure: %s", esp_err_to_name(cleanup));

@@ -26,6 +26,7 @@
 
 #include "tusb.h"
 #include "usb_descriptors.h"
+#include "p4scan_sensor_profile.h"
 
 //--------------------------------------------------------------------+
 // Device Descriptors
@@ -255,12 +256,40 @@ uint8_t const desc_fs_configuration[] = {
 // Invoked when received GET CONFIGURATION DESCRIPTOR
 // Application return pointer to descriptor
 // Descriptor contents must exist long enough for transfer to complete
+static void patch_sensor_frame(uint8_t *configuration, size_t size)
+{
+#if CONFIG_P4SCAN_SENSOR_AUTO
+    /* Single MJPEG stream, one native frame. Offsets follow UVC 1.5 frame descriptor. */
+    uint32_t width = p4scan_sensor_profile()->width;
+    uint32_t height = p4scan_sensor_profile()->height;
+    for (size_t offset = 0; offset + 2 <= size;) {
+        uint8_t *d = configuration + offset;
+        if (d[0] < 2 || offset + d[0] > size) break;
+        if (d[0] >= 26 && d[1] == 0x24 && d[2] == 0x07) {
+            d[5] = width; d[6] = width >> 8;
+            d[7] = height; d[8] = height >> 8;
+            uint32_t bitrate = width * height * 16 * UVC_CAM1_FRAME_RATE;
+            uint32_t capacity = width * height * 2;
+            for (unsigned b = 0; b < 4; ++b) {
+                d[9 + b] = bitrate >> (8 * b);
+                d[13 + b] = bitrate >> (8 * b);
+                d[17 + b] = capacity >> (8 * b);
+            }
+        }
+        offset += d[0];
+    }
+#else
+    (void)configuration; (void)size;
+#endif
+}
+
 uint8_t const *tud_descriptor_configuration_cb(uint8_t index)
 {
     (void) index; // for multiple configurations
 
     static uint8_t configuration[CONFIG_TOTAL_LEN];
     memcpy(configuration, desc_fs_configuration, sizeof(configuration));
+    patch_sensor_frame(configuration, sizeof(configuration));
     if (tud_speed_get() != TUSB_SPEED_HIGH) {
         for (size_t offset = 0; offset + 2 <= sizeof(configuration); offset += configuration[offset]) {
             if (configuration[offset] < 2) break;
@@ -288,6 +317,7 @@ uint8_t const *tud_descriptor_other_speed_configuration_cb(uint8_t index)
     (void)index;
     static uint8_t configuration[CONFIG_TOTAL_LEN];
     memcpy(configuration, desc_fs_configuration, sizeof(configuration));
+    patch_sensor_frame(configuration, sizeof(configuration));
     configuration[1] = TUSB_DESC_OTHER_SPEED_CONFIG;
     if (tud_speed_get() == TUSB_SPEED_HIGH) {
         for (size_t offset = 0; offset + 2 <= sizeof(configuration); offset += configuration[offset]) {

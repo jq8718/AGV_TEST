@@ -27,9 +27,11 @@
 #define PREVIEW_SIZE (PREVIEW_WIDTH * PREVIEW_HEIGHT)
 #define JPEG_CAPACITY (PREVIEW_SIZE * 2)
 
+#if !CONFIG_P4SCAN_SENSOR_AUTO
 _Static_assert(CONFIG_UVC_CAM1_FRAMESIZE_WIDTH == PREVIEW_WIDTH &&
                CONFIG_UVC_CAM1_FRAMESIZE_HEIGT == PREVIEW_HEIGHT,
                "UVC dimensions must match the selected camera profile");
+#endif
 
 typedef struct {
     uint16_t length;
@@ -641,7 +643,8 @@ esp_err_t scan_usb_init(void)
     ESP_ERROR_CHECK(esp_efuse_mac_get_default(mac));
     extern const char *string_desc_arr[];
     static char serial[24];
-    snprintf(serial, sizeof(serial), "%02X%02X%02X%02X%02X%02X-E6", mac[0], mac[1], mac[2], mac[3], mac[4], mac[5]);
+    snprintf(serial, sizeof(serial), "%02X%02X%02X%02X%02X%02X-%s", mac[0], mac[1], mac[2], mac[3], mac[4], mac[5],
+             p4scan_sensor_is_e6() ? "E6" : "OV9281");
     string_desc_arr[3] = serial;
     s_packets = xQueueCreate(1, sizeof(scan_packet_t));
     s_profiles = xQueueCreate(1, sizeof(scan_profile_t));

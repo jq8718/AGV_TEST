@@ -21,7 +21,9 @@ typedef struct {
 } stored_calibration_t;
 
 static scan_camera_calibration_t s_calibration = {
+#if !CONFIG_P4SCAN_SENSOR_AUTO
     .width = P4SCAN_CAMERA_DEFAULT_WIDTH, .height = P4SCAN_CAMERA_DEFAULT_HEIGHT,
+#endif
     /* Per-camera intrinsics must be supplied using @CAL,SET before metric pose. */
 };
 static bool s_nvs_ready;
@@ -41,6 +43,8 @@ static bool calibration_valid(const scan_camera_calibration_t *c)
 
 void scan_pose_init(void)
 {
+    s_calibration.width = P4SCAN_CAMERA_DEFAULT_WIDTH;
+    s_calibration.height = P4SCAN_CAMERA_DEFAULT_HEIGHT;
     esp_err_t err = nvs_flash_init();
     if (err != ESP_OK) {
         ESP_LOGW(TAG, "NVS unavailable (%s); metric pose requires calibration in RAM", esp_err_to_name(err));

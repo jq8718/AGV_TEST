@@ -9,6 +9,10 @@ if(P4SCAN_REPLAY_BUNDLE)
     return()
 endif()
 
+if(CONFIG_P4SCAN_SENSOR_AUTO AND (NOT CONFIG_CAMERA_OV9281 OR NOT CONFIG_CAMERA_OV01C1B))
+    message(FATAL_ERROR "Auto profile requires both camera drivers; use sdkconfig.auto")
+endif()
+
 if(CONFIG_P4SCAN_SENSOR_OV9281 AND (NOT CONFIG_CAMERA_OV9281 OR CONFIG_CAMERA_OV01C1B))
     message(FATAL_ERROR "OV9281 profile requires only CAMERA_OV9281; use sdkconfig.ov9281")
 endif()

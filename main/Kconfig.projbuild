@@ -2,7 +2,9 @@ menu "P4SCAN Application"
 
     choice P4SCAN_SENSOR
         prompt "Camera sensor on the AGV board"
-        default P4SCAN_SENSOR_E6
+        default P4SCAN_SENSOR_AUTO
+        config P4SCAN_SENSOR_AUTO
+            bool "Auto detect E6 / OV9281 at startup"
         config P4SCAN_SENSOR_E6
             bool "E6 OV01C1B (1024x1024 RAW10, 50fps)"
         config P4SCAN_SENSOR_OV9281

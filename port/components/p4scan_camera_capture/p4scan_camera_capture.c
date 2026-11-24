@@ -31,13 +31,8 @@
 #define I2C_SDA_GPIO 16
 #define I2C_SCL_GPIO 17
 #define CAMERA_PIXEL_FORMAT V4L2_PIX_FMT_SBGGR8
-#if CONFIG_P4SCAN_SENSOR_OV9281
-#define P4SCAN_INITIAL_EXPOSURE 681
-#define P4SCAN_CAMERA_TLINE_NS 10989U
-#else
-#define P4SCAN_INITIAL_EXPOSURE 1549
-#define P4SCAN_CAMERA_TLINE_NS 4090U
-#endif
+#define P4SCAN_INITIAL_EXPOSURE (p4scan_sensor_profile()->initial_exposure)
+#define P4SCAN_CAMERA_TLINE_NS (p4scan_sensor_profile()->tline_ns)
 #if CONFIG_CAMERA_OV01C1B_FIXED_GAIN > 0
 #define P4SCAN_INITIAL_GAIN_INDEX ((CONFIG_CAMERA_OV01C1B_FIXED_GAIN - 1) * 64)
 #else
@@ -50,6 +45,7 @@
 static void configure_e6_denoise(void)
 {
 #if CONFIG_CAMERA_OV01C1B
+    if (!p4scan_sensor_is_e6()) return;
     int isp = open(ESP_VIDEO_ISP1_DEVICE_NAME, O_RDONLY);
     if (isp < 0) { ESP_LOGW(TAG, "ISP denoise device unavailable errno=%d", errno); return; }
     esp_video_isp_bf_t bf = {.enable = true, .level = 10,
@@ -116,6 +112,7 @@ void p4scan_camera_remember_exposure(p4scan_camera_t *camera)
 
 void p4scan_camera_adjust_search_exposure(p4scan_camera_t *camera, uint32_t mean_brightness)
 {
+    if (!p4scan_sensor_is_e6()) return;
 #if CONFIG_CAMERA_OV01C1B_AE_MAX_EXPOSURE_US > 0
     int64_t now = esp_timer_get_time();
     if (mean_brightness > 255 || now < camera->ae_next_adjust_us) return;
@@ -181,7 +178,7 @@ static esp_err_t p4scan_camera_set_capture_defaults(p4scan_camera_t *camera)
         return ESP_OK;
     }
 #if CONFIG_CAMERA_OV01C1B_AE_MAX_EXPOSURE_US > 0
-    return ESP_OK;
+    if (p4scan_sensor_is_e6()) return ESP_OK;
 #endif
     struct v4l2_ext_control control = {0};
     struct v4l2_ext_controls controls = {0};
@@ -192,8 +189,10 @@ static esp_err_t p4scan_camera_set_capture_defaults(p4scan_camera_t *camera)
         requested_exposure = camera->search_exposure;
     }
 #if CONFIG_CAMERA_OV01C1B_FIXED_EXPOSURE_US > 0
+    if (p4scan_sensor_is_e6()) {
     requested_exposure = CONFIG_CAMERA_OV01C1B_FIXED_EXPOSURE_US * 1000U / P4SCAN_CAMERA_TLINE_NS;
     if (requested_exposure < 1) requested_exposure = 1;
+    }
 #endif
     control.value = requested_exposure;
     controls.ctrl_class = V4L2_CID_CAMERA_CLASS;
@@ -247,6 +246,53 @@ static void close_capture_buffers(p4scan_camera_t *camera)
     }
 }
 
+/* Probe only the two supported addresses, then verify silicon identity before
+ * any mode registers or ISP/USB configuration are selected. */
+static esp_err_t detect_sensor(i2c_master_bus_handle_t bus)
+{
+    const uint8_t addresses[] = {0x10, 0x60};
+    uint8_t address = 0;
+    unsigned count = 0;
+    for (unsigned i = 0; i < sizeof(addresses); ++i) {
+        esp_err_t err = i2c_master_probe(bus, addresses[i], 100);
+        if (err == ESP_OK) { address = addresses[i]; ++count; }
+        else if (err != ESP_ERR_NOT_FOUND) return err;
+    }
+    ESP_RETURN_ON_FALSE(count == 1, ESP_ERR_NOT_FOUND, TAG,
+                        "expected one camera at 0x10/0x60; found %u", count);
+    i2c_master_dev_handle_t dev;
+    i2c_device_config_t cfg = {.dev_addr_length = I2C_ADDR_BIT_LEN_7,
+                              .device_address = address, .scl_speed_hz = 100000};
+    ESP_RETURN_ON_ERROR(i2c_master_bus_add_device(bus, &cfg, &dev), TAG, "ID device add failed");
+    uint32_t id = 0;
+    esp_err_t ret = ESP_OK;
+    if (address == 0x10) {
+        const uint8_t page[] = {0xfd, 0x00};
+        ret = i2c_master_transmit(dev, page, sizeof(page), 100);
+        for (uint8_t reg = 0; ret == ESP_OK && reg < 4; ++reg) {
+            uint8_t value = 0;
+            ret = i2c_master_transmit_receive(dev, &reg, 1, &value, 1, 100);
+            id = (id << 8) | value;
+        }
+    } else {
+        for (uint16_t reg = 0x300a; ret == ESP_OK && reg <= 0x300b; ++reg) {
+            const uint8_t bytes[] = {reg >> 8, reg & 255};
+            uint8_t value = 0;
+            ret = i2c_master_transmit_receive(dev, bytes, 2, &value, 1, 100);
+            id = (id << 8) | value;
+        }
+    }
+    esp_err_t removed = i2c_master_bus_rm_device(dev);
+    ESP_RETURN_ON_ERROR(ret, TAG, "camera ID read failed at 0x%02x", address);
+    ESP_RETURN_ON_ERROR(removed, TAG, "ID device remove failed");
+    ESP_RETURN_ON_FALSE(p4scan_sensor_select(address, id), ESP_ERR_NOT_SUPPORTED, TAG,
+                        "unsupported camera/profile: address=0x%02x chip_id=0x%08lx", address, (unsigned long)id);
+    ESP_LOGI(TAG, "sensor selected: %s address=0x%02x chip_id=0x%08lx mode=%lux%lu",
+             p4scan_sensor_profile()->name, address, (unsigned long)id,
+             (unsigned long)p4scan_sensor_profile()->width, (unsigned long)p4scan_sensor_profile()->height);
+    return ESP_OK;
+}
+
 void p4scan_camera_config_default(p4scan_camera_config_t *config)
 {
     if (!config) {
@@ -273,10 +319,6 @@ esp_err_t p4scan_camera_init(p4scan_camera_t *camera,
     } else {
         p4scan_camera_config_default(&effective);
     }
-    ESP_RETURN_ON_FALSE(effective.width == P4SCAN_CAMERA_DEFAULT_WIDTH &&
-                        effective.height == P4SCAN_CAMERA_DEFAULT_HEIGHT,
-                        ESP_ERR_NOT_SUPPORTED, TAG,
-                        "unsupported mode for " P4SCAN_CAMERA_SENSOR_NAME);
     ESP_RETURN_ON_FALSE(effective.frame_rate == P4SCAN_CAMERA_DEFAULT_FPS && effective.i2c_frequency > 0,
                         ESP_ERR_INVALID_ARG, TAG, "invalid camera configuration");
 
@@ -300,7 +342,13 @@ esp_err_t p4scan_camera_init(p4scan_camera_t *camera,
     ESP_GOTO_ON_ERROR(i2c_new_master_bus(&bus_config, &camera->i2c_bus), fail,
                       TAG, "failed to initialize I2C0");
     ESP_GOTO_ON_ERROR(p4scan_ov01c1b_power_on(camera->i2c_bus), fail,
-                      TAG, "failed to power " P4SCAN_CAMERA_SENSOR_NAME);
+                      TAG, "failed to power camera");
+    ESP_GOTO_ON_ERROR(detect_sensor(camera->i2c_bus), fail, TAG, "sensor detection failed");
+    ESP_GOTO_ON_FALSE((!effective.width || effective.width == P4SCAN_CAMERA_DEFAULT_WIDTH) &&
+                      (!effective.height || effective.height == P4SCAN_CAMERA_DEFAULT_HEIGHT),
+                      ESP_ERR_NOT_SUPPORTED, fail, TAG, "requested size does not match detected camera");
+    camera->width = P4SCAN_CAMERA_DEFAULT_WIDTH;
+    camera->height = P4SCAN_CAMERA_DEFAULT_HEIGHT;
 
     csi_config = (esp_video_init_csi_config_t) {
         .sccb_config = {
@@ -318,8 +366,8 @@ esp_err_t p4scan_camera_init(p4scan_camera_t *camera,
     ESP_GOTO_ON_ERROR(esp_video_init(&video_config), fail,
                       TAG, "failed to initialize CSI video");
     camera->video_initialized = true;
-    ESP_LOGI(TAG, P4SCAN_CAMERA_SENSOR_NAME " video initialized: %ux%u ISP RAW8 @ %lu fps",
-             (unsigned)camera->width, (unsigned)camera->height,
+    ESP_LOGI(TAG, "%s video initialized: %ux%u ISP RAW8 @ %lu fps",
+             P4SCAN_CAMERA_SENSOR_NAME, (unsigned)camera->width, (unsigned)camera->height,
              (unsigned long)camera->frame_rate);
     return ESP_OK;
 

@@ -16,8 +16,10 @@ def main():
     args.add_argument('--port', required=True)
     args.add_argument('--log-port', required=True)
     args.add_argument('--sensor', choices=['e6', 'ov9281'], required=True)
+    args.add_argument('--prefix', help='Artifact prefix, defaults to sensor name')
     args.add_argument('--expect', default='012345')
     opts = args.parse_args()
+    prefix = opts.prefix or opts.sensor
     output = Path(__file__).resolve().parents[1] / 'docs'
     log = serial.Serial()
     log.port, log.baudrate, log.timeout = opts.log_port, 115200, 0
@@ -45,7 +47,7 @@ def main():
                             request_at = next(request_times, float('inf'))
                         for kind, value in parser.feed(port.read(65536)):
                             if kind == 'frame':
-                                name = f'{opts.sensor}_light_{phase}_{len(record["snapshots"])}.jpg'
+                                name = f'{prefix}_light_{phase}_{len(record["snapshots"])}.jpg'
                                 (output / name).write_bytes(value.jpeg)
                                 image = cv2.imdecode(np.frombuffer(value.jpeg, np.uint8), cv2.IMREAD_GRAYSCALE)
                                 record['snapshots'].append(dict(file=name, elapsed=elapsed, **value.metadata(),
@@ -81,8 +83,8 @@ def main():
                     log_bytes.extend(log.read(log.in_waiting))
     finally:
         log.close()
-        (output / f'{opts.sensor}_lighting.log').write_bytes(log_bytes)
-        (output / f'{opts.sensor}_lighting_validation.json').write_text(
+        (output / f'{prefix}_lighting.log').write_bytes(log_bytes)
+        (output / f'{prefix}_lighting_validation.json').write_text(
             json.dumps(dict(sensor=opts.sensor, expected=opts.expect, phases=records), indent=2), encoding='utf8')
     return int(any(r['errors'] or len(r['snapshots']) != 3 or not r['summary']['matches'] for r in records))
 

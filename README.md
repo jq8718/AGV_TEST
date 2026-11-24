@@ -3,6 +3,20 @@
 将 `ESP32P4_XCF_OV9281` 的实时 DataMatrix 解码、同帧角点精定位、双核最新帧流水线、USB CDC 图片/结果、MJPEG UVC 和 UART v6 定位协议移植到当前 AGV 板。E6（OV01C1B）采集与寄存器驱动参考 `ESP32P4_XCF`。原 GPIO 测试工程保存在 `legacy_gpio_demo/`。
 
 
+## 当前默认：启动自动识别，一个固件通用
+
+默认`./build_p4.ps1`与`./flash_p4.ps1 -Port COM62`使用`sdkconfig.auto`，产物`build_auto/agv_scan_auto.bin`。通用固件包与SHA256见[dist/auto_sensor_20261124](dist/auto_sensor_20261124/README.md)。`-Sensor e6|ov9281`仍可显式编译旧单传感器配置；下文保留历史记录。
+
+按AGV板时序上电后，检查7位I2C地址0x10、0x60并核对芯片ID：0x10/0x56014311选择E6；0x60/0x9281选择OV9281。零个或两个地址应答、ID不符或总线错误均报错，并在返回失败前关闭相机供电。仅启动时检测，更换相机需断电重启，无需重烧；不支持热插拔。当前OV9281支持用户确认的SID低地址0x60。
+
+识别结果决定CSI模式、图像尺寸、专用曝光与降噪/解码路径；先识别相机，再初始化USB和UART标定服务。UVC枚举当前原生尺寸，USB序列号按E6/OV9281区分，避免Windows缓存另一型号尺寸。当前OV9281 CDC为COM69。标定独立使用scan_pose和pose_ov9281，保留已有NVS。
+
+通用固件已通过COM62烧录和哈希校验；自动识别OV9281地址0x60、PID0x9281，首帧921600字节。UVC5.281秒收到145帧1280×720图像。独立重启后内补光关/开/关各6.5秒，成功/处理分别106/117、119/121、126/127，开灯2秒后的87帧全部成功；351条012345均为精修角点质量2，最大结果年龄99.756ms，9张快照CRC通过，协议错误0，结束恢复按钮自动模式。证据为docs/auto_ov9281_boot.log、docs/auto_ov9281_lighting_validation.json及docs/auto_ov9281_uvc_validation.json。
+
+UVC与CDC补光性能分别测量。并发试验中预览增加处理负载，关闭主机视频后曾持续收到预览快照，因此CDC验收采用独立重启后的结果，不能据此声称并发性能相同。
+
+主机测试编译实际探测、运行时配置与UVC描述符修补C代码，覆盖两型号、错误ID、无设备/双地址、I2C失败及清理、动态尺寸和独立标定。两种运行时尺寸的定位回归各815组通过；证据见docs/sensor_auto_host_validation.json、docs/e6_pose_auto_validation.json和docs/ov9281_pose_auto_validation.json。用户选择本轮只验证OV9281，通用固件换回E6的实机验证待完成；外补光、UART电气通信、镜头标定和运动场景仍未验收。
+
 ## OV9281 支持与版本保存（2026-11-24）
 
 当前E6完整基线已提交至 https://github.com/jq8718/AGV_TEST ，提交`a4828d3`，标签`e6-baseline-20261124`。以下双传感器版本保留同一套DataMatrix/QR解码、同帧精修角点、100ms结果时限、四CSI缓冲与双核流水线、MJPEG UVC、CDC快照/结果/诊断、UART0 v6 CRC16、标定下载及NVS保存、GPIO35按钮与LED反馈。

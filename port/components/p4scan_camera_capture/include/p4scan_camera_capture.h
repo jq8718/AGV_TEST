@@ -13,7 +13,13 @@ extern "C" {
 #endif
 
 #include "sdkconfig.h"
-#if CONFIG_P4SCAN_SENSOR_OV9281
+#include "p4scan_sensor_profile.h"
+#if CONFIG_P4SCAN_SENSOR_AUTO
+#define P4SCAN_CAMERA_SENSOR_NAME (p4scan_sensor_profile()->name)
+#define P4SCAN_CAMERA_CAL_NAMESPACE (p4scan_sensor_profile()->cal_namespace)
+#define P4SCAN_CAMERA_DEFAULT_WIDTH ((unsigned)p4scan_sensor_profile()->width)
+#define P4SCAN_CAMERA_DEFAULT_HEIGHT ((unsigned)p4scan_sensor_profile()->height)
+#elif CONFIG_P4SCAN_SENSOR_OV9281
 #define P4SCAN_CAMERA_SENSOR_NAME "OV9281"
 #define P4SCAN_CAMERA_CAL_NAMESPACE "pose_ov9281"
 #define P4SCAN_CAMERA_DEFAULT_WIDTH  1280

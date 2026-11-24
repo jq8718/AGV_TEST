@@ -18,6 +18,7 @@
 #include "esp_private/usb_phy.h"
 #include "tusb.h"
 #include "usb_device_uvc.h"
+#include "p4scan_sensor_profile.h"
 
 static const char *TAG = "usbd_uvc";
 
@@ -351,7 +352,7 @@ int tud_video_commit_cb(uint_fast8_t ctl_idx, uint_fast8_t stm_idx,
     /* convert unit to ms from 100 ns */
     ESP_LOGI(TAG, "bFrameIndex: %u", parameters->bFrameIndex);
     ESP_LOGI(TAG, "dwFrameInterval: %" PRIu32 "", parameters->dwFrameInterval);
-    if (parameters->bFrameIndex > UVC_FRAME_NUM) {
+    if (!parameters->bFrameIndex || parameters->bFrameIndex > UVC_FRAME_NUM) {
         return VIDEO_ERROR_OUT_OF_RANGE;
     }
     s_uvc_device.streaming[ctl_idx] = false;
@@ -359,8 +360,16 @@ int tud_video_commit_cb(uint_fast8_t ctl_idx, uint_fast8_t stm_idx,
     tud_video_n_stream_reset(ctl_idx, stm_idx);
     s_uvc_device.interval_ms[ctl_idx] = parameters->dwFrameInterval / 10000;
     int frame_index = parameters->bFrameIndex - 1;
-    esp_err_t ret = s_uvc_device.user_config[ctl_idx].start_cb(s_uvc_device.format[ctl_idx], UVC_FRAMES_INFO[ctl_idx][frame_index].width,
-                                                               UVC_FRAMES_INFO[ctl_idx][frame_index].height, UVC_FRAMES_INFO[ctl_idx][frame_index].rate, s_uvc_device.user_config[ctl_idx].cb_ctx);
+    int width = UVC_FRAMES_INFO[ctl_idx][frame_index].width;
+    int height = UVC_FRAMES_INFO[ctl_idx][frame_index].height;
+#if CONFIG_P4SCAN_SENSOR_AUTO
+    if (ctl_idx == 0 && frame_index == 0) {
+        width = p4scan_sensor_profile()->width;
+        height = p4scan_sensor_profile()->height;
+    }
+#endif
+    esp_err_t ret = s_uvc_device.user_config[ctl_idx].start_cb(s_uvc_device.format[ctl_idx], width,
+        height, UVC_FRAMES_INFO[ctl_idx][frame_index].rate, s_uvc_device.user_config[ctl_idx].cb_ctx);
 
     if (ret != ESP_OK) {
         ESP_LOGE(TAG, "camera init failed");

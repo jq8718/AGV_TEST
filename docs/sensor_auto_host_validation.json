@@ -1,0 +1,10 @@
+{
+  "passed": true,
+  "actual_sources": [
+    "p4scan_sensor_profile.c",
+    "detect_sensor",
+    "patch_sensor_frame"
+  ],
+  "i2c": "mocked; does not replace hardware validation",
+  "result": "PASS: sensor identity, missing/ambiguous sensor, I2C errors, cleanup, UVC dimensions, calibration namespaces"
+}
