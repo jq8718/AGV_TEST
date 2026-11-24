@@ -1,0 +1,447 @@
+I (56014) p4scan_usb: CDC command=@TIMINGON
+I (56014) p4scan_usb: CDC command=@GEOMETRYON
+I (56014) p4scan_usb: CDC command=@LIGHT,0
+I (56014) p4scan_agv: light command override=0
+I (57020) p4scan_usb: CDC command=@SNAP
+I (57020) p4scan_usb: CDC command=@BOARD
+I (57021) p4scan_agv: board status raw35=1 stable_pressed=0 requested_aim=0 requested_light=0 applied_aim=0 applied_light=0 override=0
+ESP LDO Channel State:
+Index ID    ref_cnt    voltage_mv   adjustable
+0     1     1          3300         no
+1     2     1          1800         no
+2     3     1          2500         no
+3     4     1          3300         no
+I (57022) agv_e6_power: VSYS active-low GPIO33=0 enabled=1 (digital pad; measure VSYS rail separately)
+================IO DUMP Start================
+IO[18] -
+  Pullup: 0, Pulldown: 0, DriveCap: 2
+  InputEn: 1, OutputEn: [periph_sig_ctrl], OpenDrain: 0
+  FuncSel: 1 (GPIO)
+  GPIO Matrix SigOut ID: 256 (simple GPIO output)
+  GPIO Matrix SigIn ID: (simple GPIO input)
+  SleepSelEn: 1
+
+IO[19] -
+  Pullup: 0, Pulldown: 0, DriveCap: 2
+  InputEn: 1, OutputEn: [periph_sig_ctrl], OpenDrain: 0
+  FuncSel: 1 (GPIO)
+  GPIO Matrix SigOut ID: 256 (simple GPIO output)
+  GPIO Matrix SigIn ID: (simple GPIO input)
+  SleepSelEn: 1
+
+IO[33] -
+  Pullup: 0, Pulldown: 0, DriveCap: 2
+  InputEn: 1, OutputEn: [periph_sig_ctrl], OpenDrain: 0
+  FuncSel: 1 (GPIO)
+  GPIO Matrix SigOut ID: 256 (simple GPIO output)
+  GPIO Matrix SigIn ID: (simple GPIO input)
+  SleepSelEn: 1
+
+=================IO DUMP End=================
+I (57025) agv_e6_power: pad reads GPIO35=1 AIM18=0 INTERNAL19=0 STROBE22=0
+I (57026) agv_e6_power: AW36515 reg00=30
+I (57026) agv_e6_power: AW36515 reg01=80
+I (57027) agv_e6_power: AW36515 reg05=10
+I (57028) agv_e6_power: AW36515 reg06=10
+I (57028) agv_e6_power: AW36515 reg0a=00
+I (57029) agv_e6_power: AW36515 reg0b=00
+I (59011) p4scan_usb: CDC command=@SNAP
+I (59011) p4scan_usb: CDC command=@BOARD
+I (59012) p4scan_agv: board status raw35=1 stable_pressed=0 requested_aim=0 requested_light=0 applied_aim=0 applied_light=0 override=0
+ESP LDO Channel State:
+Index ID    ref_cnt    voltage_mv   adjustable
+0     1     1          3300         no
+1     2     1          1800         no
+2     3     1          2500         no
+3     4     1          3300         no
+I (59013) agv_e6_power: VSYS active-low GPIO33=0 enabled=1 (digital pad; measure VSYS rail separately)
+================IO DUMP Start================
+IO[18] -
+  Pullup: 0, Pulldown: 0, DriveCap: 2
+  InputEn: 1, OutputEn: [periph_sig_ctrl], OpenDrain: 0
+  FuncSel: 1 (GPIO)
+  GPIO Matrix SigOut ID: 256 (simple GPIO output)
+  GPIO Matrix SigIn ID: (simple GPIO input)
+  SleepSelEn: 1
+
+IO[19] -
+  Pullup: 0, Pulldown: 0, DriveCap: 2
+  InputEn: 1, OutputEn: [periph_sig_ctrl], OpenDrain: 0
+  FuncSel: 1 (GPIO)
+  GPIO Matrix SigOut ID: 256 (simple GPIO output)
+  GPIO Matrix SigIn ID: (simple GPIO input)
+  SleepSelEn: 1
+
+IO[33] -
+  Pullup: 0, Pulldown: 0, DriveCap: 2
+  InputEn: 1, OutputEn: [periph_sig_ctrl], OpenDrain: 0
+  FuncSel: 1 (GPIO)
+  GPIO Matrix SigOut ID: 256 (simple GPIO output)
+  GPIO Matrix SigIn ID: (simple GPIO input)
+  SleepSelEn: 1
+
+=================IO DUMP End=================
+I (59017) agv_e6_power: pad reads GPIO35=1 AIM18=0 INTERNAL19=0 STROBE22=0
+I (59018) agv_e6_power: AW36515 reg00=30
+I (59018) agv_e6_power: AW36515 reg01=80
+I (59019) agv_e6_power: AW36515 reg05=10
+I (59020) agv_e6_power: AW36515 reg06=10
+I (59020) agv_e6_power: AW36515 reg0a=00
+I (59021) agv_e6_power: AW36515 reg0b=00
+I (61012) p4scan_usb: CDC command=@SNAP
+I (61012) p4scan_usb: CDC command=@BOARD
+I (61013) p4scan_agv: board status raw35=1 stable_pressed=0 requested_aim=0 requested_light=0 applied_aim=0 applied_light=0 override=0
+ESP LDO Channel State:
+Index ID    ref_cnt    voltage_mv   adjustable
+0     1     1          3300         no
+1     2     1          1800         no
+2     3     1          2500         no
+3     4     1          3300         no
+I (61014) agv_e6_power: VSYS active-low GPIO33=0 enabled=1 (digital pad; measure VSYS rail separately)
+================IO DUMP Start================
+IO[18] -
+  Pullup: 0, Pulldown: 0, DriveCap: 2
+  InputEn: 1, OutputEn: [periph_sig_ctrl], OpenDrain: 0
+  FuncSel: 1 (GPIO)
+  GPIO Matrix SigOut ID: 256 (simple GPIO output)
+  GPIO Matrix SigIn ID: (simple GPIO input)
+  SleepSelEn: 1
+
+IO[19] -
+  Pullup: 0, Pulldown: 0, DriveCap: 2
+  InputEn: 1, OutputEn: [periph_sig_ctrl], OpenDrain: 0
+  FuncSel: 1 (GPIO)
+  GPIO Matrix SigOut ID: 256 (simple GPIO output)
+  GPIO Matrix SigIn ID: (simple GPIO input)
+  SleepSelEn: 1
+
+IO[33] -
+  Pullup: 0, Pulldown: 0, DriveCap: 2
+  InputEn: 1, OutputEn: [periph_sig_ctrl], OpenDrain: 0
+  FuncSel: 1 (GPIO)
+  GPIO Matrix SigOut ID: 256 (simple GPIO output)
+  GPIO Matrix SigIn ID: (simple GPIO input)
+  SleepSelEn: 1
+
+=================IO DUMP End=================
+I (61017) agv_e6_power: pad reads GPIO35=1 AIM18=0 INTERNAL19=0 STROBE22=0
+I (61018) agv_e6_power: AW36515 reg00=30
+I (61018) agv_e6_power: AW36515 reg01=80
+I (61019) agv_e6_power: AW36515 reg05=10
+I (61019) agv_e6_power: AW36515 reg06=10
+I (61020) agv_e6_power: AW36515 reg0a=00
+I (61021) agv_e6_power: AW36515 reg0b=00
+I (62511) p4scan_usb: CDC command=@LIGHT,1
+I (62512) p4scan_agv: light command override=1
+I (62517) agv_e6_power: light outputs AIM18=0 INTERNAL19=1 STROBE22=1 AW=ready
+I (62518) p4scan_agv: button lights: illumination=1 aiming=0 auto_off=disabled
+I (63514) p4scan_usb: CDC command=@SNAP
+I (63515) p4scan_usb: CDC command=@BOARD
+I (63515) p4scan_agv: board status raw35=1 stable_pressed=0 requested_aim=0 requested_light=1 applied_aim=0 applied_light=1 override=1
+ESP LDO Channel State:
+Index ID    ref_cnt    voltage_mv   adjustable
+0     1     1          3300         no
+1     2     1          1800         no
+2     3     1          2500         no
+3     4     1          3300         no
+I (63516) agv_e6_power: VSYS active-low GPIO33=0 enabled=1 (digital pad; measure VSYS rail separately)
+================IO DUMP Start================
+IO[18] -
+  Pullup: 0, Pulldown: 0, DriveCap: 2
+  InputEn: 1, OutputEn: [periph_sig_ctrl], OpenDrain: 0
+  FuncSel: 1 (GPIO)
+  GPIO Matrix SigOut ID: 256 (simple GPIO output)
+  GPIO Matrix SigIn ID: (simple GPIO input)
+  SleepSelEn: 1
+
+IO[19] -
+  Pullup: 0, Pulldown: 0, DriveCap: 2
+  InputEn: 1, OutputEn: [periph_sig_ctrl], OpenDrain: 0
+  FuncSel: 1 (GPIO)
+  GPIO Matrix SigOut ID: 256 (simple GPIO output)
+  GPIO Matrix SigIn ID: (simple GPIO input)
+  SleepSelEn: 1
+
+IO[33] -
+  Pullup: 0, Pulldown: 0, DriveCap: 2
+  InputEn: 1, OutputEn: [periph_sig_ctrl], OpenDrain: 0
+  FuncSel: 1 (GPIO)
+  GPIO Matrix SigOut ID: 256 (simple GPIO output)
+  GPIO Matrix SigIn ID: (simple GPIO input)
+  SleepSelEn: 1
+
+=================IO DUMP End=================
+I (63520) agv_e6_power: pad reads GPIO35=1 AIM18=0 INTERNAL19=1 STROBE22=1
+I (63521) agv_e6_power: AW36515 reg00=30
+I (63522) agv_e6_power: AW36515 reg01=13
+I (63522) agv_e6_power: AW36515 reg05=10
+I (63523) agv_e6_power: AW36515 reg06=10
+I (63523) agv_e6_power: AW36515 reg0a=00
+I (63524) agv_e6_power: AW36515 reg0b=02
+I (65512) p4scan_usb: CDC command=@SNAP
+I (65512) p4scan_usb: CDC command=@BOARD
+I (65512) p4scan_agv: board status raw35=1 stable_pressed=0 requested_aim=0 requested_light=1 applied_aim=0 applied_light=1 override=1
+ESP LDO Channel State:
+Index ID    ref_cnt    voltage_mv   adjustable
+0     1     1          3300         no
+1     2     1          1800         no
+2     3     1          2500         no
+3     4     1          3300         no
+I (65513) agv_e6_power: VSYS active-low GPIO33=0 enabled=1 (digital pad; measure VSYS rail separately)
+================IO DUMP Start================
+IO[18] -
+  Pullup: 0, Pulldown: 0, DriveCap: 2
+  InputEn: 1, OutputEn: [periph_sig_ctrl], OpenDrain: 0
+  FuncSel: 1 (GPIO)
+  GPIO Matrix SigOut ID: 256 (simple GPIO output)
+  GPIO Matrix SigIn ID: (simple GPIO input)
+  SleepSelEn: 1
+
+IO[19] -
+  Pullup: 0, Pulldown: 0, DriveCap: 2
+  InputEn: 1, OutputEn: [periph_sig_ctrl], OpenDrain: 0
+  FuncSel: 1 (GPIO)
+  GPIO Matrix SigOut ID: 256 (simple GPIO output)
+  GPIO Matrix SigIn ID: (simple GPIO input)
+  SleepSelEn: 1
+
+IO[33] -
+  Pullup: 0, Pulldown: 0, DriveCap: 2
+  InputEn: 1, OutputEn: [periph_sig_ctrl], OpenDrain: 0
+  FuncSel: 1 (GPIO)
+  GPIO Matrix SigOut ID: 256 (simple GPIO output)
+  GPIO Matrix SigIn ID: (simple GPIO input)
+  SleepSelEn: 1
+
+=================IO DUMP End=================
+I (65516) agv_e6_power: pad reads GPIO35=1 AIM18=0 INTERNAL19=1 STROBE22=1
+I (65517) agv_e6_power: AW36515 reg00=30
+I (65518) agv_e6_power: AW36515 reg01=13
+I (65519) agv_e6_power: AW36515 reg05=10
+I (65519) agv_e6_power: AW36515 reg06=10
+I (65520) agv_e6_power: AW36515 reg0a=00
+I (65520) agv_e6_power: AW36515 reg0b=00
+I (67513) p4scan_usb: CDC command=@SNAP
+I (67514) p4scan_usb: CDC command=@BOARD
+I (67514) p4scan_agv: board status raw35=1 stable_pressed=0 requested_aim=0 requested_light=1 applied_aim=0 applied_light=1 override=1
+ESP LDO Channel State:
+Index ID    ref_cnt    voltage_mv   adjustable
+0     1     1          3300         no
+1     2     1          1800         no
+2     3     1          2500         no
+3     4     1          3300         no
+I (67515) agv_e6_power: VSYS active-low GPIO33=0 enabled=1 (digital pad; measure VSYS rail separately)
+================IO DUMP Start================
+IO[18] -
+  Pullup: 0, Pulldown: 0, DriveCap: 2
+  InputEn: 1, OutputEn: [periph_sig_ctrl], OpenDrain: 0
+  FuncSel: 1 (GPIO)
+  GPIO Matrix SigOut ID: 256 (simple GPIO output)
+  GPIO Matrix SigIn ID: (simple GPIO input)
+  SleepSelEn: 1
+
+IO[19] -
+  Pullup: 0, Pulldown: 0, DriveCap: 2
+  InputEn: 1, OutputEn: [periph_sig_ctrl], OpenDrain: 0
+  FuncSel: 1 (GPIO)
+  GPIO Matrix SigOut ID: 256 (simple GPIO output)
+  GPIO Matrix SigIn ID: (simple GPIO input)
+  SleepSelEn: 1
+
+IO[33] -
+  Pullup: 0, Pulldown: 0, DriveCap: 2
+  InputEn: 1, OutputEn: [periph_sig_ctrl], OpenDrain: 0
+  FuncSel: 1 (GPIO)
+  GPIO Matrix SigOut ID: 256 (simple GPIO output)
+  GPIO Matrix SigIn ID: (simple GPIO input)
+  SleepSelEn: 1
+
+=================IO DUMP End=================
+I (67518) agv_e6_power: pad reads GPIO35=1 AIM18=0 INTERNAL19=1 STROBE22=1
+I (67519) agv_e6_power: AW36515 reg00=30
+I (67520) agv_e6_power: AW36515 reg01=13
+I (67521) agv_e6_power: AW36515 reg05=10
+I (67521) agv_e6_power: AW36515 reg06=10
+I (67522) agv_e6_power: AW36515 reg0a=00
+I (67522) agv_e6_power: AW36515 reg0b=00
+I (69011) p4scan_usb: CDC command=@LIGHT,0
+I (69012) p4scan_agv: light command override=0
+I (69012) agv_e6_power: light outputs AIM18=0 INTERNAL19=0 STROBE22=0 AW=ready
+I (69013) p4scan_agv: button lights: illumination=0 aiming=0 auto_off=disabled
+I (70011) p4scan_usb: CDC command=@SNAP
+I (70012) p4scan_usb: CDC command=@BOARD
+I (70012) p4scan_agv: board status raw35=1 stable_pressed=0 requested_aim=0 requested_light=0 applied_aim=0 applied_light=0 override=0
+ESP LDO Channel State:
+Index ID    ref_cnt    voltage_mv   adjustable
+0     1     1          3300         no
+1     2     1          1800         no
+2     3     1          2500         no
+3     4     1          3300         no
+I (70013) agv_e6_power: VSYS active-low GPIO33=0 enabled=1 (digital pad; measure VSYS rail separately)
+================IO DUMP Start================
+IO[18] -
+  Pullup: 0, Pulldown: 0, DriveCap: 2
+  InputEn: 1, OutputEn: [periph_sig_ctrl], OpenDrain: 0
+  FuncSel: 1 (GPIO)
+  GPIO Matrix SigOut ID: 256 (simple GPIO output)
+  GPIO Matrix SigIn ID: (simple GPIO input)
+  SleepSelEn: 1
+
+IO[19] -
+  Pullup: 0, Pulldown: 0, DriveCap: 2
+  InputEn: 1, OutputEn: [periph_sig_ctrl], OpenDrain: 0
+  FuncSel: 1 (GPIO)
+  GPIO Matrix SigOut ID: 256 (simple GPIO output)
+  GPIO Matrix SigIn ID: (simple GPIO input)
+  SleepSelEn: 1
+
+IO[33] -
+  Pullup: 0, Pulldown: 0, DriveCap: 2
+  InputEn: 1, OutputEn: [periph_sig_ctrl], OpenDrain: 0
+  FuncSel: 1 (GPIO)
+  GPIO Matrix SigOut ID: 256 (simple GPIO output)
+  GPIO Matrix SigIn ID: (simple GPIO input)
+  SleepSelEn: 1
+
+=================IO DUMP End=================
+I (70016) agv_e6_power: pad reads GPIO35=1 AIM18=0 INTERNAL19=0 STROBE22=0
+I (70017) agv_e6_power: AW36515 reg00=30
+I (70018) agv_e6_power: AW36515 reg01=80
+I (70019) agv_e6_power: AW36515 reg05=10
+I (70019) agv_e6_power: AW36515 reg06=10
+I (70020) agv_e6_power: AW36515 reg0a=00
+I (70020) agv_e6_power: AW36515 reg0b=00
+I (72011) p4scan_usb: CDC command=@SNAP
+I (72012) p4scan_usb: CDC command=@BOARD
+I (72012) p4scan_agv: board status raw35=1 stable_pressed=0 requested_aim=0 requested_light=0 applied_aim=0 applied_light=0 override=0
+ESP LDO Channel State:
+Index ID    ref_cnt    voltage_mv   adjustable
+0     1     1          3300         no
+1     2     1          1800         no
+2     3     1          2500         no
+3     4     1          3300         no
+I (72014) agv_e6_power: VSYS active-low GPIO33=0 enabled=1 (digital pad; measure VSYS rail separately)
+================IO DUMP Start================
+IO[18] -
+  Pullup: 0, Pulldown: 0, DriveCap: 2
+  InputEn: 1, OutputEn: [periph_sig_ctrl], OpenDrain: 0
+  FuncSel: 1 (GPIO)
+  GPIO Matrix SigOut ID: 256 (simple GPIO output)
+  GPIO Matrix SigIn ID: (simple GPIO input)
+  SleepSelEn: 1
+
+IO[19] -
+  Pullup: 0, Pulldown: 0, DriveCap: 2
+  InputEn: 1, OutputEn: [periph_sig_ctrl], OpenDrain: 0
+  FuncSel: 1 (GPIO)
+  GPIO Matrix SigOut ID: 256 (simple GPIO output)
+  GPIO Matrix SigIn ID: (simple GPIO input)
+  SleepSelEn: 1
+
+IO[33] -
+  Pullup: 0, Pulldown: 0, DriveCap: 2
+  InputEn: 1, OutputEn: [periph_sig_ctrl], OpenDrain: 0
+  FuncSel: 1 (GPIO)
+  GPIO Matrix SigOut ID: 256 (simple GPIO output)
+  GPIO Matrix SigIn ID: (simple GPIO input)
+  SleepSelEn: 1
+
+=================IO DUMP End=================
+I (72017) agv_e6_power: pad reads GPIO35=1 AIM18=0 INTERNAL19=0 STROBE22=0
+I (72018) agv_e6_power: AW36515 reg00=30
+I (72019) agv_e6_power: AW36515 reg01=80
+I (72019) agv_e6_power: AW36515 reg05=10
+I (72020) agv_e6_power: AW36515 reg06=10
+I (72020) agv_e6_power: AW36515 reg0a=00
+I (72021) agv_e6_power: AW36515 reg0b=00
+I (74011) p4scan_usb: CDC command=@SNAP
+I (74012) p4scan_usb: CDC command=@BOARD
+I (74012) p4scan_agv: board status raw35=1 stable_pressed=0 requested_aim=0 requested_light=0 applied_aim=0 applied_light=0 override=0
+ESP LDO Channel State:
+Index ID    ref_cnt    voltage_mv   adjustable
+0     1     1          3300         no
+1     2     1          1800         no
+2     3     1          2500         no
+3     4     1          3300         no
+I (74013) agv_e6_power: VSYS active-low GPIO33=0 enabled=1 (digital pad; measure VSYS rail separately)
+================IO DUMP Start================
+IO[18] -
+  Pullup: 0, Pulldown: 0, DriveCap: 2
+  InputEn: 1, OutputEn: [periph_sig_ctrl], OpenDrain: 0
+  FuncSel: 1 (GPIO)
+  GPIO Matrix SigOut ID: 256 (simple GPIO output)
+  GPIO Matrix SigIn ID: (simple GPIO input)
+  SleepSelEn: 1
+
+IO[19] -
+  Pullup: 0, Pulldown: 0, DriveCap: 2
+  InputEn: 1, OutputEn: [periph_sig_ctrl], OpenDrain: 0
+  FuncSel: 1 (GPIO)
+  GPIO Matrix SigOut ID: 256 (simple GPIO output)
+  GPIO Matrix SigIn ID: (simple GPIO input)
+  SleepSelEn: 1
+
+IO[33] -
+  Pullup: 0, Pulldown: 0, DriveCap: 2
+  InputEn: 1, OutputEn: [periph_sig_ctrl], OpenDrain: 0
+  FuncSel: 1 (GPIO)
+  GPIO Matrix SigOut ID: 256 (simple GPIO output)
+  GPIO Matrix SigIn ID: (simple GPIO input)
+  SleepSelEn: 1
+
+=================IO DUMP End=================
+I (74017) agv_e6_power: pad reads GPIO35=1 AIM18=0 INTERNAL19=0 STROBE22=0
+I (74018) agv_e6_power: AW36515 reg00=30
+I (74018) agv_e6_power: AW36515 reg01=80
+I (74019) agv_e6_power: AW36515 reg05=10
+I (74020) agv_e6_power: AW36515 reg06=10
+I (74020) agv_e6_power: AW36515 reg0a=00
+I (74021) agv_e6_power: AW36515 reg0b=00
+I (75517) p4scan_usb: CDC command=@TIMINGOFF
+I (75517) p4scan_usb: CDC command=@GEOMETRYOFF
+I (75517) p4scan_usb: CDC command=@LIGHT,0
+I (75518) p4scan_agv: light command override=0
+I (75717) p4scan_usb: CDC command=@LIGHT,4
+I (75718) p4scan_usb: CDC command=@BOARD
+I (75718) p4scan_agv: light command override=-1
+I (75718) p4scan_agv: board status raw35=1 stable_pressed=0 requested_aim=0 requested_light=0 applied_aim=0 applied_light=0 override=-1
+ESP LDO Channel State:
+Index ID    ref_cnt    voltage_mv   adjustable
+0     1     1          3300         no
+1     2     1          1800         no
+2     3     1          2500         no
+3     4     1          3300         no
+I (75719) agv_e6_power: VSYS active-low GPIO33=0 enabled=1 (digital pad; measure VSYS rail separately)
+================IO DUMP Start================
+IO[18] -
+  Pullup: 0, Pulldown: 0, DriveCap: 2
+  InputEn: 1, OutputEn: [periph_sig_ctrl], OpenDrain: 0
+  FuncSel: 1 (GPIO)
+  GPIO Matrix SigOut ID: 256 (simple GPIO output)
+  GPIO Matrix SigIn ID: (simple GPIO input)
+  SleepSelEn: 1
+
+IO[19] -
+  Pullup: 0, Pulldown: 0, DriveCap: 2
+  InputEn: 1, OutputEn: [periph_sig_ctrl], OpenDrain: 0
+  FuncSel: 1 (GPIO)
+  GPIO Matrix SigOut ID: 256 (simple GPIO output)
+  GPIO Matrix SigIn ID: (simple GPIO input)
+  SleepSelEn: 1
+
+IO[33] -
+  Pullup: 0, Pulldown: 0, DriveCap: 2
+  InputEn: 1, OutputEn: [periph_sig_ctrl], OpenDrain: 0
+  FuncSel: 1 (GPIO)
+  GPIO Matrix SigOut ID: 256 (simple GPIO output)
+  GPIO Matrix SigIn ID: (simple GPIO input)
+  SleepSelEn: 1
+
+=================IO DUMP End=================
+I (75722) agv_e6_power: pad reads GPIO35=1 AIM18=0 INTERNAL19=0 STROBE22=0
+I (75723) agv_e6_power: AW36515 reg00=30
+I (75724) agv_e6_power: AW36515 reg01=80
+I (75724) agv_e6_power: AW36515 reg05=10
+I (75725) agv_e6_power: AW36515 reg06=10
+I (75725) agv_e6_power: AW36515 reg0a=00
+I (75726) agv_e6_power: AW36515 reg0b=00

@@ -1,6 +1,6 @@
-"""Read E6 CDC timing/results and a CRC-checked same-frame JPEG snapshot.
+"""Read sensor CDC timing/results and a CRC-checked same-frame JPEG snapshot.
 
-Run: py -3.12 tools/check_e6.py --seconds 10 [--port COM67] [--expect 012345]
+Run: py -3.12 tools/check_e6.py --seconds 10 [--sensor e6|ov9281] [--port COM68] [--expect 012345]
 Requires pyserial, numpy and opencv-python. Does not reset the device.
 """
 import argparse
@@ -21,10 +21,11 @@ def main():
     args.add_argument('--port')
     args.add_argument('--seconds', type=float, default=10)
     args.add_argument('--expect')
+    args.add_argument('--sensor', choices=['e6', 'ov9281'], default='e6')
     opts = args.parse_args()
     ports = [p.device for p in list_ports.comports() if (p.vid, p.pid) == (0x303a, 0x8001)]
     if not opts.port and len(ports) != 1:
-        args.error(f'Select --port; E6 CDC candidates: {ports}')
+        args.error(f'Select --port; HS CDC candidates: {ports}')
     if opts.seconds < 1 or opts.seconds > 3600:
         args.error('--seconds must be 1..3600')
     output = Path(__file__).resolve().parents[1] / 'docs'
@@ -46,7 +47,7 @@ def main():
                 for kind, value in parser.feed(port.read(65536)):
                     if kind == 'frame':
                         snapshots.append(value)
-                        (output / 'e6_snapshot.jpg').write_bytes(value.jpeg)
+                        (output / f'{opts.sensor}_snapshot.jpg').write_bytes(value.jpeg)
                     elif kind == 'timing':
                         timing.append(value)
                     elif kind == 'result':
@@ -77,10 +78,12 @@ def main():
     if opts.expect:
         report['expected'] = opts.expect
         report['matches'] = sum(r['payload'] == opts.expect for r in results)
-    (output/'e6_live_validation.json').write_text(json.dumps(report, ensure_ascii=False, indent=2), encoding='utf-8')
+    report['sensor_profile'] = opts.sensor
+    report_path = output / f'{opts.sensor}_live_validation.json'
+    report_path.write_text(json.dumps(report, ensure_ascii=False, indent=2), encoding='utf-8')
     summary = {key: value for key, value in report.items() if key != 'results'}
     summary['results_received'] = len(results)
-    summary['report_file'] = str(output / 'e6_live_validation.json')
+    summary['report_file'] = str(report_path)
     print(json.dumps(summary, ensure_ascii=False, indent=2))
     return int(bool(errors) or not snapshots or (opts.expect is not None and not report['matches']))
 

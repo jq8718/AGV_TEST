@@ -13,7 +13,7 @@
 | --- | --- | --- |
 | 配置 | sdkconfig.e6 | sdkconfig.ov9281 |
 | 编译 | ./build_p4.ps1 -Sensor e6 | ./build_p4.ps1 -Sensor ov9281 |
-| 烧录 | ./flash_p4.ps1 -Sensor e6 -Port COM63 | ./flash_p4.ps1 -Sensor ov9281 -Port COM63 |
+| 烧录 | ./flash_p4.ps1 -Sensor e6 -Port COM63 | ./flash_p4.ps1 -Sensor ov9281 -Port COM62 |
 | 应用 | build_e6/agv_scan_e6.bin | build_ov9281/agv_scan_ov9281.bin |
 | 输入模式 | 1024×1024 RAW10，单lane，50fps | 1280×720 RAW8，双lane，50fps |
 | UVC | 1024×1024 MJPEG / 30fps | 1280×720 MJPEG / 30fps |
@@ -27,7 +27,7 @@ E6专用3×3 ROI去噪、ISP降噪和补光曝光修复仅作用于E6；OV9281�
 
 标定按传感器独立保存；切换到OV9281后不会读取E6内参，也不导入参考工程的镜头内参。分别使用`@CAL,SET,1024,1024,...`或`@CAL,SET,1280,720,...`配置本机实测值，尺寸不符则拒绝，未标定时pose_valid=0。内容、同帧角点仍可输出。
 
-当前电脑只枚举蓝牙串口，未连接ESP32-P4；本轮可完成编译和主机算法回归，OV9281的sensor ID、首帧、光学识码、UVC/CDC及UART实机验证待模块接入后进行。原E6现场验证数据保留于下文和docs，不将历史验证当作本轮实测。
+OV9281已于2026-11-24通过COM62烧录和实机验证；高速USB CDC枚举为COM68。启动确认PID=0x9281、1280×720 RAW8、四CSI缓冲和921600字节首帧；VDDO_4=3300mV。采图、静止标签识码、同帧精修角点、内补光切换及UVC均通过，详见文末实测记录。GPIO UART电气通信、外补光和本机镜头标定仍待现场验证。下文E6数据为保留的历史实测记录。
 
 ## 硬件与默认行为
 
@@ -46,7 +46,7 @@ E6专用3×3 ROI去噪、ISP降噪和补光曝光修复仅作用于E6；OV9281�
 
 默认连续 DataMatrix 模式；`CONFIG_XCR_DATAMATRIX_ONLY` 可切换QR模式。保留参考工程的小码、局部阈值、阴影补救和透视解码改进，不使用上一帧位置ROI。四块CSI缓冲；Core0采集/前段处理，Core1后段解码/角点精修；超过100ms的结果丢弃，持续5秒停帧触发重启。
 
-高速USB设备 VID:PID=`303A:8001`，名称 `AGV SCAN E6 UVC+CDC`：UVC为1024×1024 MJPEG/30fps；CDC结果及快照格式见 [USB_PROTOCOL.md](USB_PROTOCOL.md)。当前调试CDC为COM67，烧录/日志USB Serial/JTAG为COM63，端口随Windows枚举可能变化。
+高速USB设备 VID:PID=`303A:8001`，产品名称随配置为 `AGV SCAN E6 UVC+CDC` 或 `AGV SCAN OV9281 UVC+CDC`；UVC分辨率分别为1024×1024、1280×720，均为MJPEG/30fps。CDC结果及快照格式见 [USB_PROTOCOL.md](USB_PROTOCOL.md)。本次OV9281调试CDC为COM68，烧录/日志USB Serial/JTAG为COM62，端口随Windows枚举可能变化。
 
 UART保留CRC16、完整/精简帧、前导零、30/50/70mm码体尺寸、相机内参下载及NVS保存。见 [UART协议](docs/STM32_UART_PROTOCOL.md) 与 [STM32 C解析示例](examples/stm32_uart/README.md)。E6镜头不使用OV9281内参；未下载本机1024×1024标定时 `pose_valid=0`，仍发送有效解码内容及完整模式角点，物理位置字段置零。
 
@@ -105,3 +105,20 @@ VSYS极性已按用户最新确认修正：EN_VSYS/GPIO33低有效，0开启3.3V
 最终开补光10秒验证：487个处理帧、483成功；USB收到487条012345且角点均为精修质量2，结果年龄中位15.982ms、最大83.353ms；4次快照CRC全部通过，协议错误0。时序与结果队列起止不同，计数不可逐项相减。详见`docs/e6_illuminated_final_validation.json`。这是当前单个静止标签、距离及光照下的验证，运动与不同材质反光场景仍需实测。结束后已关闭补光并恢复GPIO35自动控制。
 
 双传感器最终验证：两种固件编译通过，各自仅链接所选sensor探测器，UVC尺寸匹配；两种分辨率各815组定位回归通过（合计1630），证据见`docs/dual_sensor_build_validation.json`及`docs/e6_pose_dual_sensor_validation.json`、`docs/ov9281_pose_dual_sensor_validation.json`。本轮固件包与SHA256位于`dist/dual_sensor_20261124/`。
+
+## OV9281实机验证（2026-11-24）
+
+COM62烧录通过esptool哈希校验，实际应用版本为`dual-sensor-20261124-1-g5426e31`。启动日志确认sensor PID=0x9281、1280×720 RAW8/50fps、四MMAP缓冲、首帧921600字节、VDDO_4=3300mV。记录见`docs/ov9281_boot.log`。
+
+首次10秒CDC测试处理192帧、189成功，收到189条`012345`；传感器约49.82fps，处理约19.30fps；快照CRC通过。首次快照所在帧解码失败（102.536ms），后续补光对比的九张快照全部解码成功。记录见`docs/ov9281_live_validation.json`。
+
+内补光关→开→关各6.5秒，处理/成功分别为135/135、136/136、137/136；共407条`012345`，均为精修角点质量2。三个阶段结果年龄中位约69～70ms，最大99.579ms，符合100ms限制。九次同帧JPEG快照CRC全部通过，协议错误0；开灯后三张图片均值约115、饱和像素约8.6%，没有出现持续过曝失码。外补光未接，命令同时控制的GPIO22电平不等于外灯实物验收。证据见`docs/ov9281_lighting_validation.json`和`docs/ov9281_lighting.log`。复测命令：
+
+```powershell
+py -3.12 tools/check_e6.py --sensor ov9281 --port COM68 --seconds 10 --expect 012345
+py -3.12 tools/check_sensor_lighting.py --sensor ov9281 --port COM68 --log-port COM62 --expect 012345
+```
+
+UVC通过VID:PID选择扫码相机，6.281秒收到175帧1280×720图像；见`docs/ov9281_uvc_validation.json`。测试结束关闭强制灯控并恢复GPIO35自动模式，回读override=-1、GPIO33=0、GPIO18/19/22=0。未写入或替换镜头标定，当前OV9281仍提示需要本机内参，物理位姿无效。以上为单个静止标签及当前光照下的结果，未覆盖运动、全视场及长时间稳定性；GPIO35按键逻辑沿用已验证的共用代码，本次未要求用户重新按键。
+
+双传感器固件包`dist/dual_sensor_20261124/`中的OV9281应用已更新为本次实际烧录版本，manifest包含SHA256与实测证据路径；E6固件包保持原已编译版本。

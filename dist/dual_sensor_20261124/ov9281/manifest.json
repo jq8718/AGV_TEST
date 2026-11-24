@@ -12,14 +12,34 @@
       720
     ],
     "uvc_dimensions_match": true,
-    "elf_sha256": "9b51adbd748dbb07eab466a47ffb95b308db48b7d5bfab2d8acf0778c96258bc",
+    "elf_sha256": "adcfa9b36bb6586b319503d43501139d2294960ee0aa4c58ea8c79c48e50ac52",
     "pose_regression": 0
   },
-  "hardware_validation": "User confirmed OV9281 wiring uses AGV GPIO16/17 I2C, GPIO20 reset, GPIO21 external24MHz enable and same power/lights; board not enumerated on host, live validation pending",
+  "hardware_validation": {
+    "date": "2026-11-24",
+    "flash_port": "COM62",
+    "cdc_port": "COM68",
+    "app_version": "dual-sensor-20261124-1-g5426e31",
+    "sensor_pid": "0x9281",
+    "first_frame_bytes": 921600,
+    "vddo4_mv": 3300,
+    "reports": [
+      "docs/ov9281_boot.log",
+      "docs/ov9281_live_validation.json",
+      "docs/ov9281_lighting_validation.json",
+      "docs/ov9281_uvc_validation.json"
+    ],
+    "limitations": [
+      "UART electrical communication not measured",
+      "External lamp not connected",
+      "No measured OV9281 lens calibration",
+      "Static label only"
+    ]
+  },
   "files": {
     "agv_scan_ov9281.bin": {
       "bytes": 932768,
-      "sha256": "f59aa9ef35503f02553c2f46048f4ff40af459d1cfe1fbc54fc3cb5cc3acb227"
+      "sha256": "0f67f7af365208c282bdba17b9e0109aaee3cbc7c427fcd13e3e8c216e3b4c0c"
     },
     "bootloader.bin": {
       "bytes": 23632,
