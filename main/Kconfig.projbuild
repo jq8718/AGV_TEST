@@ -1,5 +1,14 @@
 menu "P4SCAN Application"
 
+    choice P4SCAN_SENSOR
+        prompt "Camera sensor on the AGV board"
+        default P4SCAN_SENSOR_E6
+        config P4SCAN_SENSOR_E6
+            bool "E6 OV01C1B (1024x1024 RAW10, 50fps)"
+        config P4SCAN_SENSOR_OV9281
+            bool "OV9281 (1280x720 RAW8, 50fps)"
+    endchoice
+
     config P4SCAN_REALTIME_PIPELINE
         bool "Capture on core0 while core1 decodes only the latest pending frame"
         default y
@@ -34,10 +43,10 @@ menu "P4SCAN Application"
         depends on P4SCAN_CAMERA_APP
 
     config P4SCAN_CAMERA_APP
-        bool "Run E6 OV01C1B live capture and XCF decoder"
+        bool "Run selected camera live capture and XCF decoder"
         default y
         help
-            Capture RAW8 frames from the E6 OV01C1B camera and pass owned
+            Capture RAW8 frames from the selected camera and pass owned
             Gray8 frames to the XCF decoder. Disable this option to build the
             fixed-sample regression application instead.
 

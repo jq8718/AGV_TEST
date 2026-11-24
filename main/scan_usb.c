@@ -27,6 +27,10 @@
 #define PREVIEW_SIZE (PREVIEW_WIDTH * PREVIEW_HEIGHT)
 #define JPEG_CAPACITY (PREVIEW_SIZE * 2)
 
+_Static_assert(CONFIG_UVC_CAM1_FRAMESIZE_WIDTH == PREVIEW_WIDTH &&
+               CONFIG_UVC_CAM1_FRAMESIZE_HEIGT == PREVIEW_HEIGHT,
+               "UVC dimensions must match the selected camera profile");
+
 typedef struct {
     uint16_t length;
     uint8_t bytes[USB_LINE_CAPACITY];

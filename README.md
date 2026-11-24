@@ -1,6 +1,33 @@
-# AGV SCAN E6 / ESP32-P4
+# AGV SCAN / ESP32-P4 — E6 与 OV9281
 
 将 `ESP32P4_XCF_OV9281` 的实时 DataMatrix 解码、同帧角点精定位、双核最新帧流水线、USB CDC 图片/结果、MJPEG UVC 和 UART v6 定位协议移植到当前 AGV 板。E6（OV01C1B）采集与寄存器驱动参考 `ESP32P4_XCF`。原 GPIO 测试工程保存在 `legacy_gpio_demo/`。
+
+
+## OV9281 支持与版本保存（2026-11-24）
+
+当前E6完整基线已提交至 https://github.com/jq8718/AGV_TEST ，提交`a4828d3`，标签`e6-baseline-20261124`。以下双传感器版本保留同一套DataMatrix/QR解码、同帧精修角点、100ms结果时限、四CSI缓冲与双核流水线、MJPEG UVC、CDC快照/结果/诊断、UART0 v6 CRC16、标定下载及NVS保存、GPIO35按钮与LED反馈。
+
+通过编译配置选择传感器，默认仍为E6；一次固件仅启用所选传感器的探测器，不会误探测另一种。两种配置使用独立构建目录和应用文件，禁止混用。
+
+| 项目 | E6 / OV01C1B | OV9281 |
+| --- | --- | --- |
+| 配置 | sdkconfig.e6 | sdkconfig.ov9281 |
+| 编译 | ./build_p4.ps1 -Sensor e6 | ./build_p4.ps1 -Sensor ov9281 |
+| 烧录 | ./flash_p4.ps1 -Sensor e6 -Port COM63 | ./flash_p4.ps1 -Sensor ov9281 -Port COM63 |
+| 应用 | build_e6/agv_scan_e6.bin | build_ov9281/agv_scan_ov9281.bin |
+| 输入模式 | 1024×1024 RAW10，单lane，50fps | 1280×720 RAW8，双lane，50fps |
+| UVC | 1024×1024 MJPEG / 30fps | 1280×720 MJPEG / 30fps |
+| SCCB地址（7位） | 0x10 | 0x60（SID低；配置项可更改） |
+| 曝光控制 | 实测RAW8灰度反馈，目标65 | 参考OV9281的ISP/IPA自动曝光 |
+| 标定NVS命名空间 | scan_pose，兼容原E6已存标定 | pose_ov9281 |
+
+OV9281驱动及1280×720模式表已存在于本地esp_cam_sensor组件，并与参考ESP32P4_XCF_OV9281一致。OV9281沿用当前AGV板的GPIO16/17 SCCB、GPIO20高有效sensor使能、GPIO21外部24MHz晶振使能、GPIO33低有效VSYS和其他电源/灯控；不迁移参考板GPIO7/8的I2C与GPIO0的供电接法。接入模块/转接板需匹配这些电气连接以及两条CSI数据lane；硬件接线仍待用户确认。
+
+E6专用3×3 ROI去噪、ISP降噪和补光曝光修复仅作用于E6；OV9281使用原参考解码搜索和ISP/IPA曝光路径。GPIO35按住瞄准、每次按下切换补光，VSYS低有效与VDDO_4默认3.3V均由两种配置共用。外补光仍需接入实物后验收。
+
+标定按传感器独立保存；切换到OV9281后不会读取E6内参，也不导入参考工程的镜头内参。分别使用`@CAL,SET,1024,1024,...`或`@CAL,SET,1280,720,...`配置本机实测值，尺寸不符则拒绝，未标定时pose_valid=0。内容、同帧角点仍可输出。
+
+当前电脑只枚举蓝牙串口，未连接ESP32-P4；本轮可完成编译和主机算法回归，OV9281的sensor ID、首帧、光学识码、UVC/CDC及UART实机验证待模块接入后进行。原E6现场验证数据保留于下文和docs，不将历史验证当作本轮实测。
 
 ## 硬件与默认行为
 
@@ -76,3 +103,5 @@ VSYS极性已按用户最新确认修正：EN_VSYS/GPIO33低有效，0开启3.3V
 现已在E6实时采集路径接入图像反馈曝光/增益调节，停用E6的IPA曝光/增益写入以保持单一控制源。实机日志显示补光开启后增益由约8.7倍降至1倍，约0.8秒进入目标亮度；关闭后也能回升。修复后6秒开灯289个处理帧中286成功，三次图片灰度约65、饱和比例0%；关灯前后仍可识别。前后证据分别为`docs/e6_light_compare.json`和`docs/e6_light_ae_fixed.json`。
 
 最终开补光10秒验证：487个处理帧、483成功；USB收到487条012345且角点均为精修质量2，结果年龄中位15.982ms、最大83.353ms；4次快照CRC全部通过，协议错误0。时序与结果队列起止不同，计数不可逐项相减。详见`docs/e6_illuminated_final_validation.json`。这是当前单个静止标签、距离及光照下的验证，运动与不同材质反光场景仍需实测。结束后已关闭补光并恢复GPIO35自动控制。
+
+双传感器最终验证：两种固件编译通过，各自仅链接所选sensor探测器，UVC尺寸匹配；两种分辨率各815组定位回归通过（合计1630），证据见`docs/dual_sensor_build_validation.json`及`docs/e6_pose_dual_sensor_validation.json`、`docs/ov9281_pose_dual_sensor_validation.json`。本轮固件包与SHA256位于`dist/dual_sensor_20261124/`。

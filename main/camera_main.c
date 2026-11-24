@@ -1578,7 +1578,7 @@ void app_main(void)
     ESP_ERROR_CHECK(scan_log_init());
     p4scan_camera_config_t config;
     p4scan_camera_config_default(&config);
-    ESP_LOGI(TAG, "starting E6 OV01C1B live XCF pipeline");
+    ESP_LOGI(TAG, "starting " P4SCAN_CAMERA_SENSOR_NAME " live XCF pipeline");
     ESP_ERROR_CHECK(p4scan_feedback_init());
     ESP_LOGI(TAG, "init step: feedback ready");
     ESP_ERROR_CHECK(scan_usb_init());
@@ -1592,7 +1592,7 @@ void app_main(void)
     esp_err_t first_frame = p4scan_camera_wait_for_frame(&s_camera, 3000);
     if (first_frame != ESP_OK) {
         p4scan_ov01c1b_log_sensor_state(s_camera.i2c_bus);
-        ESP_LOGE(TAG, "E6 OV01C1B CSI has no frame: %s; check MIPI lane wiring, XCLK and reset",
+        ESP_LOGE(TAG, P4SCAN_CAMERA_SENSOR_NAME " CSI has no frame: %s; check MIPI lane wiring, XCLK and reset",
                  esp_err_to_name(first_frame));
         p4scan_feedback_set_state(P4SCAN_FEEDBACK_ERROR);
         esp_err_t cleanup = p4scan_camera_deinit(&s_camera);

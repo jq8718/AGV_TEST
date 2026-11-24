@@ -12,8 +12,19 @@
 extern "C" {
 #endif
 
+#include "sdkconfig.h"
+#if CONFIG_P4SCAN_SENSOR_OV9281
+#define P4SCAN_CAMERA_SENSOR_NAME "OV9281"
+#define P4SCAN_CAMERA_CAL_NAMESPACE "pose_ov9281"
+#define P4SCAN_CAMERA_DEFAULT_WIDTH  1280
+#define P4SCAN_CAMERA_DEFAULT_HEIGHT 720
+#else
+#define P4SCAN_CAMERA_SENSOR_NAME "E6 OV01C1B"
+/* Keep existing E6 calibration stored by earlier firmware. */
+#define P4SCAN_CAMERA_CAL_NAMESPACE "scan_pose"
 #define P4SCAN_CAMERA_DEFAULT_WIDTH  1024
 #define P4SCAN_CAMERA_DEFAULT_HEIGHT 1024
+#endif
 #define P4SCAN_CAMERA_DEFAULT_FPS    50
 #define P4SCAN_CAMERA_BUFFER_COUNT   4
 

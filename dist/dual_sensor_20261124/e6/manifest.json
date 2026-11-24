@@ -1,0 +1,41 @@
+{
+  "project": "AGV SCAN dual sensor",
+  "sensor": "e6",
+  "baseline_commit": "a4828d32cdc4b666ca2646bdcf8d2395a6faaba7",
+  "baseline_tag": "e6-baseline-20261124",
+  "release_date": "2026-11-24",
+  "validation": {
+    "detector": "ov01c1b_detect",
+    "other_detector_absent": true,
+    "dimensions": [
+      1024,
+      1024
+    ],
+    "uvc_dimensions_match": true,
+    "elf_sha256": "e1c7bd3fef7b7c4edf324c405c3eca468fbf59b4ae925401bf155fbe73b8d420",
+    "pose_regression": 0
+  },
+  "hardware_validation": "Not performed this session: board not connected; OV9281 wiring confirmation pending",
+  "files": {
+    "agv_scan_e6.bin": {
+      "bytes": 936832,
+      "sha256": "bfd38cb010087313936598850d05a692136d07dae6bdb81ae0ea140be8e9fbcb"
+    },
+    "bootloader.bin": {
+      "bytes": 23632,
+      "sha256": "4a0977ffa5999510bdf410f40f8f179656f21f74e5eff2394b6bf1aba0786b62"
+    },
+    "flash_args": {
+      "bytes": 129,
+      "sha256": "1f468db9bc6f59304489e673d6de8fd9302bed1c1e1750cb933252badfecdf09"
+    },
+    "partition-table.bin": {
+      "bytes": 3072,
+      "sha256": "f69ab3a7a27256a9b02a121906b4d09488f62af845d539a445145a0fe1f1d3ce"
+    },
+    "sdkconfig.e6": {
+      "bytes": 90843,
+      "sha256": "c3549e8239ce31a7a2debeb66baf63c794d711d0ef4dee5f27a98a7e618bec3f"
+    }
+  }
+}

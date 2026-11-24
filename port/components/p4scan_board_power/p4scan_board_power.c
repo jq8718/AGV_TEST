@@ -108,7 +108,7 @@ esp_err_t p4scan_ov01c1b_power_on(i2c_master_bus_handle_t bus)
         ESP_GOTO_ON_ERROR(aw_write(0x07, 0x09), fail, TAG, "boost");
         ESP_GOTO_ON_ERROR(aw_write(0x08, 0x1a), fail, TAG, "timing");
     }
-    ESP_LOGI(TAG, "E6 power ready; GPIO21 static oscillator enable; SCCB 0x10");
+    ESP_LOGI(TAG, "AGV camera power ready; VSYS active-low; GPIO21 static oscillator enable");
     return ESP_OK;
 fail:
     p4scan_ov01c1b_power_off(bus);

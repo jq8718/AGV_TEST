@@ -31,8 +31,13 @@
 #define I2C_SDA_GPIO 16
 #define I2C_SCL_GPIO 17
 #define CAMERA_PIXEL_FORMAT V4L2_PIX_FMT_SBGGR8
+#if CONFIG_P4SCAN_SENSOR_OV9281
+#define P4SCAN_INITIAL_EXPOSURE 681
+#define P4SCAN_CAMERA_TLINE_NS 10989U
+#else
 #define P4SCAN_INITIAL_EXPOSURE 1549
 #define P4SCAN_CAMERA_TLINE_NS 4090U
+#endif
 #if CONFIG_CAMERA_OV01C1B_FIXED_GAIN > 0
 #define P4SCAN_INITIAL_GAIN_INDEX ((CONFIG_CAMERA_OV01C1B_FIXED_GAIN - 1) * 64)
 #else
@@ -44,6 +49,7 @@
 /* Denoise the E6 RAW path in ISP hardware, before DMA/decoder sampling. */
 static void configure_e6_denoise(void)
 {
+#if CONFIG_CAMERA_OV01C1B
     int isp = open(ESP_VIDEO_ISP1_DEVICE_NAME, O_RDONLY);
     if (isp < 0) { ESP_LOGW(TAG, "ISP denoise device unavailable errno=%d", errno); return; }
     esp_video_isp_bf_t bf = {.enable = true, .level = 10,
@@ -54,6 +60,7 @@ static void configure_e6_denoise(void)
         ESP_LOGW(TAG, "ISP denoise configuration failed errno=%d", errno);
     else ESP_LOGI(TAG, "E6 ISP hardware denoise enabled: level=10 gaussian 3x3");
     close(isp);
+#endif
 }
 
 static esp_err_t cache_sync_aligned(void *address, size_t length, uint32_t flags)
@@ -269,7 +276,7 @@ esp_err_t p4scan_camera_init(p4scan_camera_t *camera,
     ESP_RETURN_ON_FALSE(effective.width == P4SCAN_CAMERA_DEFAULT_WIDTH &&
                         effective.height == P4SCAN_CAMERA_DEFAULT_HEIGHT,
                         ESP_ERR_NOT_SUPPORTED, TAG,
-                        "E6 OV01C1B mode must be 1024x1024");
+                        "unsupported mode for " P4SCAN_CAMERA_SENSOR_NAME);
     ESP_RETURN_ON_FALSE(effective.frame_rate == P4SCAN_CAMERA_DEFAULT_FPS && effective.i2c_frequency > 0,
                         ESP_ERR_INVALID_ARG, TAG, "invalid camera configuration");
 
@@ -293,7 +300,7 @@ esp_err_t p4scan_camera_init(p4scan_camera_t *camera,
     ESP_GOTO_ON_ERROR(i2c_new_master_bus(&bus_config, &camera->i2c_bus), fail,
                       TAG, "failed to initialize I2C0");
     ESP_GOTO_ON_ERROR(p4scan_ov01c1b_power_on(camera->i2c_bus), fail,
-                      TAG, "failed to power E6 OV01C1B");
+                      TAG, "failed to power " P4SCAN_CAMERA_SENSOR_NAME);
 
     csi_config = (esp_video_init_csi_config_t) {
         .sccb_config = {
@@ -311,7 +318,7 @@ esp_err_t p4scan_camera_init(p4scan_camera_t *camera,
     ESP_GOTO_ON_ERROR(esp_video_init(&video_config), fail,
                       TAG, "failed to initialize CSI video");
     camera->video_initialized = true;
-    ESP_LOGI(TAG, "E6 OV01C1B video initialized: %ux%u RAW10 -> ISP RAW8 @ %lu fps",
+    ESP_LOGI(TAG, P4SCAN_CAMERA_SENSOR_NAME " video initialized: %ux%u ISP RAW8 @ %lu fps",
              (unsigned)camera->width, (unsigned)camera->height,
              (unsigned long)camera->frame_rate);
     return ESP_OK;

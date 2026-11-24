@@ -22,7 +22,7 @@ typedef struct {
 
 static scan_camera_calibration_t s_calibration = {
     .width = P4SCAN_CAMERA_DEFAULT_WIDTH, .height = P4SCAN_CAMERA_DEFAULT_HEIGHT,
-    /* E6 intrinsics must be supplied using @CAL,SET before metric pose. */
+    /* Per-camera intrinsics must be supplied using @CAL,SET before metric pose. */
 };
 static bool s_nvs_ready;
 static portMUX_TYPE s_calibration_lock = portMUX_INITIALIZER_UNLOCKED;
@@ -43,14 +43,14 @@ void scan_pose_init(void)
 {
     esp_err_t err = nvs_flash_init();
     if (err != ESP_OK) {
-        ESP_LOGW(TAG, "NVS unavailable (%s); using factory calibration in RAM", esp_err_to_name(err));
+        ESP_LOGW(TAG, "NVS unavailable (%s); metric pose requires calibration in RAM", esp_err_to_name(err));
         return;
     }
     s_nvs_ready = true;
     nvs_handle_t handle;
-    err = nvs_open("scan_pose", NVS_READONLY, &handle);
+    err = nvs_open(P4SCAN_CAMERA_CAL_NAMESPACE, NVS_READONLY, &handle);
     if (err != ESP_OK) {
-        ESP_LOGI(TAG, "E6 calibration required; send @CAL,SET; metric pose remains invalid");
+        ESP_LOGI(TAG, "Camera calibration required; send @CAL,SET; metric pose remains invalid");
         return;
     }
     stored_calibration_t stored;
@@ -64,7 +64,7 @@ void scan_pose_init(void)
         portEXIT_CRITICAL(&s_calibration_lock);
         ESP_LOGI(TAG, "loaded camera calibration from NVS");
     } else if (err != ESP_ERR_NVS_NOT_FOUND) {
-        ESP_LOGW(TAG, "stored camera calibration invalid; using factory values");
+        ESP_LOGW(TAG, "stored camera calibration invalid; metric pose remains invalid");
     }
 }
 
@@ -84,7 +84,7 @@ esp_err_t scan_pose_set_calibration(const scan_camera_calibration_t *calibration
     stored_calibration_t stored = {.magic = CAL_MAGIC, .version = CAL_VERSION,
                                    .calibration = *calibration};
     nvs_handle_t handle;
-    esp_err_t err = nvs_open("scan_pose", NVS_READWRITE, &handle);
+    esp_err_t err = nvs_open(P4SCAN_CAMERA_CAL_NAMESPACE, NVS_READWRITE, &handle);
     if (err != ESP_OK) return err;
     err = nvs_set_blob(handle, "cal_v1", &stored, sizeof(stored));
     if (err == ESP_OK) err = nvs_commit(handle);

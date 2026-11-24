@@ -2,8 +2,9 @@
 
 Requires Python numpy/opencv and Visual Studio C tools. ESP/NVS stubs replace
 platform services only; all pose arithmetic is compiled from scan_pose.c.
-Run: py -3.12 tools/validate_scan_pose.py
+Run: py -3.12 tools/validate_e6_pose.py --sensor e6 (or ov9281)
 """
+import argparse
 import ctypes
 import hashlib
 import json
@@ -21,10 +22,10 @@ ROOT = Path(__file__).resolve().parents[1]
 from geometry import estimate_pose
 
 
-def compile_probe(folder):
+def compile_probe(folder, width, height, namespace):
     folder.mkdir(parents=True, exist_ok=True)
     stubs = {
-        "p4scan_camera_capture.h": "#define P4SCAN_CAMERA_DEFAULT_WIDTH 1024\n#define P4SCAN_CAMERA_DEFAULT_HEIGHT 1024\n",
+        "p4scan_camera_capture.h": f'#define P4SCAN_CAMERA_DEFAULT_WIDTH {width}\n#define P4SCAN_CAMERA_DEFAULT_HEIGHT {height}\n#define P4SCAN_CAMERA_CAL_NAMESPACE "{namespace}"\n',
         'esp_err.h': '''#pragma once
 typedef int esp_err_t;
 #define ESP_OK 0
@@ -62,7 +63,7 @@ static inline int nvs_commit(int h) { return 0; }
 __declspec(dllexport) void init_cal(void) { scan_pose_init(); }
 __declspec(dllexport) int set_cal(int width, int height) {
     scan_camera_calibration_t c={0};
-    c.width=width; c.height=height; c.fx=800; c.fy=800; c.cx=511.5f; c.cy=511.5f;
+    c.width=width; c.height=height; c.fx=800; c.fy=800; c.cx=(P4SCAN_CAMERA_DEFAULT_WIDTH-1)*0.5f; c.cy=(P4SCAN_CAMERA_DEFAULT_HEIGHT-1)*0.5f;
     return scan_pose_set_calibration(&c);
 }
 __declspec(dllexport) int probe(const float *points, int prefix, float *values) {
@@ -97,11 +98,15 @@ __declspec(dllexport) int probe(const float *points, int prefix, float *values) 
 
 
 def main():
-    folder = ROOT / 'build_e6/pose_validation'
-    library = compile_probe(folder)
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--sensor', choices=['e6', 'ov9281'], default='e6')
+    opts = parser.parse_args()
+    width, height, namespace = (1280, 720, 'pose_ov9281') if opts.sensor == 'ov9281' else (1024, 1024, 'scan_pose')
+    folder = ROOT / f'build_{opts.sensor}/pose_validation'
+    library = compile_probe(folder, width, height, namespace)
     calibration = {
-        'camera_matrix': np.array([[800., 0., 511.5], [0., 800., 511.5], [0., 0., 1.]]),
-        'dist_coeffs': np.zeros(5), 'image_size': [1024, 1024], 'qr_size_mm': 30.,
+        'camera_matrix': np.array([[800., 0., (width-1)/2], [0., 800., (height-1)/2], [0., 0., 1.]]),
+        'dist_coeffs': np.zeros(5), 'image_size': [width, height], 'qr_size_mm': 30.,
     }
     names = ['yaw_y_deg', 'pitch_x_deg', 'roll_z_deg', 'range_m', 'optical_depth_m',
              'distance_to_plane_m', 'lateral_offset_x_m', 'along_track_m']
@@ -116,9 +121,10 @@ def main():
     # Reject metric poses before calibration and refuse the old sensor resolution.
     initial_points = np.array([[480,480],[540,480],[540,540],[480,540]], dtype=np.float32)
     assert p4(initial_points, ord('0')) is None, 'uncalibrated pose accepted'
-    assert library.set_cal(1280, 720) != 0, 'OV9281 calibration accepted'
+    other_size = (1024, 1024) if opts.sensor == 'ov9281' else (1280, 720)
+    assert library.set_cal(*other_size) != 0, 'other sensor calibration accepted'
     library.init_cal()
-    assert library.set_cal(1024, 1024) == 0, 'E6 calibration rejected'
+    assert library.set_cal(width, height) == 0, 'selected camera calibration rejected'
     screenshot = np.array([[521.288, 287.283], [574.915, 294.349],
                            [569.467, 346.858], [515.192, 340.729]])
     cases = [('screenshot', screenshot, 30., None)]
@@ -163,7 +169,7 @@ def main():
         points, _ = cv2.projectPoints(obj, rotation, translation,
                                      calibration['camera_matrix'], calibration['dist_coeffs'])
         points = points.reshape(4, 2)
-        if np.any(points < 0) or np.any(points[:, 0] >= 1024) or np.any(points[:, 1] >= 1024):
+        if np.any(points < 0) or np.any(points[:, 0] >= width) or np.any(points[:, 1] >= height):
             continue
         noise = (0., .05, .2, .5)[index % 4]
         points = points + rng.normal(0, noise, points.shape)
@@ -186,7 +192,7 @@ def main():
                 lateral_offset_x_m=t[0]/1000., rotation_matrix=truth.tolist(),
                 translation_mm=t.tolist(), reprojection_px=0.)
         else:
-            reference = estimate_pose(points, 1024, 1024, cal)
+            reference = estimate_pose(points, width, height, cal)
         started = time.perf_counter()
         actual = p4(points, ord(prefixes[side]))
         elapsed.append((time.perf_counter()-started)*1e6)
@@ -220,6 +226,7 @@ def main():
         if p4(screenshot, ord(prefix)) is not None:
             failures.append({'case': f'invalid_prefix_{ord(prefix)}', 'reason': 'accepted unsupported size'})
     report = {
+        'sensor': opts.sensor, 'image_size': [width, height], 'calibration_namespace': namespace,
         'source_sha256': hashlib.sha256((ROOT / 'main/scan_pose.c').read_bytes()).hexdigest(),
         'cases': len(cases), 'failures': len(failures), 'screenshot': rows[0],
         'maximum_difference': np.max([row['difference'] for row in rows], axis=0).tolist(),
