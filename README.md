@@ -21,7 +21,7 @@
 | 曝光控制 | 实测RAW8灰度反馈，目标65 | 参考OV9281的ISP/IPA自动曝光 |
 | 标定NVS命名空间 | scan_pose，兼容原E6已存标定 | pose_ov9281 |
 
-OV9281驱动及1280×720模式表已存在于本地esp_cam_sensor组件，并与参考ESP32P4_XCF_OV9281一致。OV9281沿用当前AGV板的GPIO16/17 SCCB、GPIO20高有效sensor使能、GPIO21外部24MHz晶振使能、GPIO33低有效VSYS和其他电源/灯控；不迁移参考板GPIO7/8的I2C与GPIO0的供电接法。接入模块/转接板需匹配这些电气连接以及两条CSI数据lane；硬件接线仍待用户确认。
+OV9281驱动及1280×720模式表已存在于本地esp_cam_sensor组件，并与参考ESP32P4_XCF_OV9281一致。OV9281沿用当前AGV板的GPIO16/17 SCCB、GPIO20高有效sensor使能、GPIO21外部24MHz晶振使能、GPIO33低有效VSYS和其他电源/灯控；不迁移参考板GPIO7/8的I2C与GPIO0的供电接法。接入模块/转接板需匹配这些电气连接以及两条CSI数据lane；用户已确认OV9281接线完成，以上I2C、复位、晶振、电源与灯控均沿用AGV板。
 
 E6专用3×3 ROI去噪、ISP降噪和补光曝光修复仅作用于E6；OV9281使用原参考解码搜索和ISP/IPA曝光路径。GPIO35按住瞄准、每次按下切换补光，VSYS低有效与VDDO_4默认3.3V均由两种配置共用。外补光仍需接入实物后验收。
 

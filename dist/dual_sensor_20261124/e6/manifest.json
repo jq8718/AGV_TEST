@@ -15,7 +15,7 @@
     "elf_sha256": "e1c7bd3fef7b7c4edf324c405c3eca468fbf59b4ae925401bf155fbe73b8d420",
     "pose_regression": 0
   },
-  "hardware_validation": "Not performed this session: board not connected; OV9281 wiring confirmation pending",
+  "hardware_validation": "User confirmed OV9281 wiring uses AGV GPIO16/17 I2C, GPIO20 reset, GPIO21 external24MHz enable and same power/lights; board not enumerated on host, live validation pending",
   "files": {
     "agv_scan_e6.bin": {
       "bytes": 936832,
