@@ -34,16 +34,43 @@ esp_err_t p4scan_ov01c1b_set_lights(i2c_master_bus_handle_t bus, bool aiming, bo
     ESP_RETURN_ON_ERROR(gpio_set_level(18, aiming), TAG, "aim");
     /* Internal light must remain independent of external-driver I2C faults. */
     ESP_RETURN_ON_ERROR(gpio_set_level(19, illumination), TAG, "internal light");
-    ESP_RETURN_ON_ERROR(gpio_set_level(22, 0), TAG, "strobe low before arming");
     if (s_aw) {
-        /* Register 0x01: bit4=hardware TORCH enable, bit5=FLASH disabled,
-         * mode=standby, LED1/2 enabled. GPIO22 high selects torch operation.
-         * Datasheet p26 register table resolves the p18 bit-number typo. */
-        ESP_RETURN_ON_ERROR(aw_write(0x01, illumination ? 0x13 : 0x80), TAG, "AW torch gate");
+        /* Software Torch: TX/STROBE/TORCH hardware triggers disabled,
+         * mode[3:2]=10, LED1/2 enabled. Releasing AIM must not pulse the
+         * external light gate or re-arm a hardware-triggered sequence. */
+        if (!illumination) ESP_RETURN_ON_ERROR(gpio_set_level(22, 0), TAG, "strobe off");
+        ESP_RETURN_ON_ERROR(aw_write(0x01, illumination ? 0x0b : 0x00), TAG, "AW software torch");
         ESP_RETURN_ON_ERROR(gpio_set_level(22, illumination), TAG, "strobe gate");
     }
     ESP_LOGI(TAG, "light outputs AIM18=%d INTERNAL19=%d STROBE22=%d AW=%s",
              aiming, illumination, illumination && s_aw != NULL, s_aw ? "ready" : "unavailable");
+    return ESP_OK;
+}
+
+esp_err_t p4scan_board_force_head_off(void)
+{
+    s_ready = false;
+    /* Disable software Torch before removing power, even if its boost input
+     * has a separate supply. I2C failure must not prevent rail shutdown. */
+    gpio_set_level(22, 0);
+    gpio_set_direction(22, GPIO_MODE_OUTPUT);
+    if (s_aw) {
+        esp_err_t err = aw_write(0x01, 0x00);
+        if (err != ESP_OK) ESP_LOGW(TAG, "AW off write failed: %s; forcing head rails off", esp_err_to_name(err));
+    }
+    /* Also works before sensor/driver initialization (s_aw is NULL).
+     * Call immediately before restart, or while the application is in its
+     * pre-camera exchange loop. VSYS is switched off last. */
+    const int order[] = {19, 22, 18, 20, 21, 28, 26, 6, 33};
+    for (unsigned i = 0; i < sizeof(order) / sizeof(order[0]); ++i) {
+        ESP_RETURN_ON_ERROR(gpio_set_level(order[i], order[i] == VSYS_GPIO ? VSYS_OFF_LEVEL : 0), TAG, "head off latch");
+        ESP_RETURN_ON_ERROR(gpio_set_direction(order[i], GPIO_MODE_OUTPUT), TAG, "head off output");
+    }
+    gpio_config_t bus_off = {.pin_bit_mask = (1ULL << 16) | (1ULL << 17) | (1ULL << 23),
+        .mode = GPIO_MODE_INPUT, .pull_up_en = GPIO_PULLUP_DISABLE,
+        .pull_down_en = GPIO_PULLDOWN_DISABLE, .intr_type = GPIO_INTR_DISABLE};
+    ESP_RETURN_ON_ERROR(gpio_config(&bus_off), TAG, "head bus high impedance");
+    s_ready = false;
     return ESP_OK;
 }
 

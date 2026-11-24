@@ -1,0 +1,16 @@
+{
+  "date": "2026-11-24",
+  "user_observation": "User confirmed GPIO35 internal/external latch and GPIO36 power-off behavior normal",
+  "software_torch_register_readback": {
+    "on": "0x0b",
+    "off": "0x00",
+    "aim_release": "AIM18=0 INTERNAL19=1 STROBE22=1"
+  },
+  "off_persistence": "COM62 hard reset boot confirms HEAD OFF; no HS UVC/CDC enumerated",
+  "resume": "Pending user second GPIO36 press",
+  "limitations": [
+    "No head rail voltage measurements",
+    "No different-head physical exchange in this test"
+  ],
+  "binary_sha256": "4dabf7e7e8c093b4e7555282738399ffd66afd6e6eae6ed7fe3aaf9e8cd4fcbd"
+}

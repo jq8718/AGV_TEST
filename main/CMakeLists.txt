@@ -21,7 +21,7 @@ if(CONFIG_P4SCAN_SENSOR_E6 AND (NOT CONFIG_CAMERA_OV01C1B OR CONFIG_CAMERA_OV928
 endif()
 
 idf_component_register(
-    SRCS "board_io.c" "scan_uart.c" "scan_pose.c" "camera_main.c" "scan_log_buffer.c" "scan_usb.c" "agv_pipeline.c"
+    SRCS "board_io.c" "head_exchange.c" "scan_uart.c" "scan_pose.c" "camera_main.c" "scan_log_buffer.c" "scan_usb.c" "agv_pipeline.c"
     PRIV_INCLUDE_DIRS "../port/components/xcr_decoder/vendor/include"
                       "../port/components/xcr_decoder/vendor/quirc"
     REQUIRES p4scan_camera_capture p4scan_board_power p4scan_feedback

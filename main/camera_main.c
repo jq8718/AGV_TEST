@@ -2,6 +2,7 @@
 #include "p4scan_board_power.h"
 #include "p4scan_feedback.h"
 #include "board_io.h"
+#include "head_exchange.h"
 #include "xcr_decoder.h"
 #include "scan_log_buffer.h"
 #include "scan_usb.h"
@@ -1575,6 +1576,7 @@ static void camera_decode_task(void *arg)
 void app_main(void)
 {
     agv_board_io_init();
+    head_exchange_boot();
     ESP_ERROR_CHECK(scan_log_init());
     p4scan_camera_config_t config;
     p4scan_camera_config_default(&config);

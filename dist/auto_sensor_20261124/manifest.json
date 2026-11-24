@@ -5,7 +5,7 @@
     "0x10": "E6 OV01C1B, chip_id 0x56014311, 1024x1024",
     "0x60": "OV9281, chip_id 0x9281, 1280x720"
   },
-  "elf_sha256": "3628d6da8ef0ed53162fd94ff82b8f3e4b937ea4d4111354a34d88ef7c6cb4bb",
+  "elf_sha256": "b45f26c2de51901fcb98d418af3c20e45d9163d243f78617bfd20228251ab0db",
   "hardware_validation": {
     "ov9281": "COM62 flashed and hash verified; native UVC, CDC refined geometry and off/on/off illumination verified",
     "e6": "Runtime profile/pose host tests passed; user chose OV9281-only hardware validation"
@@ -22,12 +22,15 @@
     "docs/auto_ov9281_uvc_validation.json",
     "docs/sensor_auto_host_validation.json",
     "docs/e6_pose_auto_validation.json",
-    "docs/ov9281_pose_auto_validation.json"
+    "docs/ov9281_pose_auto_validation.json",
+    "docs/head_exchange_host_validation.json",
+    "docs/head_exchange_off_boot.log",
+    "docs/exchange_light_software_torch.log"
   ],
   "files": {
     "agv_scan_auto.bin": {
-      "bytes": 951664,
-      "sha256": "ce12dc97b8323e6dca71832fec557178f5a28ee6ffdffc8bb6beec351388e81e"
+      "bytes": 954576,
+      "sha256": "4dabf7e7e8c093b4e7555282738399ffd66afd6e6eae6ed7fe3aaf9e8cd4fcbd"
     },
     "bootloader.bin": {
       "bytes": 23632,
@@ -42,8 +45,18 @@
       "sha256": "f69ab3a7a27256a9b02a121906b4d09488f62af845d539a445145a0fe1f1d3ce"
     },
     "sdkconfig.auto": {
-      "bytes": 91619,
-      "sha256": "9b773c6e92950d3f333f920d54e010976c894335d1a3cd26ceece273cf4127ef"
+      "bytes": 91607,
+      "sha256": "2df32f0983f81b00cd6736852e153e37dc0bd7758751526702433872a7fd5f4f"
     }
+  },
+  "head_exchange": {
+    "gpio": 36,
+    "active_low": true,
+    "debounce_ms": 30,
+    "power_off_persistent": true,
+    "resume": "restart and re-detect sensor; USB re-enumerates",
+    "external_light": "software Torch 0x0b ON / 0x00 OFF; GPIO22 follows illumination latch",
+    "validation": "User confirmed GPIO35 and GPIO36 power-off behavior; off state retained after COM62 reset; resume validation pending",
+    "voltage_measurement": "not measured; verify head rails discharged before first physical replacement"
   }
 }

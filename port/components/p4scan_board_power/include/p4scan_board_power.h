@@ -10,6 +10,7 @@ extern "C" {
 #endif
 
 esp_err_t p4scan_ov01c1b_power_on(i2c_master_bus_handle_t bus_handle);
+esp_err_t p4scan_board_force_head_off(void);
 esp_err_t p4scan_ov01c1b_set_lights(i2c_master_bus_handle_t bus_handle,
                                     bool aiming,
                                     bool illumination);

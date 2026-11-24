@@ -1,0 +1,12 @@
+{
+  "passed": true,
+  "actual_source": "main/head_exchange.c",
+  "platform_services": "mocked",
+  "cases": [
+    "normal boot initializes GPIO36 monitor",
+    "debounced first press persists OFF and cuts power before reset",
+    "held button cannot resume",
+    "release then second press clears OFF and resets for detection"
+  ],
+  "source_sha256": "4aef83f57ff0567e16f6c1cb9e8310c652ba8d3623872a0c165b174e3d54e5c6"
+}

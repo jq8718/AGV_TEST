@@ -3,6 +3,16 @@
 将 `ESP32P4_XCF_OV9281` 的实时 DataMatrix 解码、同帧角点精定位、双核最新帧流水线、USB CDC 图片/结果、MJPEG UVC 和 UART v6 定位协议移植到当前 AGV 板。E6（OV01C1B）采集与寄存器驱动参考 `ESP32P4_XCF`。原 GPIO 测试工程保存在 `legacy_gpio_demo/`。
 
 
+## GPIO35补光修正与GPIO36换头控制
+
+GPIO35仍为低有效、30ms消抖；每次按下同时切换内/外补光，松开保持补光状态；瞄准随按住/松开。AW36515改为软件Torch模式，0x01=0x0B开启两通道、0x00关闭，禁用TX/STROBE/TORCH硬件触发。GPIO22随补光状态保持，切换瞄准不再先将GPIO22拉低。电流码仍为0x05/0x06=0x10（约32.34mA/路，非实测）。旧文0x13硬件Torch记录为历史配置。
+
+新增GPIO36上拉输入、低有效、30ms消抖：工作时第一次有效按下，将断电状态保存到独立NVS命名空间head_power，关闭灯控、sensor、晶振、DVDD/AVDD/DOVDD，最后GPIO33=1关闭VSYS，并重启进入换头等待。GPIO16/17/23配置为无上下拉高阻输入。红灯常亮、USB视频/CDC断开，COM62日志输出HEAD OFF；此状态下GPIO35不控制灯。意外重启或整机重上电仍保持换头等待。
+
+先松开GPIO36后再次按下，清除断电状态并重启，按既有上电时序重新探测I2C地址和芯片ID，重新初始化采集、曝光、标定和UVC原生尺寸。不会复用旧扫码头的缓冲或内参。恢复后补光默认关闭，GPIO35重新控制。主控与COM62调试口保持供电；这是关闭扫码头相关电源，非关闭整板。
+
+首次实物换头前应确认接口端VSYS、DOVDD、AVDD、DVDD均已降至断电电压；红灯/数字回读仅表示控制状态，不能测出电源残压。固件没有电源电压反馈。NVS错误时停留在禁止相机上电的错误状态，不自动擦除标定或断电状态。
+
 ## 当前默认：启动自动识别，一个固件通用
 
 默认`./build_p4.ps1`与`./flash_p4.ps1 -Port COM62`使用`sdkconfig.auto`，产物`build_auto/agv_scan_auto.bin`。通用固件包与SHA256见[dist/auto_sensor_20261124](dist/auto_sensor_20261124/README.md)。`-Sensor e6|ov9281`仍可显式编译旧单传感器配置；下文保留历史记录。
