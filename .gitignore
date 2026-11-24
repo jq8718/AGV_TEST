@@ -1,0 +1,9 @@
+/build/
+/sdkconfig
+/sdkconfig.old
+
+/build_e6/
+/sdkconfig.e6.old
+/managed_components/
+*.log
+__pycache__/

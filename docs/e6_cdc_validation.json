@@ -1,0 +1,51 @@
+{
+  "seconds": 6.047000000020489,
+  "timings": 76,
+  "successes": 0,
+  "errors": [],
+  "snapshot": {
+    "sequence": 6023,
+    "timestamp_us": 120918920,
+    "width": 1024,
+    "height": 1024,
+    "success": false,
+    "decode_us": 99337,
+    "corners": [
+      [
+        0,
+        0
+      ],
+      [
+        0,
+        0
+      ],
+      [
+        0,
+        0
+      ],
+      [
+        0,
+        0
+      ]
+    ],
+    "coordinates_only": false,
+    "geometry_quality": null,
+    "geometry_edge_mask": 0,
+    "geometry_support": 0,
+    "geometry_residual": 0.0,
+    "payload": "",
+    "payload_hex": "",
+    "image_encoding": "JPEG"
+  },
+  "processed_fps": 12.572216909296484,
+  "image": {
+    "shape": [
+      1024,
+      1024
+    ],
+    "min": 0,
+    "max": 89,
+    "mean": 4.01606559753418,
+    "std": 1.4590083505706382
+  }
+}

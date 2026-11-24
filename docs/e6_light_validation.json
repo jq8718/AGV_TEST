@@ -1,0 +1,26 @@
+{
+  "snapshots": 2,
+  "processed": 116,
+  "successes": 0,
+  "results": [],
+  "errors": [
+    "Incomplete snapshot",
+    "Incomplete snapshot"
+  ],
+  "scene": [
+    {
+      "sequence": 1484,
+      "mean": 111.3394660949707,
+      "minimum": 0,
+      "maximum": 255
+    },
+    {
+      "sequence": 1576,
+      "mean": 108.28331184387207,
+      "minimum": 0,
+      "maximum": 255
+    }
+  ],
+  "processed_fps": 11.644396336774168,
+  "sensor_fps": 46.0713072454978
+}

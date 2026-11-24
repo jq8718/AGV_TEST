@@ -1,0 +1,361 @@
+{
+  "seconds": 15.062000000034459,
+  "windows_rx_queue_bytes": 2097152,
+  "snapshots_requested": 10,
+  "snapshots_received": 10,
+  "snapshots": [
+    {
+      "sequence": 7525,
+      "timestamp_us": 151011073,
+      "width": 1024,
+      "height": 1024,
+      "success": true,
+      "decode_us": 43460,
+      "corners": [
+        [
+          533,
+          376
+        ],
+        [
+          537,
+          443
+        ],
+        [
+          462,
+          446
+        ],
+        [
+          460,
+          378
+        ]
+      ],
+      "coordinates_only": false,
+      "geometry_quality": 2,
+      "geometry_edge_mask": 15,
+      "geometry_support": 111,
+      "geometry_residual": 0.44,
+      "payload": "012345",
+      "payload_hex": "303132333435",
+      "image_encoding": "JPEG"
+    },
+    {
+      "sequence": 7589,
+      "timestamp_us": 152327905,
+      "width": 1024,
+      "height": 1024,
+      "success": true,
+      "decode_us": 34434,
+      "corners": [
+        [
+          533,
+          375
+        ],
+        [
+          537,
+          443
+        ],
+        [
+          462,
+          446
+        ],
+        [
+          459,
+          378
+        ]
+      ],
+      "coordinates_only": false,
+      "geometry_quality": 2,
+      "geometry_edge_mask": 15,
+      "geometry_support": 111,
+      "geometry_residual": 0.334,
+      "payload": "012345",
+      "payload_hex": "303132333435",
+      "image_encoding": "JPEG"
+    },
+    {
+      "sequence": 7651,
+      "timestamp_us": 153624757,
+      "width": 1024,
+      "height": 1024,
+      "success": true,
+      "decode_us": 36877,
+      "corners": [
+        [
+          533,
+          375
+        ],
+        [
+          536,
+          442
+        ],
+        [
+          462,
+          445
+        ],
+        [
+          459,
+          377
+        ]
+      ],
+      "coordinates_only": false,
+      "geometry_quality": 2,
+      "geometry_edge_mask": 15,
+      "geometry_support": 111,
+      "geometry_residual": 0.433,
+      "payload": "012345",
+      "payload_hex": "303132333435",
+      "image_encoding": "JPEG"
+    },
+    {
+      "sequence": 7712,
+      "timestamp_us": 154901661,
+      "width": 1024,
+      "height": 1024,
+      "success": false,
+      "decode_us": 98664,
+      "corners": [
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          0
+        ]
+      ],
+      "coordinates_only": false,
+      "geometry_quality": null,
+      "geometry_edge_mask": 0,
+      "geometry_support": 0,
+      "geometry_residual": 0.0,
+      "payload": "",
+      "payload_hex": "",
+      "image_encoding": "JPEG"
+    },
+    {
+      "sequence": 7778,
+      "timestamp_us": 156278319,
+      "width": 1024,
+      "height": 1024,
+      "success": true,
+      "decode_us": 31521,
+      "corners": [
+        [
+          534,
+          375
+        ],
+        [
+          536,
+          442
+        ],
+        [
+          462,
+          445
+        ],
+        [
+          460,
+          377
+        ]
+      ],
+      "coordinates_only": false,
+      "geometry_quality": 2,
+      "geometry_edge_mask": 15,
+      "geometry_support": 109,
+      "geometry_residual": 0.337,
+      "payload": "012345",
+      "payload_hex": "303132333435",
+      "image_encoding": "JPEG"
+    },
+    {
+      "sequence": 7837,
+      "timestamp_us": 157495367,
+      "width": 1024,
+      "height": 1024,
+      "success": false,
+      "decode_us": 102536,
+      "corners": [
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          0
+        ]
+      ],
+      "coordinates_only": false,
+      "geometry_quality": null,
+      "geometry_edge_mask": 0,
+      "geometry_support": 0,
+      "geometry_residual": 0.0,
+      "payload": "",
+      "payload_hex": "",
+      "image_encoding": "JPEG"
+    },
+    {
+      "sequence": 7904,
+      "timestamp_us": 158872044,
+      "width": 1024,
+      "height": 1024,
+      "success": true,
+      "decode_us": 43685,
+      "corners": [
+        [
+          533,
+          374
+        ],
+        [
+          536,
+          442
+        ],
+        [
+          462,
+          445
+        ],
+        [
+          459,
+          377
+        ]
+      ],
+      "coordinates_only": false,
+      "geometry_quality": 2,
+      "geometry_edge_mask": 15,
+      "geometry_support": 113,
+      "geometry_residual": 0.496,
+      "payload": "012345",
+      "payload_hex": "303132333435",
+      "image_encoding": "JPEG"
+    },
+    {
+      "sequence": 7966,
+      "timestamp_us": 160188837,
+      "width": 1024,
+      "height": 1024,
+      "success": true,
+      "decode_us": 37996,
+      "corners": [
+        [
+          533,
+          375
+        ],
+        [
+          536,
+          442
+        ],
+        [
+          462,
+          445
+        ],
+        [
+          460,
+          377
+        ]
+      ],
+      "coordinates_only": false,
+      "geometry_quality": 2,
+      "geometry_edge_mask": 15,
+      "geometry_support": 113,
+      "geometry_residual": 0.348,
+      "payload": "012345",
+      "payload_hex": "303132333435",
+      "image_encoding": "JPEG"
+    },
+    {
+      "sequence": 8029,
+      "timestamp_us": 161505622,
+      "width": 1024,
+      "height": 1024,
+      "success": true,
+      "decode_us": 44056,
+      "corners": [
+        [
+          533,
+          375
+        ],
+        [
+          536,
+          442
+        ],
+        [
+          462,
+          445
+        ],
+        [
+          460,
+          377
+        ]
+      ],
+      "coordinates_only": false,
+      "geometry_quality": 2,
+      "geometry_edge_mask": 15,
+      "geometry_support": 111,
+      "geometry_residual": 0.467,
+      "payload": "012345",
+      "payload_hex": "303132333435",
+      "image_encoding": "JPEG"
+    },
+    {
+      "sequence": 8092,
+      "timestamp_us": 162822457,
+      "width": 1024,
+      "height": 1024,
+      "success": true,
+      "decode_us": 37217,
+      "corners": [
+        [
+          534,
+          375
+        ],
+        [
+          536,
+          442
+        ],
+        [
+          462,
+          445
+        ],
+        [
+          460,
+          377
+        ]
+      ],
+      "coordinates_only": false,
+      "geometry_quality": 2,
+      "geometry_edge_mask": 15,
+      "geometry_support": 111,
+      "geometry_residual": 0.376,
+      "payload": "012345",
+      "payload_hex": "303132333435",
+      "image_encoding": "JPEG"
+    }
+  ],
+  "results": 564,
+  "payload_counts": {
+    "012345": 564
+  },
+  "geometry_quality_counts": {
+    "2": 564
+  },
+  "protocol_errors": [],
+  "age_us": {
+    "min": 29890,
+    "median": 41148.0,
+    "max": 67584
+  }
+}

@@ -1,0 +1,107 @@
+{
+  "project": "AGV SCAN E6",
+  "idf": "6.0-dirty",
+  "chip": "ESP32-P4 v3.2",
+  "flashed_port": "COM63",
+  "cdc_port": "COM67",
+  "sensor": "OV01C1B",
+  "mode": "1024x1024 RAW10 50fps 1-lane",
+  "references": {
+    "ESP32P4_XCF": "ae68928f40ea1ae8363dc3f447049109202c2612",
+    "ESP32P4_XCF_OV9281": "73137964526f85ed61df48fb9e953828ca2bdaf6"
+  },
+  "full_resolution_table_reference": "ESP32P4_XCF commit d3ef710",
+  "files": {
+    "agv_scan_e6.bin": {
+      "bytes": 936816,
+      "sha256": "6d0808ae7bff5cd3728d84904ad9d9237f95f8efa1557bbc83255d9ca2f3a6d3"
+    },
+    "bootloader.bin": {
+      "bytes": 23632,
+      "sha256": "4a0977ffa5999510bdf410f40f8f179656f21f74e5eff2394b6bf1aba0786b62"
+    },
+    "flash_args": {
+      "bytes": 129,
+      "sha256": "1f468db9bc6f59304489e673d6de8fd9302bed1c1e1750cb933252badfecdf09"
+    },
+    "partition-table.bin": {
+      "bytes": 3072,
+      "sha256": "f69ab3a7a27256a9b02a121906b4d09488f62af845d539a445145a0fe1f1d3ce"
+    },
+    "sdkconfig.e6": {
+      "bytes": 90774,
+      "sha256": "d01030d708fd8ba7b6841f6d4a1cee4d32d442d5b6dd8959e57ab6de6fd65784"
+    }
+  },
+  "validation": {
+    "sensor_id": "56 01 43 11",
+    "first_frame_bytes": 1048576,
+    "uvc_frames": 149,
+    "uvc_seconds": 5.266,
+    "pose_synthetic_cases": 815,
+    "pose_synthetic_failures": 0,
+    "known_label": "012345; actual device USB results and refined corners verified",
+    "physical_pose": "pending E6 lens calibration",
+    "uart_electrical": "pending",
+    "processed_frames": 398,
+    "successful_frames": 386,
+    "processed_fps": 39.71674855286474,
+    "sensor_fps": 49.92105170750506,
+    "geometry_results": 564,
+    "geometry_quality": 2,
+    "snapshots_crc_passed": 10,
+    "snapshots_requested": 10,
+    "result_age_us": {
+      "min": 29890,
+      "median": 41148.0,
+      "max": 67584
+    },
+    "button": "confirmed held GPIO35=0 AIM18=1 INTERNAL19=1 STROBE22=1; confirmed released GPIO35=1 AIM18=0 INTERNAL19=1 STROBE22=1; second press and physical lamps pending",
+    "external_lamp": "user confirms not connected; OVP observed with open load",
+    "uart_controller": "UART0 GPIO43 TX / GPIO42 RX",
+    "vsys": "ACTIVE LOW: GPIO33=0 enabled; 1 disabled. Startup, lamp enable, shutdown corrected. Actual pad 0 confirmed.",
+    "latest_smoke_test": {
+      "first_5s": {
+        "processed": 117,
+        "successes": 78,
+        "usb_matches": 78,
+        "snapshots": 1,
+        "protocol_errors": 0
+      },
+      "subsequent_3s": {
+        "processed": 38,
+        "successes": 0,
+        "usb_matches": 0,
+        "snapshots": 1,
+        "protocol_errors": 0
+      },
+      "note": "lamp visual confirmation pending; current scene/illumination changed; earlier 39.7fps applies to prior VSYS-off scene"
+    },
+    "internal_lamps": "User visually confirmed aiming and internal illumination both ON after VSYS active-low fix",
+    "control_state": "Automatic GPIO35 control restored, lamps off",
+    "vddo4": {
+      "default_mv": 3300,
+      "runtime_ldo_channel": 4,
+      "runtime_configured_mv": 3300,
+      "supply": "VDD_IO_5 GPIO39..48",
+      "evidence": "docs/e6_vddo4_3300_validation.log"
+    },
+    "illuminated_decode": {
+      "seconds": 10.202999999979511,
+      "processed": 487,
+      "successes": 483,
+      "results": 487,
+      "matches": 487,
+      "geometry_refined": 487,
+      "age_us": {
+        "median": 15982,
+        "max": 83353
+      },
+      "snapshots_requested": 4,
+      "snapshots_crc_passed": 4,
+      "protocol_errors": []
+    },
+    "exposure_control": "E6 RAW8 grid feedback, target65 deadband60..70, at most every80ms; IPA ET/GN disabled only for E6; approximately1s lamp transition settling"
+  },
+  "packaged_at": "2026-11-19T22:41:11.193420+08:00"
+}

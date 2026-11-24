@@ -1,0 +1,55 @@
+{
+  "seconds": 3.047000000020489,
+  "processed": 38,
+  "successes": 0,
+  "results": [],
+  "protocol_errors": [],
+  "snapshots": 1,
+  "processed_fps": 12.445688863833064,
+  "sensor_sequence_fps": 48.7736455474539,
+  "snapshot": {
+    "sequence": 2161,
+    "timestamp_us": 43512738,
+    "width": 1024,
+    "height": 1024,
+    "success": false,
+    "decode_us": 99350,
+    "corners": [
+      [
+        0,
+        0
+      ],
+      [
+        0,
+        0
+      ],
+      [
+        0,
+        0
+      ],
+      [
+        0,
+        0
+      ]
+    ],
+    "coordinates_only": false,
+    "geometry_quality": null,
+    "geometry_edge_mask": 0,
+    "geometry_support": 0,
+    "geometry_residual": 0.0,
+    "payload": "",
+    "payload_hex": "",
+    "image_encoding": "JPEG"
+  },
+  "image": {
+    "shape": [
+      1024,
+      1024
+    ],
+    "mean": 87.774827003479,
+    "minimum": 0,
+    "maximum": 255
+  },
+  "expected": "012345",
+  "matches": 0
+}

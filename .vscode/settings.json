@@ -1,0 +1,8 @@
+{
+    "idf.currentSetup": "C:\\esp\\v6.0\\esp-idf",
+    "idf.flashType": "UART",
+    "C_Cpp.default.compileCommands": "${workspaceFolder}/build_e6/compile_commands.json",
+    "idf.buildPathWin": "${workspaceFolder}/build_e6",
+    "idf.cmakeCompilerArgs": ["-DSDKCONFIG=sdkconfig.e6"],
+    "idf.port": "COM62"
+}

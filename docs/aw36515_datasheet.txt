@@ -1,0 +1,3212 @@
+ 
+ 
+ 
+AW36515
+Oct. 2019 V1.1
+ 
+www.awinic.com.cn                           1             Copyright © 2018 SHANGHAI AWINIC TECHNOLOGY CO., LTD 
+ 
+High Efficiency, Dual Independent 2A Flash LED Driver 
+Features 
+ Dual Independent and Programmable 2A LED 
+Current Source 
+ Flash：3.91mA~2.0A，256 levels  
+7.83mA/level 
+ Torch： 0.98mA~500mA，256 levels  
+1.96mA/level 
+ Flash Timeout：40ms~1.6s，16 levels 
+ Flash/Torch/IR Mode 
+ Up to 85% Flash Efficiency 
+ Optimized Flash LED Current During Low Battery 
+Conditions (IVFM) 
+ Hardware Flash/Torch Enable (STROBE/TORCH) 
+ Synchronization Input for RF Power Amplifier 
+Pulse Events (TX) 
+ 400kHz I2C：AW36515 (I2C Address=0x63) 
+ 0.4mm Pitch，FCQFN-10L Package 
+Compatible with AW3643, AW3644, AW36413 
+Application 
+Smartphone Camera Flash 
+ General Description 
+The AW36515 is a dual LED flash driver that 
+provides a high level of adjustability within a small 
+solution size. The AW36515 utilizes a 2MHz or 
+4MHz 
+fixed-frequency 
+synchronous 
+boost 
+converter to provide power to the dual 2A constant 
+current LED sources. The dual 256 levels current 
+sources provide the flexibility to adjust the current 
+of LED1 and LED2 in Flash/Torch/IR modes. The 
+AW36515 provides IVFM protection to prevent 
+system reset or shutdown under low battery 
+condition.  
+The AW36515 are controlled via an I2C - 
+compatible interface. The main features of the 
+AW36515 include: flash/torch current, flash timeout 
+duration, IVFM and TX interrupt. The AW36515 
+also 
+provides 
+hardware 
+flash/torch 
+pin 
+(STROBE/TORCH) to control Flash/Torch events. 
+The 2MHz or 4MHz switching frequency options, 
+overvoltage protection (OVP), and adjustable 
+current limit allow for the use of tiny, low-profile 
+inductors and 10-µF ceramic capacitors. The 
+device operates over a –40°C to +85°C ambient 
+temperature range. 
+The AW36515 is available in small 0.4mm pitch 
+FCQFN 1.6mm×1.2mm -10L package. 
+Typical Application Circuit 
+SW
+LED1
+IN
+VIN
+CIN
+10μF
+COUT
+10μF
+L 1μH  3A
+Flash
+LED
+AW36515FCR
+STROBE/TORCH
+GND
+OUT
+LED2
+D1
+TX
+SDA
+SCL
+Flash
+LED
+D2
+MCU
+ 
+Typical Application Circuit of AW36515 
+All trademarks are the property of their respective owners. 
+Awinic Confidential
+
+ 
+ 
+ 
+AW36515
+Oct. 2019 V1.1
+ 
+www.awinic.com.cn                          2             Copyright © 2018 SHANGHAI AWINIC TECHNOLOGY CO., LTD 
+Pin Configuration And Top Mark 
+GND
+IN
+SDA
+SW
+SCL
+OUT
+LED2
+TX
+LED1
+D
+A
+C
+B
+3
+1
+2
+VSDS
+  XXX
+STROBE/
+TORCH
+VSDS – AW36515FCR
+ XXX  – Production Tracing Code
+AW36515FCR Pin Configuration
+(Top  View)
+AW36515FCR Top Mark
+(Top  View)
+ 
+Pin Configuration and Top Mark 
+Pin Definition 
+No. 
+NAME 
+TYPE 
+DESCRIPTION 
+A1 
+GND 
+Ground 
+Ground 
+A2 
+IN 
+Power 
+Input voltage connection. Connect IN to GND with a 10µF or larger 
+ceramic capacitor. 
+A3 
+SDA 
+I/O 
+Serial data input/output of the I2C interface. 
+B1 
+SW 
+Power 
+Switch pin of the step-up DC-DC convertor. 
+B3 
+SCL 
+I/O 
+Serial clock input of the I2C interface. 
+C1 
+OUT 
+Power 
+Step-up DC-DC converter output. Connect a 10µF ceramic 
+capacitor between OUT and GND. 
+C3 
+STROBE/TORCH 
+I/O 
+Active high hardware flash/torch/IR enable. Drive STROBE/TORCH 
+high to turn on Flash/Torch/IR pulse. Internal pull down resistor of 
+300kΩ between STROBE/TORCH and GND. 
+D1 
+LED2 
+Power 
+High-side current source output for flash LED2. 
+D2 
+TX 
+I/O 
+Power amplifier synchronization input. Internal pull down resistor of 
+300kΩ between TX and GND. 
+D3 
+LED1 
+Power 
+High-side current source output for flash LED1. 
+Awinic Confidential
+
+ 
+ 
+ 
+AW36515
+Oct. 2019 V1.1
+ 
+www.awinic.com.cn                          3             Copyright © 2018 SHANGHAI AWINIC TECHNOLOGY CO., LTD 
+Ordering Information 
+Part Number 
+Temperature 
+Package 
+Marking 
+Moisture 
+Sensitivity 
+Level 
+Environmental 
+Information 
+Delivery 
+Form 
+AW36515FCR 
+-40°C~85°C 
+FCQFN 
+1.6mmX1.2mm
+-10L 
+VSDS 
+MSL1 
+ROHS+HF 
+3000 units/ 
+Tape and Reel 
+ 
+ 
+AWINIC Flash LED Driver Series 
+Product 
+Channels 
+Type 
+Description 
+Package 
+AW36515 
+2 
+Boost 
+High Efficiency, Dual Independent 2A Flash LED Driver 
+FCQFN-10L 
+AW3644 
+2 
+Boost 
+High Efficiency, Dual Independent 1.5A Flash LED 
+Driver 
+CSP-12B 
+AW3643 
+2 
+Boost 
+High Efficiency, Dual 1.5A Flash LED Driver 
+CSP-12B 
+AW36413 
+2 
+Boost 
+High Efficiency, Dual 1.5A Flash LED Driver 
+CSP-12B 
+AW3648 
+1 
+Boost 
+High Efficiency, 1.5A Flash LED Driver 
+CSP-12B 
+AW3642 
+1 
+Boost 
+High Efficiency, 1.5A Flash LED Driver 
+CSP-9B 
+AW3641E 
+1 
+Charge 
+Pump 
+Flash Current & Flash Timer Programmable 1A Flash 
+LED Driver 
+DFN-10L 
+AW36402 
+1 
+Current 
+Sink 
+200mA 1-wire Configurable Front Flash LED Driver   
+with Ultra Small Package 
+DFN-6L 
+AW36404 
+1 
+Current 
+Sink 
+400mA 1-wire Configurable Front Flash LED Driver   
+with Ultra Small Package 
+DFN-8L 
+AW36406 
+1 
+Current 
+Sink 
+600mA PWM Configurable Front Flash LED Driver   
+with Ultra Small Package 
+DFN-8L 
+ 
+ 
+ 
+Awinic Confidential
+
+ 
+ 
+ 
+AW36515
+Oct. 2019 V1.1
+ 
+www.awinic.com.cn                          4             Copyright © 2018 SHANGHAI AWINIC TECHNOLOGY CO., LTD 
+Typical Application Circuits 
+SW
+LED1
+IN
+VIN
+CIN
+10μF
+COUT
+10μF
+L 1μH  3A
+Flash
+LED
+AW36515FCR
+STROBE/TORCH
+GND
+OUT
+LED2
+D1
+TX
+SDA
+SCL
+Flash
+LED
+D2
+MCU
+ 
+AW36515 Application Circuit 
+Notice for Typical Application Circuits: 
+1:  Please place CIN，COUT as close to the chip as possible. 
+2:  Connect the inductor on the top layer close to the SW pin. 
+3:  For the sake of driving capability, the power lines, output lines, and the connection lines of L and LED 
+should be short and wide as possible.  
+4:  Traces carry high current are marked in red in the above figure. 
+ 
+Awinic Confidential
+
+ 
+ 
+ 
+AW36515
+Oct. 2019 V1.1
+ 
+www.awinic.com.cn                          5             Copyright © 2018 SHANGHAI AWINIC TECHNOLOGY CO., LTD 
+Absolute Maximum Ratings(NOTE1)  
+PARAMETERS 
+Range 
+Unit 
+IN, SW, OUT, LED1, LED2 
+-0.3 to 6 
+V 
+SCL, SDA, STROBE/TORCH, TX 
+−0.3 to (VIN+0.3) 
+V 
+Continuous power dissipation 
+Internally limited 
+ 
+Max Junction Temperature TJMAX 
+155 
+°C 
+Storage Temperature TSTG 
+-65 to 150 
+°C 
+Maximum lead temperature (soldering) 
+260 
+°C 
+Junction to Ambient Thermal Resistance θJA 
+92 
+°C /W 
+ESD, All Pins(NOTE2) 
+HBM 
+±2000 
+V 
+CDM 
+±1500 
+V 
+Latch-Up (Test method: JEDEC STANDARD NO.78D) 
++IT：+200 
+-IT： -200 
+mA 
+ 
+Recommended Operating Conditions 
+PARAMETERS 
+Range 
+Unit 
+VIN 
+2.7 to 5.5 
+V 
+Junction temperature (TJ) 
+-40 to 125 
+°C 
+Ambient temperature (TA) 
+-40 to 85 
+°C 
+ 
+NOTE1: Conditions out of those ranges listed in "absolute maximum ratings" may cause permanent damages 
+to the device. In spite of the limits above, functional operation conditions of the device should within the 
+ranges listed in "recommended operating conditions". Exposure to absolute-maximum-rated conditions for 
+prolonged periods may affect device reliability. 
+NOTE2: The human body model is a 100pF capacitor discharged through a 1.5kΩ resistor into each pin. Test 
+method: ANSI/ESDA/JEDEC JS-001. CDM test method: JEDEC22-C101E. 
+ 
+Awinic Confidential
+
+ 
+ 
+ 
+AW36515
+Oct. 2019 V1.1
+ 
+www.awinic.com.cn                          6             Copyright © 2018 SHANGHAI AWINIC TECHNOLOGY CO., LTD 
+Electrical Characteristics  
+Typical values tested at TA=25°C. Minimum and maximum limits apply over the full operating ambient 
+temperature range(-40°C≤TA≤85°C). Unless otherwise specified, VIN=3.6V. 
+Symbol 
+Description 
+Test Condition 
+Min 
+Typ 
+Max 
+Unit 
+Vin Supply 
+VIN 
+Input operating range 
+ 
+2.7 
+ 
+5.5 
+V 
+IQ 
+Quiescent supply current 
+Device not switching, pass mode 
+ 
+0.4 
+0.8 
+mA 
+ISB 
+Standby supply current 
+Device disabled, 
+2.7V≤VIN≤5.5V,SCL=SDA=0V 
+ 
+3 
+10 
+A 
+UVLO 
+Under voltage lockout 
+threshold 
+Falling VIN 
+ 
+2.5 
+ 
+V
+Rising VIN 
+ 
+2.6 
+ 
+V 
+Current Source Specifications 
+ILED1/2 
+Current source accuracy 
+VOUT=4V,                   
+flash code=0xFF=2.0A 
+-7% 
+2.0 
+7% 
+A 
+VOUT=4V,                   
+torch code=0x7F=249mA 
+-10% 
+249 
+10% 
+mA 
+VOVP 
+VOUT over-voltage protect 
+threshold 
+ON threshold 
+4.85 
+5 
+5.15 
+V 
+OFF threshold 
+4.75 
+4.9 
+5.05 
+Boost Converter Specifications 
+RPMOS 
+PMOS switch on-resistance 
+ 
+ 
+90 
+ 
+mΩ 
+RNMOS 
+NMOS switch on-resistance 
+ 
+ 
+70 
+ 
+mΩ 
+ICL 
+Switch current limit 
+Reg 0x07, bit[0]=0 
+-12% 
+1.9 
+12% 
+A 
+Reg 0x07, bit[0]=1 
+-12% 
+2.8 
+12% 
+FSW 
+Switching frequency 
+Reg 0x07, bit[1]=0 
+-6% 
+2 
+6% 
+MHz 
+Reg 0x07, bit[1]=1 
+-6% 
+4 
+6% 
+VIVFM 
+Input voltage flash monitor 
+trip threshold 
+Reg 0x02, bits[5:3]=”000” 
+-3% 
+2.9 
+3% 
+V 
+TSD 
+Thermal shutdown threshold 
+ 
+ 
+155 
+ 
+°C 
+Thermal shutdown hysteresis 
+ 
+ 
+20 
+ 
+ 
+ 
+ 
+ 
+ 
+Awinic Confidential
+
+ 
+ 
+ 
+AW36515
+Oct. 2019 V1.1
+ 
+www.awinic.com.cn                          7             Copyright © 2018 SHANGHAI AWINIC TECHNOLOGY CO., LTD 
+Electrical Characteristics(continued) 
+Typical values tested at TA=25°C. Minimum and maximum limits apply over the full operating ambient 
+temperature range(-40°C≤TA≤85°C). Unless otherwise specified, VIN=3.6V. 
+Symbol 
+Description 
+Test Condition 
+Min 
+Typ 
+Max 
+Unit 
+I2C-Compatible Interface Specifications(SCL,SDA) 
+VIL 
+Input logic low 
+ 
+0 
+ 
+0.4 
+V 
+VIH 
+Input logic high 
+ 
+1.2 
+ 
+VIN 
+V 
+VOL 
+Output logic low 
+ILOAD=3mA 
+ 
+ 
+0.4 
+V 
+STROBE/TORCH, TX Voltage Specifications 
+VIL 
+Input logic low 
+ 
+0 
+ 
+0.4 
+V 
+VIH 
+Input logic high 
+ 
+1.2 
+ 
+VIN 
+V 
+RPD 
+Internal pull down resistors 
+ 
+ 
+300 
+ 
+kΩ 
+ 
+Awinic Confidential
+
+ 
+ 
+ 
+AW36515
+Oct. 2019 V1.1
+ 
+www.awinic.com.cn                          8             Copyright © 2018 SHANGHAI AWINIC TECHNOLOGY CO., LTD 
+I2C Interface Timing 
+Symbol 
+Description 
+Min 
+Typ 
+Max 
+Units 
+FSCL 
+Interface Clock frequency 
+ 
+ 
+400 
+kHz 
+TDEGLITCH 
+Deglitch time 
+SCL 
+ 
+200 
+ 
+ns 
+SDA 
+ 
+250 
+ 
+ns 
+THD:STA 
+(Repeat-start) Start condition hold time 
+0.6 
+ 
+ 
+s 
+TLOW 
+Low level width of SCL 
+1.3 
+ 
+ 
+s 
+THIGH 
+High level width of SCL 
+0.6 
+ 
+ 
+s 
+TSU:STA 
+(Repeat-start) Start condition setup time 
+0.6 
+ 
+ 
+s 
+THD:DAT 
+Data hold time 
+0 
+ 
+ 
+s 
+TSU:DAT 
+Data setup time 
+0.1 
+ 
+ 
+s 
+TR 
+Rising time of SDA and SCL 
+ 
+ 
+0.3 
+s 
+TF 
+Falling time of SDA and SCL 
+ 
+ 
+0.3 
+s 
+TSU:STO 
+Stop condition setup time 
+0.6 
+ 
+ 
+s 
+TBUF 
+Time between start and stop condition 
+1.3 
+ 
+ 
+s 
+ 
+SDA
+SCL
+tBUF
+tLOW
+tHD:STA
+tHD:DAT
+tR
+tHIGH
+tF
+tSU:DAT
+tSU:STA
+tSP
+tSU:STO
+VIH
+VIL
+Stop
+Stop
+Start
+Start
+VIH
+VIL
+ 
+I2C INTERFACE TIMING 
+Awinic Confidential
+
+ 
+ 
+AW36515
+Oct. 2019 V1.1
+ 
+www.awinic.com.cn                          9             Copyright © 2018 SHANGHAI AWINIC TECHNOLOGY CO., LTD 
+Typical Characteristics 
+Ambient temperature is 25°C, input voltage is 3.6 V, CIN = COUT = 2×10 µF and L=1 µH, unless otherwise 
+noted . 
+ 
+ 
+ 
+ 
+ 
+ 
+0
+0.2
+0.4
+0.6
+0.8
+1
+1.2
+1.4
+1.6
+1.8
+2
+2.2
+0
+32
+64
+96
+128
+160
+192
+224
+256
+ILED1 (A)
+LED1 Flash  Code (dec#)
+LED1 Flash Current vs Brightness Code   
+0
+0.2
+0.4
+0.6
+0.8
+1
+1.2
+1.4
+1.6
+1.8
+2
+2.2
+0
+32
+64
+96
+128
+160
+192
+224
+256
+ILED2 (A)
+LED2  Flash  Code (dec#)
+LED2 Flash Current vs Brightness Code   
+0
+0.04
+0.08
+0.12
+0.16
+0.2
+0.24
+0.28
+0.32
+0.36
+0.4
+0.44
+0.48
+0.52
+0
+32
+64
+96
+128
+160
+192
+224
+256
+ILED1 (A)
+LED1 Torch  Code (dec#)
+LED1 Torch Current vs Brightness Code   
+0
+0.04
+0.08
+0.12
+0.16
+0.2
+0.24
+0.28
+0.32
+0.36
+0.4
+0.44
+0.48
+0.52
+0
+32
+64
+96
+128
+160
+192
+224
+256
+ILED2 (A)
+LED2 Torch  Code (dec#)
+LED2 Torch Current vs Brightness Code   
+0
+0.1
+0.2
+0.3
+0.4
+0.5
+0.6
+0.7
+0.8
+0.9
+1
+2.5
+3
+3.5
+4
+4.5
+5
+5.5
+ILED1 (A)
+VIN(V)
+LED1 Flash Current vs Input Voltage   
+BRC=0
+BRC=15
+BRC=31
+BRC=47
+BRC=63
+BRC=79
+BRC=95
+BRC=111
+0.9
+1
+1.1
+1.2
+1.3
+1.4
+1.5
+1.6
+1.7
+1.8
+1.9
+2
+2.1
+2.5
+3
+3.5
+4
+4.5
+5
+5.5
+ILED1 (A)
+VIN(V)
+LED1 Flash Current vs Input Voltage   
+BRC=127
+BRC=143
+BRC=159
+BRC=175
+BRC=191
+BRC=207
+BRC=223
+BRC=239
+BRC=255
+Awinic Confidential
+
+ 
+ 
+AW36515
+Oct. 2019 V1.1
+ 
+www.awinic.com.cn                          10             Copyright © 2018 SHANGHAI AWINIC TECHNOLOGY CO., LTD 
+Typical Characteristics (continued)  
+Ambient temperature is 25°C, input voltage is 3.6 V, CIN = COUT = 2×10 µF and L=1 µH, unless otherwise 
+noted . 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+0
+0.1
+0.2
+0.3
+0.4
+0.5
+0.6
+0.7
+0.8
+0.9
+1
+2.5
+3
+3.5
+4
+4.5
+5
+5.5
+ILED2 (A)
+VIN(V)
+LED2 Flash Current vs Input Voltage   
+BRC=0
+BRC=15
+BRC=31
+BRC=47
+BRC=63
+BRC=79
+BRC=95
+BRC=111
+0.9
+1
+1.1
+1.2
+1.3
+1.4
+1.5
+1.6
+1.7
+1.8
+1.9
+2
+2.1
+2.5
+3
+3.5
+4
+4.5
+5
+5.5
+ILED2 (A)
+VIN(V)
+LED2 Flash Current vs Input Voltage   
+BRC=127
+BRC=143
+BRC=159
+BRC=175
+BRC=191
+BRC=207
+BRC=223
+BRC=239
+BRC=255
+1.40
+1.50
+1.60
+1.70
+1.80
+1.90
+2.00
+2.10
+2.5
+3
+3.5
+4
+4.5
+5
+5.5
+ILED (A)
+VIN (V)
+ILED=2.0A            fSW=2MHz                    Flash
+LED1/2 Flash Current vs Input Voltage
+1.40
+1.42
+1.44
+1.46
+1.48
+1.50
+1.52
+1.54
+1.56
+1.58
+1.60
+2.5
+3
+3.5
+4
+4.5
+5
+5.5
+ILED (A)
+VIN (V)
+ILED=1.5A      fSW=2MHz      Flash
+LED1/2 Flash Current vs Input Voltage
+0.67
+0.69
+0.71
+0.73
+0.75
+0.77
+0.79
+0.81
+0.83
+0.85
+0.87
+2.5
+3
+3.5
+4
+4.5
+5
+5.5
+ILED (A)
+VIN (V)
+ILED=0.747A      fSW=2MHz                Flash
+LED1 & LED2 Current vs Input Voltage
+ LED1
+ LED2
+0.60
+0.64
+0.68
+0.72
+0.76
+0.80
+0.84
+0.88
+0.92
+0.96
+1.00
+1.04
+1.08
+1.12
+2.5
+3
+3.5
+4
+4.5
+5
+5.5
+ILED (A)
+VIN (V)
+ILED=1.006A         fSW=2MHz                   Flash
+LED1 & LED2 Current vs Input Voltage
+ LED1
+ LED2
+Awinic Confidential
+
+ 
+ 
+AW36515
+Oct. 2019 V1.1
+ 
+www.awinic.com.cn                          11             Copyright © 2018 SHANGHAI AWINIC TECHNOLOGY CO., LTD 
+Typical Characteristics (continued)   
+Ambient temperature is 25°C, input voltage is 3.6 V, CIN = COUT = 2×10 µF and L=1 µH, unless otherwise 
+noted . 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+0.45
+0.46
+0.47
+0.48
+0.49
+0.5
+0.51
+0.52
+0.53
+0.54
+0.55
+2.5
+3
+3.5
+4
+4.5
+5
+5.5
+ILED (A)
+VIN(V)
+ILED=0.5A    fsw=2MHz       Torch
+LED1/2 Torch Current vs Input Voltage   
+0.45
+0.46
+0.47
+0.48
+0.49
+0.5
+0.51
+0.52
+0.53
+0.54
+0.55
+2.5
+3
+3.5
+4
+4.5
+5
+5.5
+ILED (A)
+VIN(V)
+ILED=0.5A    fsw=4MHz       Torch
+LED1/2 Torch Current vs Input Voltage   
+0.2
+0.21
+0.22
+0.23
+0.24
+0.25
+0.26
+0.27
+0.28
+0.29
+0.3
+2.5
+3
+3.5
+4
+4.5
+5
+5.5
+ILED (A)
+VIN(V)
+ILED=0.25A    fsw=2MHz       Torch
+LED1/2 Torch Current vs Input Voltage   
+0.2
+0.21
+0.22
+0.23
+0.24
+0.25
+0.26
+0.27
+0.28
+0.29
+0.3
+2.5
+3
+3.5
+4
+4.5
+5
+5.5
+ILED (A)
+VIN(V)
+ILED=0.25A    fsw=4MHz       Torch
+LED1/2 Torch Current vs Input Voltage   
+0.45
+0.46
+0.47
+0.48
+0.49
+0.5
+0.51
+0.52
+0.53
+0.54
+0.55
+2.5
+3
+3.5
+4
+4.5
+5
+5.5
+ILED (A)
+VIN (V)
+ILED=0.5A    fsw=2MHz       Torch
+LED1&2 Torch Current vs Input Voltage   
+LED1
+LED2
+0.2
+0.21
+0.22
+0.23
+0.24
+0.25
+0.26
+0.27
+0.28
+0.29
+0.3
+2.5
+3
+3.5
+4
+4.5
+5
+5.5
+ILED1 (A)
+VIN(V)
+ILED=0.25A    fsw=2MHz       Torch
+LED1&2 Torch Current vs Input Voltage   
+LED1
+LED2
+Awinic Confidential
+
+ 
+ 
+AW36515
+Oct. 2019 V1.1
+ 
+www.awinic.com.cn                          12             Copyright © 2018 SHANGHAI AWINIC TECHNOLOGY CO., LTD 
+Typical Characteristics (continued)  
+Ambient temperature is 25°C, input voltage is 3.6 V, CIN = COUT = 2×10 µF and L=1 µH, unless otherwise 
+noted . 
+ 
+ 
+ 
+ 
+ 
+ 
+50
+60
+70
+80
+90
+100
+2.5
+3
+3.5
+4
+4.5
+5
+5.5
+ηLED (%)
+VIN (V)
+ILED=2.0A    fSW=2MHz      Flash
+LED Efficiency vs Input Voltage
+VLED=3.3V
+VLED=3.5V
+VLED=3.6V
+VLED=3.7V
+VLED=3.8V
+VLED=4.1V
+VLED=4.4V
+50
+55
+60
+65
+70
+75
+80
+85
+90
+95
+100
+2.5
+3.0
+3.5
+4.0
+4.5
+5.0
+5.5
+ηLED (%)
+VIN (V)
+ILED=2.0A        VLED=3.6V
+fSW=2MHz      Flash    
+LED Efficiency vs Input Voltage
+50
+55
+60
+65
+70
+75
+80
+85
+90
+95
+100
+2.5
+3.0
+3.5
+4.0
+4.5
+5.0
+5.5
+ηLED (%)
+VIN (V)
+ILED=1.5A       VLED=3.5V       fSW=2MHz      Flash    
+LED Efficiency vs Input Voltage
+50
+55
+60
+65
+70
+75
+80
+85
+90
+95
+100
+2.5
+3.0
+3.5
+4.0
+4.5
+5.0
+5.5
+ηLED (%)
+VIN (V)
+ILED=1.5A       VLED=3.5V       fSW=4MHz      Flash    
+LED Efficiency vs Input Voltage
+50
+55
+60
+65
+70
+75
+80
+85
+90
+95
+100
+2.5
+3.0
+3.5
+4.0
+4.5
+5.0
+5.5
+ηLED (%)
+VIN (V)
+ILED=0.5A      VLED=3.1V
+fSW=2MHz    
+Torch
+LED Efficiency vs Input Voltage
+50
+55
+60
+65
+70
+75
+80
+85
+90
+95
+100
+2.5
+3.0
+3.5
+4.0
+4.5
+5.0
+5.5
+ηLED (%)
+VIN (V)
+ILED=0.25A      VLED=3.0V
+fSW=2MHz 
+Torch
+LED Efficiency vs Input Voltage
+Awinic Confidential
+
+ 
+ 
+AW36515
+Oct. 2019 V1.1
+ 
+www.awinic.com.cn                          13             Copyright © 2018 SHANGHAI AWINIC TECHNOLOGY CO., LTD 
+Typical Characteristics (continued)  
+Ambient temperature is 25°C, input voltage is 3.6 V, CIN = COUT = 2×10 µF and L=1 µH, unless otherwise 
+noted . 
+ 
+ 
+ 
+ 
+ 
+ 
+1.900
+1.925
+1.950
+1.975
+2.000
+2.025
+2.050
+2.075
+2.100
+2.125
+2.150
+2.5
+2.75
+3
+3.25
+3.5
+3.75
+4
+4.25
+4.5
+4.75
+5
+fSW (Mhz)
+VIN
+(V)
+2-MHz Frequency vs Input Voltage   
+3.800
+3.850
+3.900
+3.950
+4.000
+4.050
+4.100
+4.150
+4.200
+4.250
+4.300
+2.5
+2.75
+3
+3.25
+3.5
+3.75
+4
+4.25
+4.5
+4.75
+5
+fSW (Mhz)
+VIN
+(V)
+4-MHz Frequency vs Input Voltage   
+0.0
+0.5
+1.0
+1.5
+2.0
+2.5
+3.0
+2.5
+3
+3.5
+4
+4.5
+5
+5.5
+ISTB (μA)
+VIN
+(V)
+I2C=0V                                                
+Standby Current vs Input Voltage   
+0
+1
+2
+3
+4
+5
+6
+7
+2.5
+3
+3.5
+4
+4.5
+5
+5.5
+ISTB (μA)
+VIN
+(V)
+I2C=1.8V                                                
+Standby Current vs Input Voltage   
+0
+1
+2
+3
+4
+5
+2.5
+3
+3.5
+4
+4.5
+5
+5.5
+ISTB (μA)
+VIN
+(V)
+I2C=3.3V                                                
+Standby Current vs Input Voltage   
+0.0
+0.5
+1.0
+1.5
+2.0
+2.5
+3.0
+2.5
+3
+3.5
+4
+4.5
+5
+5.5
+ISTB (μA)
+VIN
+(V)
+I2C=VIN                                                
+Standby Current vs Input Voltage   
+Awinic Confidential
+
+ 
+ 
+AW36515
+Oct. 2019 V1.1
+ 
+www.awinic.com.cn                          14             Copyright © 2018 SHANGHAI AWINIC TECHNOLOGY CO., LTD 
+Typical Characteristics (continued)  
+Ambient temperature is 25°C, input voltage is 3.6 V, CIN = COUT = 2×10 µF and L=1 µH, unless otherwise 
+noted . 
+ 
+ 
+ 
+ 
+     ILED1/2=1.5A                     fSW=2MHz                     VLED=3.4V
+VOUT(2V/DIV)
+ILED(500mA/DIV)
+IIN(1A/DIV)
+TIME (500 μs/DIV)
+ 
+Ramp Up 
+     ILED1/2=1.5A                     fSW=2MHz                     VLED=3.4V
+VOUT(2V/DIV)
+ILED(500mA/DIV)
+IIN(1A/DIV)
+TIME (500 μs/DIV)
+ 
+Ramp Down 
+ 
+1.60
+1.64
+1.68
+1.72
+1.76
+1.80
+1.84
+1.88
+1.92
+1.96
+2.00
+2.04
+2.08
+2.12
+2.16
+2.20
+2.5
+2.7
+2.9
+3.1
+3.3
+3.5
+3.7
+3.9
+4.1
+4.3
+ICL (A)
+VIN
+(V)
+ILED=1.5A             fSW=2MHz             VLED=4.5V
+ICL=1.9A                             
+Inductor Current Limit vs Input Voltage   
+1.60
+1.64
+1.68
+1.72
+1.76
+1.80
+1.84
+1.88
+1.92
+1.96
+2.00
+2.04
+2.08
+2.12
+2.16
+2.20
+2.5
+2.7
+2.9
+3.1
+3.3
+3.5
+3.7
+3.9
+4.1
+4.3
+ICL (A)
+VIN
+(V)
+ILED=1.5A             fSW=4MHz             VLED=4.5V
+ICL=1.9A                             
+Inductor Current Limit vs Input Voltage   
+2.0
+2.2
+2.4
+2.6
+2.8
+3.0
+2.5
+2.8
+3.1
+3.4
+3.7
+4
+4.3
+4.6
+4.9
+5.2
+5.5
+ICL (A)
+VIN
+(V)
+ILED=2.0A             fSW=2MHz             VLED=4.5V
+ICL=2.8A                             
+Inductor Current Limit vs Input Voltage   
+2.0
+2.2
+2.4
+2.6
+2.8
+3.0
+2.5
+2.8
+3.1
+3.4
+3.7
+4
+4.3
+4.6
+4.9
+5.2
+5.5
+ICL (A)
+VIN
+(V)
+ILED=2.0A             fSW=4MHz             VLED=4.5V
+ICL=2.8A                             
+Inductor Current Limit vs Input Voltage   
+Awinic Confidential
+
+ 
+ 
+AW36515
+Oct. 2019 V1.1
+ 
+www.awinic.com.cn                          15             Copyright © 2018 SHANGHAI AWINIC TECHNOLOGY CO., LTD 
+Typical Characteristics (continued)  
+Ambient temperature is 25°C, input voltage is 3.6 V, CIN = COUT = 2×10 µF and L=1 µH, unless otherwise 
+noted . 
+VOUT(2V/DIV)
+TX signal
+ILED(500mA/DIV)
+IIN(800mA/DIV)
+TIME (2 ms/DIV)
+ILED1=ILED2=747mA                      fSW=2MHz                     VLED=3.18V
+ TX Interrupt 
+ILED (200mA/DIV)
+IIN (500mA/DIV)
+VIN (100mV/DIV)
+TIME (500 μs/DIV)
+ILED1=ILED2=747mA              fSW=2MHz               VLED=3.18V            VIVFM=2.9V
+ IVFM - Stop and Hold 
+ 
+ 
+Awinic Confidential
+
+ 
+ 
+AW36515
+Oct. 2019 V1.1
+ 
+www.awinic.com.cn                          16             Copyright © 2018 SHANGHAI AWINIC TECHNOLOGY CO., LTD 
+Detailed Functional Description 
+The AW36515 is a high-power LED flash driver capable of delivering up to 2A in either of the two parallel 
+LEDs. The device incorporates a 2MHz or 4MHz constant frequency-synchronous current-mode PWM boost 
+converter and dual high-side current sources to regulate the LED current over the 2.7V to 5.5V input voltage 
+range. 
+The AW36515 PWM DC-DC boost converter switches and boosts the output to maintain at least VHR across 
+each of the current sources (LED1/2). This minimum headroom voltage ensures that both current sources 
+remain in regulation. If the input voltage is above the LED voltage + current source headroom voltage, the 
+device would not switch, but turn the PMOS on continuously (Pass mode). In Pass mode the difference 
+between (VIN − ILED × RPMOS) and the voltage across the LED is dropped across the current source. 
+The AW36515 has two logic inputs including a reusable hardware Flash/Torch Enable (STROBE/TORCH) 
+and a Flash Interrupt input (TX) designed to interrupt the flash pulse during high battery-current conditions. 
+These logic inputs have internal 300kΩ (typical) pull-down resistors to GND. 
+Control is done via an I2C-compatible interface. This includes adjustment of the Flash and Torch current 
+levels, changing the Flash Timeout Duration, and changing the switch current limit. Additionally, there are flag 
+and status bits that indicate flash current timeout, LED over-temperature condition, LED failure (open/short), 
+device thermal shutdown, TX interrupt, and VIN under-voltage conditions. 
+Awinic Confidential
+
+ 
+ 
+AW36515
+Oct. 2019 V1.1
+ 
+www.awinic.com.cn                          17             Copyright © 2018 SHANGHAI AWINIC TECHNOLOGY CO., LTD 
+Functional Block Diagram 
+Control Logic
+/Regsiter
+UVLO
+OSC
+2/4MHz
+IVFM
+I2C 
+Interface
+Thermal Shutdown 
+Protection
+FB
+Select
+OUT
+LED1
+LED2
+SW
+IN
+GND
+Boost Controller
+OVP
+VOVP
+Current 
+Limit
+SDA
+SCL
+LED & OUT 
+Short Detect
+AW36515
+TX
+STROBE/TORCH
+POR
+ 
+ 
+Features Description 
+Power On Reset 
+When the supply voltage VIN drops below a predefined voltage VPOR (2.0V typical), the device generates a 
+reset signal to perform a power-on reset operation, which will reset all control circuits and configuration 
+registers. 
+Once VIN goes above around VPOR (2.0V typical), it should stay high for at least 2ms time before any I2C 
+command can be accepted.  
+Software Reset 
+By setting bit[7](Software Reset Bit) to a ‘1’ in the Boost Configuration Register(0x07) via I2C interface will 
+reset the AW36515 internal circuit and all configuration registers, after the soft reset command is input 
+through I2C, it needs to wait at least 2ms before any other I2C command can be accepted.  
+Flash Mode 
+In Flash Mode, the LED current sources (LED1/2) provide 256 target current levels from 3.91mA to 2A. The 
+Flash currents are adjusted via the LED1 and LED2 Flash Brightness Registers.  Flash mode is activated by 
+the Enable Register(setting M1, M0 to '11'), or by pulling the STROBE/TORCH pin HIGH when bit[5] (Strobe 
+Enable Bit) is ‘1’ in the Enable Register(0x01). Once the Flash sequence is activated the current source 
+(LED1/2) ramps up to the programmed Flash current by stepping through all current steps until the 
+programmed current is reached.  
+Awinic Confidential
+
+ 
+ 
+AW36515
+Oct. 2019 V1.1
+ 
+www.awinic.com.cn                          18             Copyright © 2018 SHANGHAI AWINIC TECHNOLOGY CO., LTD 
+When the device is enabled in Flash Mode through the Enable Register, all mode bits in the Enable Register 
+are cleared after a flash timeout event. 
+Torch Mode 
+In Torch mode, the LED current sources (LED1/2) provide 256 target current levels from 0.98mA to 500mA on 
+AW36515. The Torch currents are adjusted via the LED1 and LED2 Torch Brightness Registers. Torch mode 
+is activated by the Enable Register (setting M1, M0 to '10'), or by pulling the STROBE/TORCH pin HIGH when 
+bit[5] (Torch Enable Bit) is ‘1’ in the Enable Register(0x01). Once the TORCH sequence is activated the active 
+current sources (LED1/2) ramps up to the programmed Torch current by stepping through all current steps 
+until the programmed current is reached. The rate at which the current ramps is determined by the value 
+chosen in the Timing Register. 
+AW36515 will execute flash operation when both bit[4] and bit[5] are ‘1’ in the Enable Register with pulling the 
+STROBE/TORCH pin HIGH. 
+Torch Mode is not affected by Flash Timeout or by a TX Interrupt event. 
+IR Mode 
+In IR Mode, Enable register bit[3:2] should be to ‘01’ (setting M1, M0 to '01') and the STROBE/TORCH pin 
+should be enabled(Strobe Enable Bit). The target LED current is equal to the value stored in the LED1/2 Flash 
+Brightness Registers. When IR mode is enabled, the boost converter turns on and set the output equal to the 
+input (pass-mode) . The STROBE/TORCH pin can only be set to be Level sensitive, meaning all timing of the 
+IR pulse is externally controlled, but it is still protected by flash time-out if STROBE width is too long. In IR 
+Mode, the current sources do not ramp the LED outputs to the target. LED1/2 is enabled to the full current 
+setting without delay or slow ramp during STROBE rising edge, and they are fully turned off immediately 
+without delay or slow ramp during STROBE falling edge  
+ 
+ 
+ 
+IR Mode with Boost 
+VOUT
+BOOST
+PASS
+OFF
+STROBE
+ILED1
+ILED2
+M1,M0=‘01’
+LED1,LED2=‘11’
+STROBE EN=‘1’
+M1,M0=‘01’
+LED1,LED2=‘10’
+STROBE EN=‘1’
+M1,M0=‘00’
+LED1,LED2=‘10’
+STROBE EN=‘1’
+Awinic Confidential
+
+ 
+ 
+AW36515
+Oct. 2019 V1.1
+ 
+www.awinic.com.cn                          19             Copyright © 2018 SHANGHAI AWINIC TECHNOLOGY CO., LTD 
+VOUT
+STROBE
+ILED1
+ILED2
+M1,M0=‘01’
+LED1,LED2=‘11’
+STROBE EN=‘1’
+M1,M0=‘01’
+LED1,LED2=‘10’
+STROBE EN=‘1’
+M1,M0=‘00’
+LED1,LED2=‘10’
+STROBE EN=‘1’ 
+IR Mode Pass Only 
+VOUT
+STROBE
+ILED1
+ILED2
+M1,M0=‘01’
+LED1,LED2=‘11’
+STROBE EN=‘1’
+ Flash Timeout Value
+Timeout
+Start
+Timeout
+Reset
+Timeout
+Start
+Timeout
+Reset
+Timeout
+Start
+Timeout Reached
+VOUT goes low，
+LED1 &LED2 turn off 
+ 
+IR Mode Timeout 
+Soft Start-up 
+Turn on the AW36515 Torch and Flash modes can be done through the Enable Register. On start-up, when 
+VOUT is less than VIN the internal synchronous PMOS turns on as a current source and delivers 200mA (typical) 
+to the output capacitor. During this time the current source (LED) is off. When the voltage across the output 
+capacitor reaches 2.2 V (typical) the current source turns on. At turn-on the current source steps through each 
+FLASH or TORCH level until the target LED current is reached. This gives the device a controlled turn-on and 
+limits inrush current from the VIN supply. 
+Pass Mode 
+The AW36515 starts up in Pass Mode and stays there until Boost Mode is needed to maintain regulation. In 
+Pass Mode the boost converter does not switch, and the synchronous PMOS turns fully on bringing VOUT up to 
+VIN − ILED × RPMOS.  In Pass Mode the inductor current is not limited by the peak current limit. If the voltage 
+difference between VOUT and VLED falls below VHR, the device switches to Boost Mode. 
+AW36515 can be forced into pass mode only state regardless the VHR, which must be set before system enter 
+Boost mode, once system enter Boost mode, the bit2 of Boost Configuration Register (0x07) is invalid unless 
+setting the device enter standby mode, or by setting the SW RESET bit to a '1', or by removing power to the 
+AW36515. 
+ 
+Awinic Confidential
+
+ 
+ 
+AW36515
+Oct. 2019 V1.1
+ 
+www.awinic.com.cn                          20             Copyright © 2018 SHANGHAI AWINIC TECHNOLOGY CO., LTD 
+Power Amplifier Synchronization (TX) 
+The TX pin is a Power Amplifier Synchronization input. This is designed to reduce the flash LED current and 
+thus limit the battery current during high battery current conditions such as PA transmit events. When the 
+AW36515 is engaged in a Flash event, and the TX pin is pulled high, the LED current is forced into Torch 
+Mode at the programmed Torch current setting. If the TX pin is then pulled low before the Flash pulse 
+terminates, the LED current returns to the previous Flash current level. At the end of the Flash time-out, 
+whether the TX pin is high or low, the LED current turns off. 
+The TX input can be disable by setting bit[7] (TX Enable) to a ‘0’ in the Enable Register(0x01). 
+Input Voltage Flash Monitor (IVFM) 
+The AW36515 has the ability to adjust the flash current based upon the voltage level present at the IN pin 
+utilizing the Input Voltage Flash Monitor (IVFM). The adjustable threshold ranges from 2.9 V to 3.6 V in 
+100mV steps as well as adjustable hysteresis, with Stop-and-Hold mode. The IVFM threshold and hysteresis 
+are controlled by bits[5:3] and bit[2] respectively, in the IVFM Register(0x02). The Flags2 Register has the 
+IVFM flag bit set when the input voltage crosses the IVFM threshold value. Additionally, the IVFM threshold 
+sets the input voltage boundary that forces the AW36515 to either stop ramping the flash current during 
+startup in Stop and Hold Mode. 
+ Stop and Hold Mode: Stops Current Ramp and holds the level for the remaining flash, If VIN falls below the 
+IVFM threshold value. 
+Flash Event
+VIN
+Flash Current
+T-Filter=4μs
+Target Flash Current
+IVFM-Threshold
+Flash Current with 
+IVFM Disable
+Stop & Hold 
+Mode
+ 
+IVFM Mode 
+ 
+Flash Timeout 
+The Flash Timeout period sets the maximum time of one flash event, whether a flash stop command is 
+received or not. The AW36515 has 16 timeout levels ranging from 40ms to 1.6s (see TIMING 
+CONFIGURATION REGISTER (0X08) for more detail). Flash Timeout applies to both Flash and IR modes, 
+and it continues to count when the Flash mode is forced into Torch mode during a TX high event. The mode 
+bits are cleared and bit[0] is set in the Flags1 register(0x0A) upon a Flash Timeout. This fault flag can be reset 
+to '0' by reading back the Flags1 Register (0x0A), 'or by setting the SW RESET bit to a '1', or by removing 
+power to the AW36515. 
+Current Limit 
+When the inductor current limit is reached, the AW36515 terminates the charging phase of the switching cycle 
+until the next switching period. If the over-current condition persists, the device operates continuously in 
+current limit. The AW36515 features two selectable inductor current limits(1.9A and 2.8A) that are 
+programmable by bit[0] in Boost configuration Register(0x07). 
+Awinic Confidential
+
+ 
+ 
+AW36515
+Oct. 2019 V1.1
+ 
+www.awinic.com.cn                          21             Copyright © 2018 SHANGHAI AWINIC TECHNOLOGY CO., LTD 
+Since the current limit is sensed in the NMOS switch, there is no mechanism to limit the current when the 
+device operates in Pass Mode (current does not flow through the NMOS in pass mode). The mode bits are 
+not cleared upon a Current Limit event, but a flag bit[3] is set in the Flags1 register(0x0A).  
+This fault flag can be reset to '0' by reading back the Flags1 Register (0x0A), or by setting the SW RESET bit 
+to a '1', or by removing power to the AW36515. 
+Undervoltage Lockout (UVLO) 
+The AW36515 has an internal comparator that monitors the voltage at IN and forces the AW36515 into 
+standby if the input voltage drops to 2.5 V. If the UVLO monitor threshold is tripped, the UVLO flag bit is set in 
+the Flags1 Register (0x0A). If the input voltage rises above 2.5 V, the AW36515 is not available for operation 
+until there is an I2C read of the Flags1 Register (0x0A). Upon a read, the Flags1 register is cleared, and 
+normal operation can resume if the input voltage is greater than 2.5 V. 
+VOUT Short Fault 
+The Output Short Fault flag reads back a '1' if the device is active in Flash or Torch mode and the boost output 
+experiences a short condition. VOUT short condition occurs if the voltage at OUT goes below 2.3V (typ.) while 
+the device is in Torch or Flash mode. There is a deglitch time of 2.048ms before the VOUT Short flag is valid. 
+The mode bits are cleared upon an the VOUT short fault. The AW36515 is not available for operation until 
+VOUT Fault flags is cleared. The VOUT Short Fault can be reset to '0' by reading back the Flags1 Register 
+(0x0A), or by setting the SW RESET bit to a '1', or by removing power to the AW36515. 
+LED Short Fault 
+The LED Short Fault flags read back a '1' if the device is active in Flash or Torch mode and either active LED 
+output experiences a short condition. An LED short condition is determined if the voltage at LED1 or LED2 
+goes below 500mV (typ.) while the device is in Torch or Flash mode. There is a deglitch time of 256μs before 
+the LED Short Fault flag is valid. The mode bits are cleared upon an LED Short Fault. The AW36515 is not 
+available for operation until the LED Short Fault flags is cleared. The LED Short Faults can be reset to '0' by 
+reading back the Flags1 Register (0x0A), or by setting the SW RESET bit to a '1', or by removing power to the 
+AW36515. 
+Overvoltage Protection (OVP) 
+The output voltage is limited to typically 5 V. In situations such as an open LED, the AW36515 raises the 
+output voltage in order to try and keep the LED current at its target value. When VOUT reaches 5 V (typ.) the 
+overvoltage comparator trips and turns off the internal NMOS. When VOUT falls below the “VOVP Off 
+Threshold”, the AW36515 begins switching again. The mode bits are cleared, and the OVP Fault flag is set, 
+when an OVP condition is present for three rising OVP edges. This prevents momentary OVP events from 
+forcing the device to shut down. The AW36515 is not available for operation until the OVP Fault flag is cleared. 
+The OVP Fault can be reset to '0' by reading back the Flags2 Register (0x0A), or by setting the SW RESET bit 
+to a '1', or by removing power to the AW36515. 
+Thermal Shutdown (TSD) 
+When the AW36515 die temperature reaches 155°C, the thermal shutdown detection circuit trips, forcing the 
+AW36515 enter standby mode and writing a '1' to the Thermal Shutdown Fault flag of the Flags1 Register 
+(0x0A) . The AW36515 is only allowed to restart after the Thermal Shutdown Fault flag is cleared. The 
+Thermal Shutdown Faults can be reset to '0' by reading back the Flags1 Register (0x0A), or by setting the SW 
+RESET bit to a '1', or by removing power to the AW36515. Upon restart, if the die temperature is still above 
+155°C, the AW36515 resets the Fault flag and re-enters standby mode. 
+Awinic Confidential
+
+ 
+ 
+AW36515
+Oct. 2019 V1.1
+ 
+www.awinic.com.cn                          22             Copyright © 2018 SHANGHAI AWINIC TECHNOLOGY CO., LTD 
+Programming 
+Control Truth Table 
+MODE1 
+MODE0 
+STROBE EN 
+TORCH EN 
+STROBE/TORCH PIN 
+ACTION 
+0 
+0 
+0 
+0 
+X 
+Standby 
+0 
+0 
+0 
+1 
+Pos edge 
+Ext Torch 
+0 
+0 
+1 
+0 
+Pos edge 
+Ext Flash 
+0 
+0 
+1 
+1 
+Pos edge 
+Ext Flash 
+1 
+0 
+X 
+X 
+X 
+Int Torch 
+1 
+1 
+X 
+X 
+X 
+Int Flash 
+0 
+1 
+0 
+X 
+X 
+IRLED Standby 
+0 
+1 
+1 
+X 
+0 
+IRLED Standby 
+0 
+1 
+1 
+X 
+Pos edge 
+IRLED Enabled 
+ 
+I2C Interface 
+Data Validation 
+When SCL is high level, SDA level must be constant. SDA can be changed only when SCL is low level. 
+SCL
+SDA
+Data Line 
+Stable
+Data Valid
+Change 
+of Data 
+Allowed
+ 
+Data Validation Diagram 
+I2C Start/Stop 
+I2C start: SDA changes from high level to low level when SCL is high level. 
+I2C stop: SDA changes from low level to high level when SCL is high level. 
+SCL
+SDA
+S/Sr
+S: START condition
+Sr: START Repeated condition
+P: STOP condition
+P
+ 
+Start and Stop Conditions 
+ 
+ 
+Awinic Confidential
+
+ 
+ 
+AW36515
+Oct. 2019 V1.1
+ 
+www.awinic.com.cn                          23             Copyright © 2018 SHANGHAI AWINIC TECHNOLOGY CO., LTD 
+ACK (Acknowledgement) 
+ACK means the successful transfer of I2C bus data. After master sends an 8-bit data, SDA must be released; 
+SDA is pulled to GND by slave device when slave acknowledges.  
+When master reads, slave device sends 8-bit data, releases the SDA and waits for ACK from master. If ACK is 
+sent and I2C stop is not sent by master, slave device sends the next data. If ACK is not send by master, slave 
+device stops to send data and waits for I2C stop. 
+1
+2
+8
+9
+Data Output
+by Transmiter
+Data Output
+by Receiver
+SCL From
+Master
+START 
+condition
+Not Acknowledge（NACK）
+Acknowledge（ACK）
+Clock Pulse for 
+Acknowledgement
+ 
+I2C ACK Timing 
+Write Cycle 
+One data bit is transferred during each clock pulse. Data is sampled during the high state of the serial clock 
+(SCL). Consequently, throughout the clock’s high period, the data should remain stable. Any changes on the 
+SDA line during the high state of the SCL and in the middle of a transaction, aborts the current transaction. 
+New data should be sent during the low SCL state. This protocol allows a single data line to transfer both 
+command/control information and data using the synchronous serial clock. 
+Each data transaction is composed of a Start Condition, a number of byte transfers (set by the software) and 
+a Stop Condition to terminate the transaction. Every byte written to the SDA bus must be 8 bits long and is 
+transferred with the most significant bit first. After each byte, an Acknowledge signal must follow. 
+In a write process, the following steps should be followed: 
+a)  Master device generates START condition. The “START” signal is generated by lowering the 
+SDA signal while the SCL signal is high. 
+b)  Master device sends slave address (7-bit) and the data direction bit (R/W = 0). 
+c)  Slave device sends acknowledge signal if the slave address is correct. 
+d)  Master sends control register address (8-bit) 
+e)  Slave sends acknowledge signal 
+f)  Master sends data byte to be written to the addressed register 
+g)  Slave sends acknowledge signal 
+h)  If master will send further data bytes the control register address will be incremented by one after 
+acknowledge signal (repeat step f and g) 
+i) 
+Master generates STOP condition to indicate write cycle end 
+0
+A2 A1 A0
+A6 A5
+A3
+A4
+A4 A3
+A1
+A2
+A7
+A5
+A6
+1
+2
+3
+4
+5
+6
+7
+8
+0
+1
+2
+3
+4
+5
+6
+D5 D4
+D2
+D3
+A0
+D6
+D7
+D1 D0
+7
+8
+0
+1
+2
+3
+4
+5
+6
+7
+8
+SCL
+SDA
+Ack
+Ack
+Start
+R/W
+Stop
+Device Address
+Register Address
+Write Data
+Ack
+ 
+I2C Write Timing 
+Awinic Confidential
+
+ 
+ 
+AW36515
+Oct. 2019 V1.1
+ 
+www.awinic.com.cn                          24             Copyright © 2018 SHANGHAI AWINIC TECHNOLOGY CO., LTD 
+Read Cycle 
+In a read cycle, the following steps should be followed: 
+a) 
+Master device generates START condition. 
+b)  Master device sends slave address (7-bit) and the data direction bit (R/W = 0). 
+c)  Slave device sends acknowledge signal if the slave address is correct. 
+d) 
+Master sends control register address (8-bit). 
+e)  Slave sends acknowledge signal. 
+f)  Master generates STOP condition followed with START condition or REPEAT START condition. 
+g)  Master device sends slave address (7-bit) and the data direction bit (R/W = 1). 
+h)  Slave device sends acknowledge signal if the slave address is correct. 
+i)  Slave sends data byte from addressed register. 
+j)  If the master device sends acknowledge signal, the slave device will increase the control register 
+address by one, then send the next data from the new addressed register. 
+k)  If the master device generates STOP condition, the read cycle is ended. 
+0
+A2
+A1
+A0
+A6
+A5
+A3
+A4
+A4
+A3
+A1
+A2
+A7
+A5
+A6
+1
+2
+3
+4
+5
+6
+7
+8
+0
+1
+2
+3
+4
+5
+6
+A4
+A3
+A1
+A2
+A0
+A5
+A6
+D6
+D0
+D1
+A0
+D7
+7
+0
+1
+2
+3
+4
+5
+6
+7
+8
+0
+1
+...
+6
+SCL
+SDA
+Ack
+Ack
+Ack
+7
+8
+Ack
+start
+R/W
+……
+stop
+Device Address
+Register Address
+Device Address
+Read Data
+8
+ 
+RS
+Using 
+Repeat start
+A4
+A3
+A1
+A2
+A5
+A6
+D6
+D0
+D1
+A0
+D7
+0
+1
+2
+3
+4
+5
+6
+7
+8
+0
+1
+...
+6
+Ack
+7
+8
+Ack
+……
+stop
+Read Data
+S
+Separated 
+Read/write 
+transaction
+……
+……
+Device Address
+P
+……
+……
+R/W
+R/W
+ 
+I2C Read Timing 
+ 
+Awinic Confidential
+
+ 
+ 
+AW36515
+Oct. 2019 V1.1
+ 
+www.awinic.com.cn                          25             Copyright © 2018 SHANGHAI AWINIC TECHNOLOGY CO., LTD 
+Register Configuration 
+Register List 
+Register name 
+Address(HEX) 
+Read/Write 
+Default Value 
+Chip ID Register 
+0x00 
+Read 
+0x30 
+Enable Register 
+0x01 
+Read/Write 
+0x80 
+IVFM Register 
+0x02 
+Read/Write 
+0x01 
+LED1 Flash Brightness Register 
+0x03 
+Read/Write 
+0x7F 
+LED2 Flash Brightness Register 
+0x04 
+Read/Write 
+0x7F 
+LED1 Torch Brightness Register 
+0x05 
+Read/Write 
+0x7F 
+LED2 Torch Brightness Register 
+0x06 
+Read/Write 
+0x7F 
+Boost Configuration Register 
+0x07 
+Read/Write 
+0x09 
+Timing Configuration Register 
+0x08 
+Read/Write 
+0x1A 
+Flags1 Register 
+0x0A 
+Read 
+0x00 
+Flags2 Register 
+0x0B 
+Read 
+0x00 
+Device ID Register 
+0x0C 
+Read 
+0x02 
+Last Flash Register 
+0x0D 
+Read 
+0x00 
+ 
+ 
+ 
+ 
+Register Detailed Description 
+ 
+Chip ID Register (0x00) 
+Bit 7 
+Bit 6 
+Bit 5 
+Bit 4 
+Bit 3 
+Bit 2 
+Bit 1 
+Bit 0 
+Chip ID:  “00110000” 
+ 
+Enable Register (0x01) 
+Bit 7 
+Bit 6 
+Bit 5 
+Bit 4 
+Bit 3 
+Bit 2 
+Bit 1 
+Bit 0 
+TX Pin 
+Enable 
+0=Disabled 
+1=Enabled 
+(Default) 
+Strobe Type 
+0=Level 
+Triggered 
+ (Default) 
+1=Edge 
+Triggered 
+Strobe 
+Enable 
+0=Disabled 
+(Default) 
+1=Enabled 
+Torch  
+Enable 
+0=Disabled 
+(Default) 
+1=Enabled 
+Mode Bits: M1, M0 
+00=Standby (Default) 
+01=IR Drive 
+10=Torch 
+11=Flash 
+LED2 Enable 
+0=OFF 
+(Default) 
+1=ON 
+LED1 Enable 
+0=OFF 
+(Default) 
+1=ON 
+Note:  
+In Edge or Level Strobe Mode, it is recommended that the trigger pulse width be set greater than 1ms to 
+ensure proper turn-on of the device. 
+ 
+ 
+Awinic Confidential
+
+ 
+ 
+AW36515
+Oct. 2019 V1.1
+ 
+www.awinic.com.cn                          26             Copyright © 2018 SHANGHAI AWINIC TECHNOLOGY CO., LTD 
+ 
+IVFM Register (0x02) 
+Bit 7 
+Bit 6 
+Bit 5 
+Bit 4 
+Bit 3 
+Bit 2 
+Bit 1 
+Bit 0 
+RFU 
+UVLO 
+Circuitry 
+0=Disabled 
+(Default) 
+1=Enabled 
+IVFM Levels 
+000=2.9 V (Default) 
+001=3.0 V 
+010=3.1 V 
+011=3.2 V 
+100=3.3 V 
+101=3.4 V 
+110=3.5 V 
+111=3.6 V 
+RFU 
+RFU 
+IVFM Enable 
+0=Disabled 
+(Default) 
+1=Enabled 
+ 
+LED1 Flash Brightness Register (0x03) 
+Bit 7 
+Bit 6 
+Bit 5 
+Bit 4 
+Bit 3 
+Bit 2 
+Bit 1 
+Bit 0 
+LED1 Flash Brightness Levels 
+IFLASH(mA)≈(Brightness Code*7.83mA)+3.91mA 
+ 
+00000000=3.91 mA 
+…………… 
+01111111=998.32 mA  (Default) 
+…………… 
+11111111=2.0 A 
+ 
+LED2 Flash Brightness Register (0x04) 
+Bit 7 
+Bit 6 
+Bit 5 
+Bit 4 
+Bit 3 
+Bit 2 
+Bit 1 
+Bit 0 
+LED2 Flash Brightness Levels 
+IFLASH(mA)≈(Brightness Code*7.83mA)+3.91mA 
+ 
+00000000=3.91 mA 
+…………… 
+01111111=998.32 mA  (Default) 
+…………… 
+11111111=2.0 A 
+ 
+LED1 Torch Brightness Register (0x05) 
+Bit 7 
+Bit 6 
+Bit 5 
+Bit 4 
+Bit 3 
+Bit 2 
+Bit 1 
+Bit 0 
+LED1 Torch Brightness Levels 
+ITORCH(mA)≈(Brightness Code*1.96mA)+0.98mA 
+ 
+00000000=0.98 mA 
+…………… 
+01111111=249.9 mA  (Default) 
+…………… 
+11111111=500 mA 
+ 
+LED2 Torch Brightness Register (0x06) 
+Bit 7 
+Bit 6 
+Bit 5 
+Bit 4 
+Bit 3 
+Bit 2 
+Bit 1 
+Bit 0 
+LED2 Torch Brightness Levels 
+ITORCH(mA)≈(Brightness Code*1.96mA)+0.98mA 
+ 
+00000000=0.98 mA 
+…………… 
+01111111=249.9 mA  (Default) 
+…………… 
+11111111=500 mA 
+ 
+Awinic Confidential
+
+ 
+ 
+AW36515
+Oct. 2019 V1.1
+ 
+www.awinic.com.cn                          27             Copyright © 2018 SHANGHAI AWINIC TECHNOLOGY CO., LTD 
+ 
+Boost Configuration Register (0x07) 
+Bit 7 
+Bit 6 
+Bit 5 
+Bit 4 
+Bit 3 
+Bit 2 
+Bit 1 
+Bit 0 
+Software 
+Reset Bit 
+0=Not Reset 
+(Default) 
+1=Reset 
+RFU 
+RFU 
+RFU 
+LED Pin 
+Short Fault 
+Detect 
+0=Disabled 
+1=Enabled 
+(Default) 
+Boost Mode 
+0=Normal 
+(Default) 
+1=Pass Mode 
+Only 
+Boost 
+Frequency 
+Select 
+0=2 MHz 
+(Default) 
+1=4 MHz 
+Boost 
+Current Limit 
+0=1.9A 
+1=2.8A 
+(Default) 
+ 
+Timing Configuration Register (0x08) 
+Bit 7 
+Bit 6 
+Bit 5 
+Bit 4 
+Bit 3 
+Bit 2 
+Bit 1 
+Bit 0 
+RFU 
+Torch Current Ramp time 
+000=No Ramp 
+001=1 ms  (Default) 
+010=32 ms 
+011=64 ms 
+100=128 ms 
+101=256 ms 
+110=512 ms 
+111=1024 ms 
+Flash Time-out Duration 
+0000=40 ms 
+0001=80 ms 
+0010=120 ms 
+0011=160 ms 
+0100=200 ms 
+0101=240 ms 
+0110=280 ms 
+0111=320 ms 
+1000=360 ms 
+1001=400 ms 
+1010=600 ms  (Default) 
+1011=800 ms 
+1100=1000 ms 
+1101=1200 ms 
+1110=1400 ms 
+1111=1600 ms 
+ 
+Flags1 Register (0x0A) 
+Bit 7 
+Bit 6 
+Bit 5 
+Bit 4 
+Bit 3 
+Bit 2 
+Bit 1 
+Bit 0 
+TX Flag 
+VOUT Short 
+Fault 
+LED1 Short 
+Fault 
+LED2 Short 
+Fault 
+Current Limit 
+Flag 
+Thermal 
+Shutdown 
+(TSD) Fault 
+UVLO Fault 
+Flash 
+Time-Out 
+Flag 
+ 
+Flags2 Register (0x0B) 
+Bit 7 
+Bit 6 
+Bit 5 
+Bit 4 
+Bit 3 
+Bit 2 
+Bit 1 
+Bit 0 
+RFU 
+RFU 
+RFU 
+RFU 
+RFU 
+IVFM Trip 
+Flag 
+OVP Fault 
+RFU 
+ 
+Device ID Register (0x0C) 
+Bit 7 
+Bit 6 
+Bit 5 
+Bit 4 
+Bit 3 
+Bit 2 
+Bit 1 
+Bit 0 
+RFU 
+RFU 
+RFU 
+Device ID 
+“00” 
+Silicon Revision Bits  
+“010” 
+ 
+Last Flash Register (0x0D) 
+Bit 7 
+Bit 6 
+Bit 5 
+Bit 4 
+Bit 3 
+Bit 2 
+Bit 1 
+Bit 0 
+RFU 
+The value stored is always the last current value the IVFM detection block set ILED=IFLASH-TARGET*((code+1)/256) 
+Awinic Confidential
+
+ 
+ 
+AW36515
+Oct. 2019 V1.1
+ 
+www.awinic.com.cn                          28             Copyright © 2018 SHANGHAI AWINIC TECHNOLOGY CO., LTD 
+Application Information 
+The AW36515 can drive two flash LEDs at currents up to 2 A per LED. The 2MHz/4MHz DC-DC boost 
+regulator allows for the use of small value discrete external components. Below are some peripheral selection 
+guidelines. 
+Output Capacitor Selection 
+The AW36515 is designed to operate with a 10µF ceramic output capacitor. When the boost converter is 
+running, the output capacitor supplies the load current during the boost converter on-time. When the NMOS 
+switch turns off, the inductor energy is discharged through the internal PMOS switch, supplying power to the 
+load and restoring charge to the output capacitor. This causes a sag in the output voltage during the on-time 
+and a rise in the output voltage during the off-time. The output capacitor is therefore chosen to limit the output 
+ripple to an acceptable level depending on load current and input/output voltage differentials and also to 
+ensure the converter remains stable. 
+Larger capacitors such as a 22µF or capacitors in parallel can be used if lower output voltage ripple is desired. 
+To estimate the output voltage ripple considering the ripple due to capacitor discharge (ΔVQ) and the ripple 
+due to the capacitors ESR (ΔVESR) use the following equations: 
+For continuous conduction mode, the output voltage ripple due to the capacitor discharge is: 
+(
+)
+OUT
+IN
+LED
+Q
+OUT
+OUT
+V
+V
+I
+V
+V
+f
+C
+
+
+
+
+
+
+ 
+The output voltage ripple due to the output capacitors ESR is found by: 
+2
+OUT
+LED
+L
+ESR
+ESR
+IN
+V
+I
+I
+V
+R
+V
+
+
+
+
+
+
+
+
+
+
+
+         Where 
+(
+)
+IN
+OUT
+IN
+L
+OUT
+V
+V
+V
+I
+V
+f
+L
+
+
+
+
+
+
+ 
+In ceramic capacitors the ESR is very low so the assumption is that 80% of the output voltage ripple is due to 
+capacitor discharge and 20% from ESR. Table 1 lists different manufacturers for various output capacitors 
+and their case sizes suitable for use with the AW36515. 
+Input Capacitor Selection 
+Choosing the correct size and type of input capacitor helps minimize the voltage ripple caused by the 
+switching of the AW36515 boost converter and reduce noise on the boost converter's input pin that can feed 
+through and disrupt internal analog signals. In the typical application circuit a 10-µF ceramic input capacitor 
+works well. It is important to place the input capacitor as close as possible to the AW36515 input (IN) pin. This 
+reduces the series resistance and inductance that can inject noise into the device due to the input switching 
+currents. Table 1 lists various input capacitors recommended for use with the AW36515. 
+Table 1 Recommended Input/ Output Capacitors (X5R/X7R Dielectric) 
+MANUFACTURER 
+PART NUMBER 
+VALUE 
+CASE 
+VOLTAGE RATING 
+TDK 
+C1608JB0J106M 
+10μF 
+0603 
+6.3V 
+TDK 
+C2012JB1A106M 
+10μF 
+0805 
+10V 
+Murata 
+GRM188R60J106M 
+10μF 
+0603 
+6.3V 
+Murata 
+GRM21BR61A106KE19 
+10μF 
+0805 
+10V 
+Awinic Confidential
+
+ 
+ 
+AW36515
+Oct. 2019 V1.1
+ 
+www.awinic.com.cn                          29             Copyright © 2018 SHANGHAI AWINIC TECHNOLOGY CO., LTD 
+Inductor Selection 
+The AW36515 is designed to use a 0.47µH or 1µH inductor. When the device is boosting (VOUT > VIN) the 
+inductor is typically the largest area of efficiency loss in the circuit. Therefore, choosing an inductor with the 
+lowest possible series resistance is important. Additionally, the saturation rating of the inductor should be 
+greater than the maximum operating peak current of the AW36515. This prevents excess efficiency loss that 
+can occur with inductors that operate in saturation. For proper inductor operation and circuit performance, 
+ensure that the inductor saturation and the peak current limit setting of the AW36515 are greater than IPEAK in 
+the following calculation: 
+L
+IN
+OUT
+LED
+PEAK
+I
+V
+V
+I
+I
+
+
+
+
+
+
+      where 
+
+
+OUT
+SW
+IN
+OUT
+IN
+L
+V
+L
+f
+V
+V
+V
+I
+
+
+
+
+
+
+
+2
+ 
+And
+SW
+f
+=2 or 4MHz. 
+Table 2 lists various inductors and their manufacturers that work well with the AW36515. 
+Table 2 Recommended Inductors 
+MANUFACTURER 
+L 
+PART NO. 
+SIZE 
+ISAT 
+RDC 
+TOKO 
+1μH 
+DFE201610P-1R0M 
+2.0 mm x 1.6 mm x 1.0 mm 
+3.7A 
+58mΩ 
+TOKO 
+0.47μH 
+DFE201610P-R470M 
+2.0 mm x 1.6 mm x 1.0 mm 
+4.1A 
+32mΩ 
+Sunlord 
+1μH 
+WPN252012H1R0MT 
+2.5mm × 2.0mm ×1.2mm 
+3.4A 
+48mΩ 
+ 
+ 
+Awinic Confidential
+
+ 
+ 
+AW36515
+Oct. 2019 V1.1
+ 
+www.awinic.com.cn                          30             Copyright © 2018 SHANGHAI AWINIC TECHNOLOGY CO., LTD 
+PCB Layout Consideration 
+Layout Guidelines 
+The high switching frequency and large switching currents of the AW36515 make the choice of layout 
+important. The following steps should be used as a reference to ensure the device is stable and maintains 
+proper LED current regulation across its intended operating voltage and current range. 
+1. Place CIN on the top layer (same layer as the AW36515) and as close to the device as possible. The input 
+capacitor conducts the driver currents during the low-side MOSFET turn-on and turn-off and can detect 
+current spikes over 2 A in amplitude. Connecting the input capacitor through short, wide traces to both the 
+IN and GND pins reduces the inductive voltage spikes that occur during switching which can corrupt the 
+VIN line. 
+2. Place COUT on the top layer (same layer as the AW36515) and as close as possible to the OUT and GND 
+pin. The returns for both CIN and COUT should come together at one point, as close to the GND pin as 
+possible. Connecting COUT through short, wide traces reduce the series inductance on the OUT and GND 
+pins that can corrupt the VOUT and GND lines and cause excessive noise in the device and surrounding 
+circuitry. 
+3. Connect the inductor on the top layer close to the SW pin. There should be a low-impedance connection 
+from the inductor to SW due to the large DC inductor current, and at the same time the area occupied by 
+the SW node should be small so as to reduce the capacitive coupling of the high dV/dT present at SW 
+that can couple into nearby traces. 
+4. Avoid routing logic traces near the SW node so as to avoid any capacitive coupling from SW onto any 
+high-impedance logic lines such as TX, STROBE/TORCH, SDA, and SCL. A good approach is to insert 
+an inner layer GND plane underneath the SW node and between any nearby routed traces. This creates a 
+shield from the electric field generated at SW. 
+5. Terminate the Flash LED cathodes directly to the GND pin of the AW36515. If possible, route the LED 
+returns with a dedicated path so as to keep the high amplitude LED currents out of the GND plane. For 
+Flash LEDs that are routed relatively far away from the AW36515, a good approach is to sandwich the 
+forward and return current paths over the top of each other on two layers. This helps reduce the 
+inductance of the LED current paths. 
+ 
+Awinic Confidential
+
+ 
+ 
+AW36515
+Oct. 2019 V1.1
+ 
+www.awinic.com.cn                          31             Copyright © 2018 SHANGHAI AWINIC TECHNOLOGY CO., LTD 
+Package Description 
+TOP VIEW
+SIDE VIEW
+BOTTOM VIEW
+Unit: mm
+SYMM
+SYMM
+D
+C
+B
+A
+3
+2
+1
+℄
+℄
+0.40 TYP
+Pin1 Corner
+ 
+Awinic Confidential
+
+ 
+ 
+AW36515
+Oct. 2019 V1.1
+ 
+www.awinic.com.cn                          32             Copyright © 2018 SHANGHAI AWINIC TECHNOLOGY CO., LTD 
+Land Pattern Data 
+SYMM
+SYMM
+Unit: mm
+METAL
+SOLDER MASK
+OPENING
+0.05 MAX
+All AROUND
+0.05 MIN
+All AROUND
+METAL UNDER
+SOLDER MASK
+OPENING
+SOLDER MASK
+NON SOLDER MASK DEFINED
+SOLDER MASK DEFINED
+A
+B
+C
+D
+3
+2
+1
+℄
+℄
+0.40 TYP
+0.40 TYP
+ 
+Awinic Confidential
+
+ 
+ 
+AW36515
+Oct. 2019 V1.1
+ 
+www.awinic.com.cn                          33             Copyright © 2018 SHANGHAI AWINIC TECHNOLOGY CO., LTD 
+Tape and Reel Information 
+P1
+Cavity
+B0
+W
+K0
+P0
+Q1
+Q2
+Q3
+Q4
+Q1
+Q2
+Q3
+Q4
+Q1
+Q2
+Q3
+Q4
+Q1
+Q2
+Q3
+Q4
+Sprocket Holes
+User Direction of Feed
+Pocket Quadrants
+P2
+QUADRANT ASSIGNMENTS FOR PIN 1 ORIENTATION IN TAPE
+TAPE DIMENSIONS
+A0：Dimension designed to accommodate the component width
+B0：Dimension designed to accommodate the component length
+K0：Dimension designed to accommodate the component thickness
+W：Overall width of the carrier tape
+P0：Pitch between successive cavity centers and sprocket hole
+P1：Pitch between successive cavity centers
+P2：Pitch between sprocket hole
+D1：Reel Diameter
+D0：Reel Width
+REEL DIMENSIONS
+D1
+D0
+A0
+Pin 1
+ 
+ 
+ 
+ 
+ 
+ 
+DIMENSIONS AND PIN1 ORIENTATION  
+D1 
+(mm) 
+D0 
+(mm) 
+A0 
+(mm) 
+B0 
+(mm) 
+K0 
+(mm) 
+P0 
+(mm) 
+P1 
+(mm) 
+P2 
+(mm) 
+W 
+(mm) 
+Pin1 
+Quadrant 
+180 
+9.5 
+1.4 
+1.85 
+0.75 
+2 
+4 
+4 
+8 
+Q1 
+All dimensions are nominal  
+ 
+Awinic Confidential
+
+ 
+ 
+AW36515
+Oct. 2019 V1.1
+ 
+www.awinic.com.cn                          34             Copyright © 2018 SHANGHAI AWINIC TECHNOLOGY CO., LTD 
+Revision History 
+Version 
+Date 
+Change Record 
+V1.0 
+Oct. 2018 
+Product Datasheet V1.0 Released 
+V1.1 
+Oct. 2019 
+I2C address is modified 
+ 
+Awinic Confidential
+
+ 
+ 
+AW36515
+Oct. 2019 V1.1
+ 
+www.awinic.com.cn                          35             Copyright © 2018 SHANGHAI AWINIC TECHNOLOGY CO., LTD 
+DISCLAIMER 
+Information in this document is believed to be accurate and reliable. However, Shanghai AWINIC Technology 
+Co., Ltd (AWINIC Technology) does not give any representations or warranties, expressed or implied, as to 
+the accuracy or completeness of such information and shall have no liability for the consequences of use of 
+such information. 
+AWINIC Technology reserves the right to make changes to information published in this document, including 
+without limitation specifications and product descriptions, at any time and without notice. Customers shall 
+obtain the latest relevant information before placing orders and shall verify that such information is current and 
+complete. This document supersedes and replaces all information supplied prior to the publication hereof. 
+AWINIC Technology products are not designed, authorized or warranted to be suitable for use in medical, 
+military, aircraft, space or life support equipment, nor in applications where failure or malfunction of an 
+AWINIC Technology product can reasonably be expected to result in personal injury, death or severe property 
+or environmental damage. AWINIC Technology accepts no liability for inclusion and/or use of AWINIC 
+Technology products in such equipment or applications and therefore such inclusion and/or use is at the 
+customer’s own risk. 
+Applications that are described herein for any of these products are for illustrative purposes only. AWINIC 
+Technology makes no representation or warranty that such applications will be suitable for the specified use 
+without further testing or modification. 
+All products are sold subject to the general terms and conditions of commercial sale supplied at the time of 
+order acknowledgement. 
+Nothing in this document may be interpreted or construed as an offer to sell products that is open for 
+acceptance or the grant, conveyance or implication of any license under any copyrights, patents or other 
+industrial or intellectual property rights. 
+Reproduction of AWINIC information in AWINIC data books or data sheets is permissible only if reproduction 
+is without alteration and is accompanied by all associated warranties, conditions, limitations, and notices. 
+AWINIC is not responsible or liable for such altered documentation. Information of third parties may be subject 
+to additional restrictions. 
+Resale of AWINIC components or services with statements different from or beyond the parameters stated by 
+AWINIC for that component or service voids all express and any implied warranties for the associated 
+AWINIC component or service and is an unfair and deceptive business practice. AWINIC is not responsible or 
+liable for any such statements. 
+Awinic Confidential
