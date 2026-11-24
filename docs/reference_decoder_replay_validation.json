@@ -1,0 +1,503 @@
+{
+  "source": "Reference-identical xcr_decoder, native host C/C++ build, two-stage preparation",
+  "input_note": "JPEG snapshots decoded back to Gray8; not original sensor RAW; host timing is not P4 timing",
+  "cases": 12,
+  "refined": 9,
+  "rows": [
+    {
+      "image": "docs\\auto_ov9281_light_0_0.jpg",
+      "iterations": 1,
+      "decoded": 6,
+      "payload": "012345",
+      "elapsed_us": 2750,
+      "marker_us": 658,
+      "normalize_us": 0,
+      "core_us": 1459,
+      "refine_us": 32,
+      "marker_roi": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "angle_deg": 0.0,
+      "grid": [
+        10,
+        10
+      ],
+      "geometry_quality": 2,
+      "split": 0,
+      "full_fallback": 0,
+      "sample_step": 2,
+      "core_finder_us": 0,
+      "core_candidate_us": 0,
+      "core_codeword_us": 1,
+      "core_ecc_us": 4,
+      "core_payload_us": 1,
+      "corners": [
+        685,
+        545,
+        605,
+        545,
+        605,
+        465,
+        680,
+        467
+      ]
+    },
+    {
+      "image": "docs\\auto_ov9281_light_0_1.jpg",
+      "iterations": 1,
+      "decoded": 6,
+      "payload": "012345",
+      "elapsed_us": 2572,
+      "marker_us": 668,
+      "normalize_us": 0,
+      "core_us": 1162,
+      "refine_us": 35,
+      "marker_roi": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "angle_deg": 0.0,
+      "grid": [
+        10,
+        10
+      ],
+      "geometry_quality": 2,
+      "split": 0,
+      "full_fallback": 0,
+      "sample_step": 2,
+      "core_finder_us": 0,
+      "core_candidate_us": 0,
+      "core_codeword_us": 1,
+      "core_ecc_us": 5,
+      "core_payload_us": 0,
+      "corners": [
+        678,
+        545,
+        600,
+        545,
+        604,
+        469,
+        679,
+        468
+      ]
+    },
+    {
+      "image": "docs\\auto_ov9281_light_0_2.jpg",
+      "iterations": 1,
+      "decoded": 6,
+      "payload": "012345",
+      "elapsed_us": 2623,
+      "marker_us": 713,
+      "normalize_us": 0,
+      "core_us": 1226,
+      "refine_us": 33,
+      "marker_roi": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "angle_deg": 0.0,
+      "grid": [
+        10,
+        10
+      ],
+      "geometry_quality": 2,
+      "split": 0,
+      "full_fallback": 0,
+      "sample_step": 2,
+      "core_finder_us": 0,
+      "core_candidate_us": 0,
+      "core_codeword_us": 2,
+      "core_ecc_us": 5,
+      "core_payload_us": 1,
+      "corners": [
+        689,
+        545,
+        610,
+        545,
+        613,
+        467,
+        689,
+        467
+      ]
+    },
+    {
+      "image": "docs\\auto_ov9281_light_1_0.jpg",
+      "iterations": 1,
+      "decoded": 6,
+      "payload": "012345",
+      "elapsed_us": 3070,
+      "marker_us": 670,
+      "normalize_us": 0,
+      "core_us": 1718,
+      "refine_us": 33,
+      "marker_roi": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "angle_deg": 0.0,
+      "grid": [
+        10,
+        10
+      ],
+      "geometry_quality": 2,
+      "split": 0,
+      "full_fallback": 0,
+      "sample_step": 2,
+      "core_finder_us": 0,
+      "core_candidate_us": 0,
+      "core_codeword_us": 1,
+      "core_ecc_us": 5,
+      "core_payload_us": 0,
+      "corners": [
+        689,
+        545,
+        610,
+        545,
+        613,
+        467,
+        689,
+        467
+      ]
+    },
+    {
+      "image": "docs\\auto_ov9281_light_1_1.jpg",
+      "iterations": 1,
+      "decoded": 6,
+      "payload": "012345",
+      "elapsed_us": 2810,
+      "marker_us": 683,
+      "normalize_us": 0,
+      "core_us": 1441,
+      "refine_us": 36,
+      "marker_roi": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "angle_deg": 0.0,
+      "grid": [
+        10,
+        10
+      ],
+      "geometry_quality": 2,
+      "split": 0,
+      "full_fallback": 0,
+      "sample_step": 2,
+      "core_finder_us": 0,
+      "core_candidate_us": 0,
+      "core_codeword_us": 1,
+      "core_ecc_us": 5,
+      "core_payload_us": 0,
+      "corners": [
+        689,
+        545,
+        610,
+        545,
+        613,
+        467,
+        689,
+        467
+      ]
+    },
+    {
+      "image": "docs\\auto_ov9281_light_1_2.jpg",
+      "iterations": 1,
+      "decoded": 6,
+      "payload": "012345",
+      "elapsed_us": 2817,
+      "marker_us": 681,
+      "normalize_us": 0,
+      "core_us": 1494,
+      "refine_us": 33,
+      "marker_roi": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "angle_deg": 0.0,
+      "grid": [
+        10,
+        10
+      ],
+      "geometry_quality": 2,
+      "split": 0,
+      "full_fallback": 0,
+      "sample_step": 2,
+      "core_finder_us": 0,
+      "core_candidate_us": 0,
+      "core_codeword_us": 1,
+      "core_ecc_us": 3,
+      "core_payload_us": 0,
+      "corners": [
+        689,
+        545,
+        610,
+        545,
+        613,
+        467,
+        689,
+        467
+      ]
+    },
+    {
+      "image": "docs\\auto_ov9281_light_2_0.jpg",
+      "iterations": 1,
+      "decoded": 6,
+      "payload": "012345",
+      "elapsed_us": 2432,
+      "marker_us": 659,
+      "normalize_us": 0,
+      "core_us": 1179,
+      "refine_us": 35,
+      "marker_roi": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "angle_deg": 0.0,
+      "grid": [
+        10,
+        10
+      ],
+      "geometry_quality": 2,
+      "split": 0,
+      "full_fallback": 0,
+      "sample_step": 2,
+      "core_finder_us": 0,
+      "core_candidate_us": 0,
+      "core_codeword_us": 1,
+      "core_ecc_us": 3,
+      "core_payload_us": 0,
+      "corners": [
+        689,
+        545,
+        610,
+        545,
+        613,
+        467,
+        689,
+        467
+      ]
+    },
+    {
+      "image": "docs\\auto_ov9281_light_2_1.jpg",
+      "iterations": 1,
+      "decoded": 6,
+      "payload": "012345",
+      "elapsed_us": 4013,
+      "marker_us": 1156,
+      "normalize_us": 0,
+      "core_us": 1769,
+      "refine_us": 37,
+      "marker_roi": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "angle_deg": 0.0,
+      "grid": [
+        10,
+        10
+      ],
+      "geometry_quality": 2,
+      "split": 0,
+      "full_fallback": 0,
+      "sample_step": 2,
+      "core_finder_us": 0,
+      "core_candidate_us": 0,
+      "core_codeword_us": 1,
+      "core_ecc_us": 5,
+      "core_payload_us": 0,
+      "corners": [
+        689,
+        545,
+        610,
+        545,
+        613,
+        467,
+        689,
+        467
+      ]
+    },
+    {
+      "image": "docs\\auto_ov9281_light_2_2.jpg",
+      "iterations": 1,
+      "decoded": 6,
+      "payload": "012345",
+      "elapsed_us": 2653,
+      "marker_us": 748,
+      "normalize_us": 0,
+      "core_us": 1208,
+      "refine_us": 36,
+      "marker_roi": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "angle_deg": 0.0,
+      "grid": [
+        10,
+        10
+      ],
+      "geometry_quality": 2,
+      "split": 0,
+      "full_fallback": 0,
+      "sample_step": 2,
+      "core_finder_us": 0,
+      "core_candidate_us": 0,
+      "core_codeword_us": 2,
+      "core_ecc_us": 4,
+      "core_payload_us": 0,
+      "corners": [
+        689,
+        545,
+        610,
+        545,
+        613,
+        467,
+        689,
+        467
+      ]
+    },
+    {
+      "image": "black",
+      "negative": true,
+      "iterations": 1,
+      "decoded": 0,
+      "payload": "",
+      "elapsed_us": 2134,
+      "marker_us": 1051,
+      "normalize_us": 0,
+      "core_us": 539,
+      "refine_us": 0,
+      "marker_roi": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "angle_deg": 0.0,
+      "grid": [
+        0,
+        0
+      ],
+      "geometry_quality": 0,
+      "split": 0,
+      "full_fallback": 0,
+      "sample_step": 4,
+      "core_finder_us": 0,
+      "core_candidate_us": 0,
+      "core_codeword_us": 0,
+      "core_ecc_us": 0,
+      "core_payload_us": 0,
+      "corners": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "image": "gray",
+      "negative": true,
+      "iterations": 1,
+      "decoded": 0,
+      "payload": "",
+      "elapsed_us": 2300,
+      "marker_us": 1061,
+      "normalize_us": 0,
+      "core_us": 624,
+      "refine_us": 0,
+      "marker_roi": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "angle_deg": 0.0,
+      "grid": [
+        0,
+        0
+      ],
+      "geometry_quality": 0,
+      "split": 0,
+      "full_fallback": 0,
+      "sample_step": 4,
+      "core_finder_us": 0,
+      "core_candidate_us": 0,
+      "core_codeword_us": 0,
+      "core_ecc_us": 0,
+      "core_payload_us": 0,
+      "corners": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "image": "white",
+      "negative": true,
+      "iterations": 1,
+      "decoded": 0,
+      "payload": "",
+      "elapsed_us": 2267,
+      "marker_us": 1072,
+      "normalize_us": 0,
+      "core_us": 629,
+      "refine_us": 0,
+      "marker_roi": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "angle_deg": 0.0,
+      "grid": [
+        0,
+        0
+      ],
+      "geometry_quality": 0,
+      "split": 0,
+      "full_fallback": 0,
+      "sample_step": 4,
+      "core_finder_us": 0,
+      "core_candidate_us": 0,
+      "core_codeword_us": 0,
+      "core_ecc_us": 0,
+      "core_payload_us": 0,
+      "corners": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    }
+  ]
+}

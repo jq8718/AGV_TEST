@@ -21,6 +21,7 @@ def main():
     args.add_argument('--port')
     args.add_argument('--seconds', type=float, default=10)
     args.add_argument('--expect')
+    args.add_argument('--prefix', help='Artifact prefix, defaults to sensor name')
     args.add_argument('--sensor', choices=['e6', 'ov9281'], default='e6')
     opts = args.parse_args()
     ports = [p.device for p in list_ports.comports() if (p.vid, p.pid) == (0x303a, 0x8001)]
@@ -28,6 +29,7 @@ def main():
         args.error(f'Select --port; HS CDC candidates: {ports}')
     if opts.seconds < 1 or opts.seconds > 3600:
         args.error('--seconds must be 1..3600')
+    prefix = opts.prefix or opts.sensor
     output = Path(__file__).resolve().parents[1] / 'docs'
     parser = StreamParser()
     timing, results, errors, snapshots = [], [], [], []
@@ -47,7 +49,7 @@ def main():
                 for kind, value in parser.feed(port.read(65536)):
                     if kind == 'frame':
                         snapshots.append(value)
-                        (output / f'{opts.sensor}_snapshot.jpg').write_bytes(value.jpeg)
+                        (output / f'{prefix}_snapshot.jpg').write_bytes(value.jpeg)
                     elif kind == 'timing':
                         timing.append(value)
                     elif kind == 'result':
@@ -79,7 +81,7 @@ def main():
         report['expected'] = opts.expect
         report['matches'] = sum(r['payload'] == opts.expect for r in results)
     report['sensor_profile'] = opts.sensor
-    report_path = output / f'{opts.sensor}_live_validation.json'
+    report_path = output / f'{prefix}_live_validation.json'
     report_path.write_text(json.dumps(report, ensure_ascii=False, indent=2), encoding='utf-8')
     summary = {key: value for key, value in report.items() if key != 'results'}
     summary['results_received'] = len(results)

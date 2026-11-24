@@ -27,3 +27,5 @@ python -m esptool --chip esp32p4 -p COM62 --before default-reset --after hard-re
 ```
 
 保留NVS；切换传感器不需要重新烧录。
+
+当前解码核心已恢复为ESP32P4_XCF_OV9281原文件，两种sensor共用参考解码算法；E6专用搜索/ROI滤波已移除，E6成像曝光仍保留。101文件一致性及阶段检查通过；OV9281实机10秒214/214处理帧成功，详细证据见工程docs/REFERENCE_DECODER_COMPARISON.md。

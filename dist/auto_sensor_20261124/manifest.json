@@ -5,7 +5,7 @@
     "0x10": "E6 OV01C1B, chip_id 0x56014311, 1024x1024",
     "0x60": "OV9281, chip_id 0x9281, 1280x720"
   },
-  "elf_sha256": "b45f26c2de51901fcb98d418af3c20e45d9163d243f78617bfd20228251ab0db",
+  "elf_sha256": "bb5300a46de64a280be49d3be9bfbb7c933dbe05faf53ef93c886844ddcf0e5a",
   "hardware_validation": {
     "ov9281": "COM62 flashed and hash verified; native UVC, CDC refined geometry and off/on/off illumination verified",
     "e6": "Runtime profile/pose host tests passed; user chose OV9281-only hardware validation"
@@ -25,12 +25,16 @@
     "docs/ov9281_pose_auto_validation.json",
     "docs/head_exchange_host_validation.json",
     "docs/head_exchange_off_boot.log",
-    "docs/exchange_light_software_torch.log"
+    "docs/exchange_light_software_torch.log",
+    "docs/reference_decoder_alignment.json",
+    "docs/reference_decoder_replay_validation.json",
+    "docs/reference_aligned_ov9281_boot.log",
+    "docs/reference_aligned_ov9281_live_validation.json"
   ],
   "files": {
     "agv_scan_auto.bin": {
-      "bytes": 954576,
-      "sha256": "4dabf7e7e8c093b4e7555282738399ffd66afd6e6eae6ed7fe3aaf9e8cd4fcbd"
+      "bytes": 954560,
+      "sha256": "1de4c87938e8203363bbffc2c393d4621649f2e03cc9158dd06ea0c6c659849a"
     },
     "bootloader.bin": {
       "bytes": 23632,
@@ -58,5 +62,18 @@
     "external_light": "software Torch 0x0b ON / 0x00 OFF; GPIO22 follows illumination latch",
     "validation": "User confirmed GPIO35 and GPIO36 power-off behavior; off state retained after COM62 reset; resume validation pending",
     "voltage_measurement": "not measured; verify head rails discharged before first physical replacement"
+  },
+  "decoder_alignment": {
+    "reference": "D:/XC/2026/P4SCAN/ESP32P4_XCF_OV9281",
+    "reference_config": "sdkconfig",
+    "decoder_source_files": 101,
+    "exact_reference_decoder": true,
+    "e6_decoder_overrides_removed": true,
+    "live_ov9281_processed_successes": [
+      214,
+      214
+    ],
+    "reference_report": "docs/reference_decoder_alignment.json",
+    "comparison": "docs/REFERENCE_DECODER_COMPARISON.md"
   }
 }

@@ -5,14 +5,6 @@
 #endif
 #include "xcr_port.h"
 #include "xcr_dmtx.h"
-#ifdef ESP_PLATFORM
-#include "p4scan_sensor_profile.h"
-#define XCR_SENSOR_IS_E6() p4scan_sensor_is_e6()
-#elif defined(CONFIG_CAMERA_OV01C1B) && CONFIG_CAMERA_OV01C1B
-#define XCR_SENSOR_IS_E6() 1
-#else
-#define XCR_SENSOR_IS_E6() 0
-#endif
 #if XCR_DMTX_BODY_RECOVERY
 #include "xcr_dm_body.h"
 #endif
@@ -1934,15 +1926,13 @@ int xcr_dmtx_prepare_front(const XcrGrayImage *image, XcrDmtxPrepared *prepared)
     Image source = {.pixels = (uint8_t *)image->pixels, .width = image->width, .height = image->height};
     uint64_t started = xcr_port_time_us();
 #if XCR_DMTX_BODY_RECOVERY
-    if (!XCR_SENSOR_IS_E6()) {
-        XcrDeadline deadline = {.deadline_us = image->deadline_us};
-        prepared->body_state = xcr_dm_body_prepare(&source, 2, &deadline, &prepared->body_threshold_us);
-        if (prepared->body_state) {
-            prepared->sample_step = 2;
-            prepared->front_us = xcr_port_time_us() - started;
-            prepared->search_us = prepared->front_us;
-            return 1;
-        }
+    XcrDeadline deadline = {.deadline_us = image->deadline_us};
+    prepared->body_state = xcr_dm_body_prepare(&source, 2, &deadline, &prepared->body_threshold_us);
+    if (prepared->body_state) {
+        prepared->sample_step = 2;
+        prepared->front_us = xcr_port_time_us() - started;
+        prepared->search_us = prepared->front_us;
+        return 1;
     }
 #endif
     XcrDeadline marker_deadline = {.deadline_us = image->deadline_us};
@@ -2228,11 +2218,7 @@ search_marker:
             source_y_fixed += step_y;
             uint8_t value = source_x >= 0 && source_x < image->width && source_y >= 0 && source_y < image->height
                 ? (large_retry ? marker_filtered_gray(image, source_x, source_y) : image->pixels[source_y * image->width + source_x]) : 255;
-            /* E6 high-gain RAW8 needs spatial averaging for both dark and
-             * light modules. Limit it to the candidate normalization ROI. */
-            if (!large_retry && source_x >= 0 && source_x < image->width &&
-                source_y >= 0 && source_y < image->height && (XCR_SENSOR_IS_E6() || value < 48))
-                value = marker_filtered_gray(image, source_x, source_y);
+            if (!large_retry && value < 48) value = marker_filtered_gray(image, source_x, source_y);
             pixels[transpose ? column * side + row : row * side + column] = value;
             histogram[value]++;
             intensity_sum += value;

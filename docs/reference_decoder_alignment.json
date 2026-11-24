@@ -1,0 +1,726 @@
+{
+  "reference": "D:\\XC\\2026\\P4SCAN\\ESP32P4_XCF_OV9281",
+  "reference_config": "sdkconfig (1280x720, not legacy sdkconfig.idf60)",
+  "decoder_files_checked": 101,
+  "decoder_files": [
+    {
+      "path": "port/components/xcr_decoder/CMakeLists.txt",
+      "equal": true,
+      "reference_sha256": "6c522fa5ccaa44671c89ef8f927cdb8803c157484067374faf0a2d020829f822",
+      "current_sha256": "6c522fa5ccaa44671c89ef8f927cdb8803c157484067374faf0a2d020829f822"
+    },
+    {
+      "path": "port/components/xcr_decoder/include/xcr_decoder.h",
+      "equal": true,
+      "reference_sha256": "8f0c5604a99eead5548797180b4e8723050603927c04201e00d7a356eca884e1",
+      "current_sha256": "8f0c5604a99eead5548797180b4e8723050603927c04201e00d7a356eca884e1"
+    },
+    {
+      "path": "port/components/xcr_decoder/include/xcr_dmtx.h",
+      "equal": true,
+      "reference_sha256": "5f3cc0191823e21d285afb355f2341c67c4618bd3585ce727f621e56cb4edb68",
+      "current_sha256": "5f3cc0191823e21d285afb355f2341c67c4618bd3585ce727f621e56cb4edb68"
+    },
+    {
+      "path": "port/components/xcr_decoder/include/xcr_port.h",
+      "equal": true,
+      "reference_sha256": "159a75ed6e0d2a076790e840e8a9e6498cef1064b7e14e8b6eaa8092c30e938c",
+      "current_sha256": "159a75ed6e0d2a076790e840e8a9e6498cef1064b7e14e8b6eaa8092c30e938c"
+    },
+    {
+      "path": "port/components/xcr_decoder/include/xcr_qr_geometry.h",
+      "equal": true,
+      "reference_sha256": "4752b41c7e84d418a4a013d6ca2c8040c12033da813790461fb5e6d39fae7e21",
+      "current_sha256": "4752b41c7e84d418a4a013d6ca2c8040c12033da813790461fb5e6d39fae7e21"
+    },
+    {
+      "path": "port/components/xcr_decoder/src/xcr_decoder.c",
+      "equal": true,
+      "reference_sha256": "8848ace4fb2ab6411fce19479f070d408e03bd91fb4bbd070e0503e23d0ae44b",
+      "current_sha256": "8848ace4fb2ab6411fce19479f070d408e03bd91fb4bbd070e0503e23d0ae44b"
+    },
+    {
+      "path": "port/components/xcr_decoder/src/xcr_dm_body.cpp",
+      "equal": true,
+      "reference_sha256": "7e15914f2a6fcbfb175a95c51c60934c9332868dcfbab41e34d6af8dadf67233",
+      "current_sha256": "7e15914f2a6fcbfb175a95c51c60934c9332868dcfbab41e34d6af8dadf67233"
+    },
+    {
+      "path": "port/components/xcr_decoder/src/xcr_dm_body.h",
+      "equal": true,
+      "reference_sha256": "9cb20a4a35264af12bca6e7b4fd655b6d483a86c68c326e9091064a9221ba938",
+      "current_sha256": "9cb20a4a35264af12bca6e7b4fd655b6d483a86c68c326e9091064a9221ba938"
+    },
+    {
+      "path": "port/components/xcr_decoder/src/xcr_dm_body_pie.S",
+      "equal": true,
+      "reference_sha256": "dcba579284e5f5c697a36f9b9b2997d1b49a62783d6fa77b47de707fa50ed178",
+      "current_sha256": "dcba579284e5f5c697a36f9b9b2997d1b49a62783d6fa77b47de707fa50ed178"
+    },
+    {
+      "path": "port/components/xcr_decoder/src/xcr_dmtx.c",
+      "equal": true,
+      "reference_sha256": "b23206331c0e60b6a06c46bc53a3241e491ddd1a274d7ef6d503cfb495496184",
+      "current_sha256": "b23206331c0e60b6a06c46bc53a3241e491ddd1a274d7ef6d503cfb495496184"
+    },
+    {
+      "path": "port/components/xcr_decoder/src/xcr_port.c",
+      "equal": true,
+      "reference_sha256": "05b1104a4998bb3068a34d4c512da896feef4ca2a8441d97f8b6d3f704f0c2e1",
+      "current_sha256": "05b1104a4998bb3068a34d4c512da896feef4ca2a8441d97f8b6d3f704f0c2e1"
+    },
+    {
+      "path": "port/components/xcr_decoder/src/xcr_qr_geometry.c",
+      "equal": true,
+      "reference_sha256": "6703cc44f65a4ab2261773a68662389d397ffd8aacb9203ed6508355db34d82f",
+      "current_sha256": "6703cc44f65a4ab2261773a68662389d397ffd8aacb9203ed6508355db34d82f"
+    },
+    {
+      "path": "port/components/xcr_decoder/tests/host_fast_rows_test.c",
+      "equal": true,
+      "reference_sha256": "d7ea16d2a34c8580e3602c5f11b16ebed723598665bdf3c6cbf93e66c4d399d5",
+      "current_sha256": "d7ea16d2a34c8580e3602c5f11b16ebed723598665bdf3c6cbf93e66c4d399d5"
+    },
+    {
+      "path": "port/components/xcr_decoder/tests/host_image_batch_test.c",
+      "equal": true,
+      "reference_sha256": "0e176860d7fa936eceb39889b806c8381065bccf036232fb63e5d3fa2562e89b",
+      "current_sha256": "0e176860d7fa936eceb39889b806c8381065bccf036232fb63e5d3fa2562e89b"
+    },
+    {
+      "path": "port/components/xcr_decoder/tests/host_manifest_test.c",
+      "equal": true,
+      "reference_sha256": "47ffbc45ac41c4b58198bdb0245956c784c5c6c999a10bdc2768474055fa5898",
+      "current_sha256": "47ffbc45ac41c4b58198bdb0245956c784c5c6c999a10bdc2768474055fa5898"
+    },
+    {
+      "path": "port/components/xcr_decoder/tests/host_qr_test.c",
+      "equal": true,
+      "reference_sha256": "114cf17f48d6bd7ddddd535614f3222fdefa67cc55ab482ceb3a20d2dcb299cd",
+      "current_sha256": "114cf17f48d6bd7ddddd535614f3222fdefa67cc55ab482ceb3a20d2dcb299cd"
+    },
+    {
+      "path": "port/components/xcr_decoder/tests/host_roi_test.c",
+      "equal": true,
+      "reference_sha256": "b3b546da0239185e4b8450ed1283800fcbd9ef13dd18a75982c49d62520011b3",
+      "current_sha256": "b3b546da0239185e4b8450ed1283800fcbd9ef13dd18a75982c49d62520011b3"
+    },
+    {
+      "path": "port/components/xcr_decoder/tests/qr_identify_benchmark.c",
+      "equal": true,
+      "reference_sha256": "48e96c348a8efe02f6f138c9e5b992ad332720d1adc38f91bde98d557932758a",
+      "current_sha256": "48e96c348a8efe02f6f138c9e5b992ad332720d1adc38f91bde98d557932758a"
+    },
+    {
+      "path": "port/components/xcr_decoder/tests/timeout_stress.c",
+      "equal": true,
+      "reference_sha256": "5a9a02c021341c5aa3b63913a1f8a546080fca9d08ddd50ce9c819cf65131d8b",
+      "current_sha256": "5a9a02c021341c5aa3b63913a1f8a546080fca9d08ddd50ce9c819cf65131d8b"
+    },
+    {
+      "path": "port/components/xcr_decoder/vendor/core/envelope.c",
+      "equal": true,
+      "reference_sha256": "fbf562c51e80aecf035ad5e96fee6dda677bfbc1f1501250b05b2fe6a3335793",
+      "current_sha256": "fbf562c51e80aecf035ad5e96fee6dda677bfbc1f1501250b05b2fe6a3335793"
+    },
+    {
+      "path": "port/components/xcr_decoder/vendor/core/postprocess.c",
+      "equal": true,
+      "reference_sha256": "7d07ba2229e63e13e46d3550f0be3a5da9c12d28c538d3254149e497695de7d9",
+      "current_sha256": "7d07ba2229e63e13e46d3550f0be3a5da9c12d28c538d3254149e497695de7d9"
+    },
+    {
+      "path": "port/components/xcr_decoder/vendor/core/scan_dispatcher.c",
+      "equal": true,
+      "reference_sha256": "4747d49f5834e8aacbff2ce88583d094718ff1f80bf2749eddf337a4ab824d98",
+      "current_sha256": "4747d49f5834e8aacbff2ce88583d094718ff1f80bf2749eddf337a4ab824d98"
+    },
+    {
+      "path": "port/components/xcr_decoder/vendor/core/scan_engine.c",
+      "equal": true,
+      "reference_sha256": "61ef4535f80d6a10351e467a8a0b7ee94e38345d89d7a24b0cd90395e739dcaa",
+      "current_sha256": "61ef4535f80d6a10351e467a8a0b7ee94e38345d89d7a24b0cd90395e739dcaa"
+    },
+    {
+      "path": "port/components/xcr_decoder/vendor/core/scan_primitives.c",
+      "equal": true,
+      "reference_sha256": "3d57ce8b6eca7798c115e9c32ce981ba7804e3b97f3692fa94215048e8de728c",
+      "current_sha256": "3d57ce8b6eca7798c115e9c32ce981ba7804e3b97f3692fa94215048e8de728c"
+    },
+    {
+      "path": "port/components/xcr_decoder/vendor/core/signal.c",
+      "equal": true,
+      "reference_sha256": "45450d0e96114fd711a7009bc931dac5302863c6e90b78cd09a14c1ff9cd2c0b",
+      "current_sha256": "45450d0e96114fd711a7009bc931dac5302863c6e90b78cd09a14c1ff9cd2c0b"
+    },
+    {
+      "path": "port/components/xcr_decoder/vendor/include/barcode.h",
+      "equal": true,
+      "reference_sha256": "44059892d2714af3d4fddbdb12fca581b836e6f55965084493955f78a032d6bc",
+      "current_sha256": "44059892d2714af3d4fddbdb12fca581b836e6f55965084493955f78a032d6bc"
+    },
+    {
+      "path": "port/components/xcr_decoder/vendor/include/codablock_f.h",
+      "equal": true,
+      "reference_sha256": "dca0e239774193611ffc383646e7baeddc2ac4bf31dc138b5c9131c2aeda5e61",
+      "current_sha256": "dca0e239774193611ffc383646e7baeddc2ac4bf31dc138b5c9131c2aeda5e61"
+    },
+    {
+      "path": "port/components/xcr_decoder/vendor/include/datamatrix.h",
+      "equal": true,
+      "reference_sha256": "194aaed83f58e622f2a202d465f867b18e6bb54e47b031993f84530610990159",
+      "current_sha256": "194aaed83f58e622f2a202d465f867b18e6bb54e47b031993f84530610990159"
+    },
+    {
+      "path": "port/components/xcr_decoder/vendor/include/envelope.h",
+      "equal": true,
+      "reference_sha256": "ba5f10c6db91eb33edcf5639859c84f6601438fc62c24569d73783b3f6819837",
+      "current_sha256": "ba5f10c6db91eb33edcf5639859c84f6601438fc62c24569d73783b3f6819837"
+    },
+    {
+      "path": "port/components/xcr_decoder/vendor/include/postprocess.h",
+      "equal": true,
+      "reference_sha256": "94d934c3b47a8bd0043fba6789eab9be299ea444de96376a89ee2d99f84bce0f",
+      "current_sha256": "94d934c3b47a8bd0043fba6789eab9be299ea444de96376a89ee2d99f84bce0f"
+    },
+    {
+      "path": "port/components/xcr_decoder/vendor/include/qrcode.h",
+      "equal": true,
+      "reference_sha256": "234326c5ac6a08c398a111e52d578c266dafa4b7e90c39d5ab54047caad42cbf",
+      "current_sha256": "234326c5ac6a08c398a111e52d578c266dafa4b7e90c39d5ab54047caad42cbf"
+    },
+    {
+      "path": "port/components/xcr_decoder/vendor/include/scan_dispatcher.h",
+      "equal": true,
+      "reference_sha256": "18d8f566d573ea0ad2a660dc1f2fe4b7880114e007bd5c1bf2a8e5f44279c2ff",
+      "current_sha256": "18d8f566d573ea0ad2a660dc1f2fe4b7880114e007bd5c1bf2a8e5f44279c2ff"
+    },
+    {
+      "path": "port/components/xcr_decoder/vendor/include/scan_engine.h",
+      "equal": true,
+      "reference_sha256": "3f0892fedd87e598e947115b80d57fc105c6c299287c102b3aca35d43180f2c6",
+      "current_sha256": "3f0892fedd87e598e947115b80d57fc105c6c299287c102b3aca35d43180f2c6"
+    },
+    {
+      "path": "port/components/xcr_decoder/vendor/include/scan_primitives.h",
+      "equal": true,
+      "reference_sha256": "e4ae6dc809dddf39a411832bb9067cd926062b95940a37e34444600c4737291e",
+      "current_sha256": "e4ae6dc809dddf39a411832bb9067cd926062b95940a37e34444600c4737291e"
+    },
+    {
+      "path": "port/components/xcr_decoder/vendor/include/signal.h",
+      "equal": true,
+      "reference_sha256": "0702822b705e63ebebb498064895c10cd3b1ed9e43449310a2f7f4db20dc7873",
+      "current_sha256": "0702822b705e63ebebb498064895c10cd3b1ed9e43449310a2f7f4db20dc7873"
+    },
+    {
+      "path": "port/components/xcr_decoder/vendor/include/upc_ean.h",
+      "equal": true,
+      "reference_sha256": "732f15939e880b392a542176622682cd0c5b1f041d194b8cbfa5a36a6e099253",
+      "current_sha256": "732f15939e880b392a542176622682cd0c5b1f041d194b8cbfa5a36a6e099253"
+    },
+    {
+      "path": "port/components/xcr_decoder/vendor/libdmtx/dmtx.c",
+      "equal": true,
+      "reference_sha256": "f36503bc99b855face1fd754383a2ef584ca24c42bfc8d9104e56ef3c40d3477",
+      "current_sha256": "f36503bc99b855face1fd754383a2ef584ca24c42bfc8d9104e56ef3c40d3477"
+    },
+    {
+      "path": "port/components/xcr_decoder/vendor/libdmtx/dmtx.h",
+      "equal": true,
+      "reference_sha256": "10a2376505dc82159b7565ca86f76ed0fac3b24271af3cb37732342ea8b03fca",
+      "current_sha256": "10a2376505dc82159b7565ca86f76ed0fac3b24271af3cb37732342ea8b03fca"
+    },
+    {
+      "path": "port/components/xcr_decoder/vendor/libdmtx/dmtx_p4.h",
+      "equal": true,
+      "reference_sha256": "349eb0ec49d0e6a647c52eeb2e265894d11477435b9bcda7fcc2fc024d2721be",
+      "current_sha256": "349eb0ec49d0e6a647c52eeb2e265894d11477435b9bcda7fcc2fc024d2721be"
+    },
+    {
+      "path": "port/components/xcr_decoder/vendor/libdmtx/dmtxbytelist.c",
+      "equal": true,
+      "reference_sha256": "993ad589a4f7ec9db29e4926be292f4531c7bdce4130b25e7b638e3cc548d3fc",
+      "current_sha256": "993ad589a4f7ec9db29e4926be292f4531c7bdce4130b25e7b638e3cc548d3fc"
+    },
+    {
+      "path": "port/components/xcr_decoder/vendor/libdmtx/dmtxdecode.c",
+      "equal": true,
+      "reference_sha256": "10cf2762d2145b060a6e8aa9fa1278f7e7329fd0d1237c60a8afb4513976f81b",
+      "current_sha256": "10cf2762d2145b060a6e8aa9fa1278f7e7329fd0d1237c60a8afb4513976f81b"
+    },
+    {
+      "path": "port/components/xcr_decoder/vendor/libdmtx/dmtxdecodescheme.c",
+      "equal": true,
+      "reference_sha256": "ab72e659c26c5d8329def7450c1dade9c4bf55a11b6661b38f435b8a5679ce4d",
+      "current_sha256": "ab72e659c26c5d8329def7450c1dade9c4bf55a11b6661b38f435b8a5679ce4d"
+    },
+    {
+      "path": "port/components/xcr_decoder/vendor/libdmtx/dmtxencode.c",
+      "equal": true,
+      "reference_sha256": "823b3914af5855a1a3b0211f492872b531a98e8492f04af8250bb825d48d9476",
+      "current_sha256": "823b3914af5855a1a3b0211f492872b531a98e8492f04af8250bb825d48d9476"
+    },
+    {
+      "path": "port/components/xcr_decoder/vendor/libdmtx/dmtxencodeascii.c",
+      "equal": true,
+      "reference_sha256": "813f9d3980ae8767dc5dd2c1258bb1cec428ce33134e9f1df133a635ec95a4a6",
+      "current_sha256": "813f9d3980ae8767dc5dd2c1258bb1cec428ce33134e9f1df133a635ec95a4a6"
+    },
+    {
+      "path": "port/components/xcr_decoder/vendor/libdmtx/dmtxencodebase256.c",
+      "equal": true,
+      "reference_sha256": "c2be885c1a1a9e8583f9f13367afdcb61ba2450cd4fb785621dcdaa4602d0109",
+      "current_sha256": "c2be885c1a1a9e8583f9f13367afdcb61ba2450cd4fb785621dcdaa4602d0109"
+    },
+    {
+      "path": "port/components/xcr_decoder/vendor/libdmtx/dmtxencodec40textx12.c",
+      "equal": true,
+      "reference_sha256": "8a70a4016a340556909414b0c4039f61b1d36f0744a069bed0d5b38b593260a6",
+      "current_sha256": "8a70a4016a340556909414b0c4039f61b1d36f0744a069bed0d5b38b593260a6"
+    },
+    {
+      "path": "port/components/xcr_decoder/vendor/libdmtx/dmtxencodeedifact.c",
+      "equal": true,
+      "reference_sha256": "a6164b3befbc1fe5bc010566fb352067fcafd4d5b2d9f159bb2fdc4f255bc015",
+      "current_sha256": "a6164b3befbc1fe5bc010566fb352067fcafd4d5b2d9f159bb2fdc4f255bc015"
+    },
+    {
+      "path": "port/components/xcr_decoder/vendor/libdmtx/dmtxencodeoptimize.c",
+      "equal": true,
+      "reference_sha256": "891c83765332f619c7f3961bb951a3a5e86cf175cb891c94146a489babf1d8fb",
+      "current_sha256": "891c83765332f619c7f3961bb951a3a5e86cf175cb891c94146a489babf1d8fb"
+    },
+    {
+      "path": "port/components/xcr_decoder/vendor/libdmtx/dmtxencodescheme.c",
+      "equal": true,
+      "reference_sha256": "8ecbbb0108decc41e559538b08779993c18bc13a153cc865ca801d476753b3c4",
+      "current_sha256": "8ecbbb0108decc41e559538b08779993c18bc13a153cc865ca801d476753b3c4"
+    },
+    {
+      "path": "port/components/xcr_decoder/vendor/libdmtx/dmtxencodestream.c",
+      "equal": true,
+      "reference_sha256": "4a5fbde92a5091e34e54145d3b54d17e05540dc0f280c84b7c899d6a83d39719",
+      "current_sha256": "4a5fbde92a5091e34e54145d3b54d17e05540dc0f280c84b7c899d6a83d39719"
+    },
+    {
+      "path": "port/components/xcr_decoder/vendor/libdmtx/dmtximage.c",
+      "equal": true,
+      "reference_sha256": "89d6a91df906bebc9ec6e4fe83a3ce39ea4698e2c2b00ce89459bd29e4368ec1",
+      "current_sha256": "89d6a91df906bebc9ec6e4fe83a3ce39ea4698e2c2b00ce89459bd29e4368ec1"
+    },
+    {
+      "path": "port/components/xcr_decoder/vendor/libdmtx/dmtxmatrix3.c",
+      "equal": true,
+      "reference_sha256": "7cbc3a515df67b9770a84641e8b52079c91a6d6943292e9101c9846a88076187",
+      "current_sha256": "7cbc3a515df67b9770a84641e8b52079c91a6d6943292e9101c9846a88076187"
+    },
+    {
+      "path": "port/components/xcr_decoder/vendor/libdmtx/dmtxmessage.c",
+      "equal": true,
+      "reference_sha256": "df96ba47075fac0a6ba273a712a525432e99d08e5fadad546d2436e7c986f15c",
+      "current_sha256": "df96ba47075fac0a6ba273a712a525432e99d08e5fadad546d2436e7c986f15c"
+    },
+    {
+      "path": "port/components/xcr_decoder/vendor/libdmtx/dmtxplacemod.c",
+      "equal": true,
+      "reference_sha256": "88a448ac23d327a2be324112d0fbedd4d10248d40e0ad8d32aba1de77d1e27d5",
+      "current_sha256": "88a448ac23d327a2be324112d0fbedd4d10248d40e0ad8d32aba1de77d1e27d5"
+    },
+    {
+      "path": "port/components/xcr_decoder/vendor/libdmtx/dmtxreedsol.c",
+      "equal": true,
+      "reference_sha256": "9339527f6530616d7806c66558e54f15541c05a05c9abf839d9c619f9342e258",
+      "current_sha256": "9339527f6530616d7806c66558e54f15541c05a05c9abf839d9c619f9342e258"
+    },
+    {
+      "path": "port/components/xcr_decoder/vendor/libdmtx/dmtxregion.c",
+      "equal": true,
+      "reference_sha256": "fb4c0a38c08232b0930a75d07d94baed1930c4afe68711decc638f391850d490",
+      "current_sha256": "fb4c0a38c08232b0930a75d07d94baed1930c4afe68711decc638f391850d490"
+    },
+    {
+      "path": "port/components/xcr_decoder/vendor/libdmtx/dmtxscangrid.c",
+      "equal": true,
+      "reference_sha256": "6cf805bf4020792f939f3d00c42e15f5f35dfaacba7c4d49d805083be46f71d4",
+      "current_sha256": "6cf805bf4020792f939f3d00c42e15f5f35dfaacba7c4d49d805083be46f71d4"
+    },
+    {
+      "path": "port/components/xcr_decoder/vendor/libdmtx/dmtxstatic.h",
+      "equal": true,
+      "reference_sha256": "b7721ca167acd806b3a68b57a5159d3626a31272c3e47c41b6efa7d9862ce562",
+      "current_sha256": "b7721ca167acd806b3a68b57a5159d3626a31272c3e47c41b6efa7d9862ce562"
+    },
+    {
+      "path": "port/components/xcr_decoder/vendor/libdmtx/dmtxsymbol.c",
+      "equal": true,
+      "reference_sha256": "391f4dbea3e3f57f360c3b0f71bd6990a8a46f7ae49c3ae6740004de721104c8",
+      "current_sha256": "391f4dbea3e3f57f360c3b0f71bd6990a8a46f7ae49c3ae6740004de721104c8"
+    },
+    {
+      "path": "port/components/xcr_decoder/vendor/libdmtx/dmtxtime.c",
+      "equal": true,
+      "reference_sha256": "87c57523110237c8132f1f02bcd499e0ad942772b64430cca4795a5ebb599fbc",
+      "current_sha256": "87c57523110237c8132f1f02bcd499e0ad942772b64430cca4795a5ebb599fbc"
+    },
+    {
+      "path": "port/components/xcr_decoder/vendor/libdmtx/dmtxvector2.c",
+      "equal": true,
+      "reference_sha256": "743417e3b200786606a9c9609fa06ff98b5b276e097905c818273e8448098fc8",
+      "current_sha256": "743417e3b200786606a9c9609fa06ff98b5b276e097905c818273e8448098fc8"
+    },
+    {
+      "path": "port/components/xcr_decoder/vendor/qr_quirc.c",
+      "equal": true,
+      "reference_sha256": "d6d3bbe778d44c209c035dd48a6223ad3550ba125728eebcaac34651358aa38f",
+      "current_sha256": "d6d3bbe778d44c209c035dd48a6223ad3550ba125728eebcaac34651358aa38f"
+    },
+    {
+      "path": "port/components/xcr_decoder/vendor/quirc/decode.c",
+      "equal": true,
+      "reference_sha256": "1ce6ebaad8f9ee70653376c52d57b3e036cb7a6fde8c03e3d937e5ed3ab484f4",
+      "current_sha256": "1ce6ebaad8f9ee70653376c52d57b3e036cb7a6fde8c03e3d937e5ed3ab484f4"
+    },
+    {
+      "path": "port/components/xcr_decoder/vendor/quirc/identify.c",
+      "equal": true,
+      "reference_sha256": "838f55e2ba264333bc9b29807fcf4d45d20e77e37ce1f389eb045b1deed9d4d4",
+      "current_sha256": "838f55e2ba264333bc9b29807fcf4d45d20e77e37ce1f389eb045b1deed9d4d4"
+    },
+    {
+      "path": "port/components/xcr_decoder/vendor/quirc/quirc.c",
+      "equal": true,
+      "reference_sha256": "9e6f3e182ab4abc9d2d14000250d16f44f02148c729bece5e4c2f077dbb11585",
+      "current_sha256": "9e6f3e182ab4abc9d2d14000250d16f44f02148c729bece5e4c2f077dbb11585"
+    },
+    {
+      "path": "port/components/xcr_decoder/vendor/quirc/quirc.h",
+      "equal": true,
+      "reference_sha256": "4f7cb4ceb6f7205fb9683e8a60e1c4fe16dfe87ab3f6d9d30ac51268ebc9b760",
+      "current_sha256": "4f7cb4ceb6f7205fb9683e8a60e1c4fe16dfe87ab3f6d9d30ac51268ebc9b760"
+    },
+    {
+      "path": "port/components/xcr_decoder/vendor/quirc/quirc_internal.h",
+      "equal": true,
+      "reference_sha256": "be669c7da8ad95736cf2fe8877af5fe0aa480497fe6998b3b9cbf66b82cad729",
+      "current_sha256": "be669c7da8ad95736cf2fe8877af5fe0aa480497fe6998b3b9cbf66b82cad729"
+    },
+    {
+      "path": "port/components/xcr_decoder/vendor/quirc/version_db.c",
+      "equal": true,
+      "reference_sha256": "c74e0a754e96e0e67a98bf22d21a0624225c7814d8307bdb63c89ebd32b54ef3",
+      "current_sha256": "c74e0a754e96e0e67a98bf22d21a0624225c7814d8307bdb63c89ebd32b54ef3"
+    },
+    {
+      "path": "port/components/xcr_decoder/vendor/symbologies/codablock_f.c",
+      "equal": true,
+      "reference_sha256": "d4946e18e2a37803e1fac2fb6781beb39cbef1514fbb4b7d8f113d0be4d5599d",
+      "current_sha256": "d4946e18e2a37803e1fac2fb6781beb39cbef1514fbb4b7d8f113d0be4d5599d"
+    },
+    {
+      "path": "port/components/xcr_decoder/vendor/symbologies/code128.c",
+      "equal": true,
+      "reference_sha256": "eab3e3b2af9052eccce24ac9d56a5edc4a0efceb9f751fd318683bf5d266dcce",
+      "current_sha256": "eab3e3b2af9052eccce24ac9d56a5edc4a0efceb9f751fd318683bf5d266dcce"
+    },
+    {
+      "path": "port/components/xcr_decoder/vendor/symbologies/datamatrix.c",
+      "equal": true,
+      "reference_sha256": "584a2cedf8ffd03acf76e45d44612dc58adec676d25fe3b4a4939d8a4563bdf5",
+      "current_sha256": "584a2cedf8ffd03acf76e45d44612dc58adec676d25fe3b4a4939d8a4563bdf5"
+    },
+    {
+      "path": "port/components/xcr_decoder/vendor/symbologies/qrcode.c",
+      "equal": true,
+      "reference_sha256": "53bd93560ec02a977b31817bf36c2a7bd19cdca9034f8d6035f0d5045aad7160",
+      "current_sha256": "53bd93560ec02a977b31817bf36c2a7bd19cdca9034f8d6035f0d5045aad7160"
+    },
+    {
+      "path": "port/components/xcr_decoder/vendor/symbologies/upc_ean.c",
+      "equal": true,
+      "reference_sha256": "d4b88a0d7957959380d4a7abfd18bb2de59fcda9440600a500214ce7c794e397",
+      "current_sha256": "d4b88a0d7957959380d4a7abfd18bb2de59fcda9440600a500214ce7c794e397"
+    },
+    {
+      "path": "port/components/xcr_decoder/vendor/zxing_dm/BitMatrix.cpp",
+      "equal": true,
+      "reference_sha256": "d009bac5522e5b82d36e54af5f6dc6fb2deb1845d0d6232740e20ceb824a707f",
+      "current_sha256": "d009bac5522e5b82d36e54af5f6dc6fb2deb1845d0d6232740e20ceb824a707f"
+    },
+    {
+      "path": "port/components/xcr_decoder/vendor/zxing_dm/BitMatrix.h",
+      "equal": true,
+      "reference_sha256": "efb519f41f3f045e39836887067f0a9bbe31a608ce40cb1efb00b0bee0dcf4c4",
+      "current_sha256": "efb519f41f3f045e39836887067f0a9bbe31a608ce40cb1efb00b0bee0dcf4c4"
+    },
+    {
+      "path": "port/components/xcr_decoder/vendor/zxing_dm/BitMatrixCursor.h",
+      "equal": true,
+      "reference_sha256": "c437866f1986eb631af8bf0b6349c2b1044f7b11bcdae5a8079045548682bfdc",
+      "current_sha256": "c437866f1986eb631af8bf0b6349c2b1044f7b11bcdae5a8079045548682bfdc"
+    },
+    {
+      "path": "port/components/xcr_decoder/vendor/zxing_dm/datamatrix/DMDetector.cpp",
+      "equal": true,
+      "reference_sha256": "de0c7653217be80f18b6e88b30db1aa3a3d772afd7b0ad8d8bc8fa089d1c104b",
+      "current_sha256": "de0c7653217be80f18b6e88b30db1aa3a3d772afd7b0ad8d8bc8fa089d1c104b"
+    },
+    {
+      "path": "port/components/xcr_decoder/vendor/zxing_dm/datamatrix/DMDetector.h",
+      "equal": true,
+      "reference_sha256": "7b7c015829ce688e4019e3f8c67f383bbdc1871cddbc1dff2e5576ee81eca078",
+      "current_sha256": "7b7c015829ce688e4019e3f8c67f383bbdc1871cddbc1dff2e5576ee81eca078"
+    },
+    {
+      "path": "port/components/xcr_decoder/vendor/zxing_dm/datamatrix/DMVersion.cpp",
+      "equal": true,
+      "reference_sha256": "172f1d41e0c7d66b0b47538a391ab8a005175a7884e7d8fb4c5b7145476050cd",
+      "current_sha256": "172f1d41e0c7d66b0b47538a391ab8a005175a7884e7d8fb4c5b7145476050cd"
+    },
+    {
+      "path": "port/components/xcr_decoder/vendor/zxing_dm/datamatrix/DMVersion.h",
+      "equal": true,
+      "reference_sha256": "6a519ebfc0e3bf24a20e2d6df05cd466167a19234a66f13d3d62fd283583fc08",
+      "current_sha256": "6a519ebfc0e3bf24a20e2d6df05cd466167a19234a66f13d3d62fd283583fc08"
+    },
+    {
+      "path": "port/components/xcr_decoder/vendor/zxing_dm/DetectorResult.h",
+      "equal": true,
+      "reference_sha256": "596243d0174cc0dd883b1165b60c58ca95dcb719f3f4698aceb4258111c9f3d6",
+      "current_sha256": "596243d0174cc0dd883b1165b60c58ca95dcb719f3f4698aceb4258111c9f3d6"
+    },
+    {
+      "path": "port/components/xcr_decoder/vendor/zxing_dm/Error.h",
+      "equal": true,
+      "reference_sha256": "946dd7acb4d71b632e9577337c2cdb1f656fe063640097ab743beff891bd064d",
+      "current_sha256": "946dd7acb4d71b632e9577337c2cdb1f656fe063640097ab743beff891bd064d"
+    },
+    {
+      "path": "port/components/xcr_decoder/vendor/zxing_dm/GridSampler.cpp",
+      "equal": true,
+      "reference_sha256": "184d09ed1eb591479a723c5a07ad6f0fd9086bbade298218b546b78c38997dda",
+      "current_sha256": "184d09ed1eb591479a723c5a07ad6f0fd9086bbade298218b546b78c38997dda"
+    },
+    {
+      "path": "port/components/xcr_decoder/vendor/zxing_dm/GridSampler.h",
+      "equal": true,
+      "reference_sha256": "9de93e81ba9ca81fee1bc9611fbbcb1e1f3cff00a75df9d08eca1fa78c62f053",
+      "current_sha256": "9de93e81ba9ca81fee1bc9611fbbcb1e1f3cff00a75df9d08eca1fa78c62f053"
+    },
+    {
+      "path": "port/components/xcr_decoder/vendor/zxing_dm/LocalGrid.cpp",
+      "equal": true,
+      "reference_sha256": "dd34451be5ac3bd52e528f3166022dcb074c6fbd0184c7280fd0fa4c9cc76372",
+      "current_sha256": "dd34451be5ac3bd52e528f3166022dcb074c6fbd0184c7280fd0fa4c9cc76372"
+    },
+    {
+      "path": "port/components/xcr_decoder/vendor/zxing_dm/LocalGrid.h",
+      "equal": true,
+      "reference_sha256": "32167127e7ca21baa8ca8bb3f83fa390820ce1c5f60081c6cf790c9ce292417d",
+      "current_sha256": "32167127e7ca21baa8ca8bb3f83fa390820ce1c5f60081c6cf790c9ce292417d"
+    },
+    {
+      "path": "port/components/xcr_decoder/vendor/zxing_dm/LogMatrix.h",
+      "equal": true,
+      "reference_sha256": "478a23dcde69077755e074202bcbef63badc11bb12621c46fdf3edb080cbd6a6",
+      "current_sha256": "478a23dcde69077755e074202bcbef63badc11bb12621c46fdf3edb080cbd6a6"
+    },
+    {
+      "path": "port/components/xcr_decoder/vendor/zxing_dm/Matrix.h",
+      "equal": true,
+      "reference_sha256": "41dd7ef04072476fefecc2e1c9a855190254e4f53adbd19c26daa14c52909933",
+      "current_sha256": "41dd7ef04072476fefecc2e1c9a855190254e4f53adbd19c26daa14c52909933"
+    },
+    {
+      "path": "port/components/xcr_decoder/vendor/zxing_dm/Pattern.h",
+      "equal": true,
+      "reference_sha256": "3fcdec686ff17123cbbb45237415f60922329807ba94ebfb681e1dc90fa14764",
+      "current_sha256": "3fcdec686ff17123cbbb45237415f60922329807ba94ebfb681e1dc90fa14764"
+    },
+    {
+      "path": "port/components/xcr_decoder/vendor/zxing_dm/PerspectiveTransform.cpp",
+      "equal": true,
+      "reference_sha256": "9118262c97b28acd038643b58e457c98ec297c3f29e7dec7bca88b780f87f098",
+      "current_sha256": "9118262c97b28acd038643b58e457c98ec297c3f29e7dec7bca88b780f87f098"
+    },
+    {
+      "path": "port/components/xcr_decoder/vendor/zxing_dm/PerspectiveTransform.h",
+      "equal": true,
+      "reference_sha256": "2246fbbc55e505e580c75518ec40b89e76efb68e5101f3b87a49b998ffc02f12",
+      "current_sha256": "2246fbbc55e505e580c75518ec40b89e76efb68e5101f3b87a49b998ffc02f12"
+    },
+    {
+      "path": "port/components/xcr_decoder/vendor/zxing_dm/Point.h",
+      "equal": true,
+      "reference_sha256": "d9129f7cf2b9a3e0a9f288c1987b7e256dc9a1810552a99a5ff78c27be86f961",
+      "current_sha256": "d9129f7cf2b9a3e0a9f288c1987b7e256dc9a1810552a99a5ff78c27be86f961"
+    },
+    {
+      "path": "port/components/xcr_decoder/vendor/zxing_dm/Quadrilateral.h",
+      "equal": true,
+      "reference_sha256": "bc463b7f26d5782aaeed4e7bba41595c64a611de6ad909fd70d6ec76a4a99368",
+      "current_sha256": "bc463b7f26d5782aaeed4e7bba41595c64a611de6ad909fd70d6ec76a4a99368"
+    },
+    {
+      "path": "port/components/xcr_decoder/vendor/zxing_dm/Range.h",
+      "equal": true,
+      "reference_sha256": "736b2b85c608ce76e8c11ade6cbc543d0feeceb50be98789f292ad1a7430a409",
+      "current_sha256": "736b2b85c608ce76e8c11ade6cbc543d0feeceb50be98789f292ad1a7430a409"
+    },
+    {
+      "path": "port/components/xcr_decoder/vendor/zxing_dm/RegressionLine.h",
+      "equal": true,
+      "reference_sha256": "69a129a54d2b898e377dee890a0a2d6fda0cb3e326e083b14c9374127033c624",
+      "current_sha256": "69a129a54d2b898e377dee890a0a2d6fda0cb3e326e083b14c9374127033c624"
+    },
+    {
+      "path": "port/components/xcr_decoder/vendor/zxing_dm/ResultPoint.h",
+      "equal": true,
+      "reference_sha256": "c9b2aa66d849fe3aadc275eee8c0d76b3b7a0d20cf8e34b8a7b7dc544262cb67",
+      "current_sha256": "c9b2aa66d849fe3aadc275eee8c0d76b3b7a0d20cf8e34b8a7b7dc544262cb67"
+    },
+    {
+      "path": "port/components/xcr_decoder/vendor/zxing_dm/StdGenerator.h",
+      "equal": true,
+      "reference_sha256": "34c8d5d71ff9ff48916b7a633a567141b453227e5ef2d0779bd093182c9deb2d",
+      "current_sha256": "34c8d5d71ff9ff48916b7a633a567141b453227e5ef2d0779bd093182c9deb2d"
+    },
+    {
+      "path": "port/components/xcr_decoder/vendor/zxing_dm/StdScope.h",
+      "equal": true,
+      "reference_sha256": "7529fc93b4d3881ade4b86921bbe8d1495ddd327072bee10e68664b33d5832bd",
+      "current_sha256": "7529fc93b4d3881ade4b86921bbe8d1495ddd327072bee10e68664b33d5832bd"
+    },
+    {
+      "path": "port/components/xcr_decoder/vendor/zxing_dm/WhiteRectDetector.cpp",
+      "equal": true,
+      "reference_sha256": "598b57de7dff4598948330878c074bcefdace3b4c71fdaab5c99a0de5a0909f3",
+      "current_sha256": "598b57de7dff4598948330878c074bcefdace3b4c71fdaab5c99a0de5a0909f3"
+    },
+    {
+      "path": "port/components/xcr_decoder/vendor/zxing_dm/WhiteRectDetector.h",
+      "equal": true,
+      "reference_sha256": "aa65ad3939e03074d3bc0c0ef6d98bfb1af093248010c292534768178075d820",
+      "current_sha256": "aa65ad3939e03074d3bc0c0ef6d98bfb1af093248010c292534768178075d820"
+    },
+    {
+      "path": "port/components/xcr_decoder/vendor/zxing_dm/ZXAlgorithms.h",
+      "equal": true,
+      "reference_sha256": "b87f474b65d9e2008ca05a8d5c15fbbf6bf2a31337161df565493407652f41a9",
+      "current_sha256": "b87f474b65d9e2008ca05a8d5c15fbbf6bf2a31337161df565493407652f41a9"
+    }
+  ],
+  "stages": {
+    "finish_decoded_slot": true,
+    "decode_task": true,
+    "capture_task_excluding_E6_exposure_adapter": true,
+    "p4scan_camera_wait_for_frame": true,
+    "p4scan_camera_begin_capture": true,
+    "p4scan_camera_acquire": true,
+    "p4scan_camera_release": true,
+    "latest_frame_pool": true
+  },
+  "settings": {
+    "CONFIG_CAMERA_OV9281_ABSOLUTE_GAIN_LIMIT": {
+      "reference": "4000",
+      "current": "4000"
+    },
+    "CONFIG_CAMERA_OV9281_AUTO_DETECT_MIPI_INTERFACE_SENSOR": {
+      "reference": "y",
+      "current": "y"
+    },
+    "CONFIG_CAMERA_OV9281_DEFAULT_IPA_JSON_CONFIGURATION_FILE": {
+      "reference": "y",
+      "current": "y"
+    },
+    "CONFIG_CAMERA_OV9281_MIPI_DEFAULT_FMT_RAW8_1280X720_50FPS": {
+      "reference": "y",
+      "current": "y"
+    },
+    "CONFIG_CAMERA_OV9281_MIPI_IF_FORMAT_INDEX_DEFAULT": {
+      "reference": "1",
+      "current": "1"
+    },
+    "CONFIG_CAMERA_OV9281_MIPI_RAW8_1280X720_50FPS": {
+      "reference": "y",
+      "current": "y"
+    },
+    "CONFIG_CAMERA_OV9281_MIPI_RAW8_640X400_100FPS": {
+      "reference": "y",
+      "current": "y"
+    },
+    "CONFIG_CAMERA_OV9281_SID_LOW": {
+      "reference": "y",
+      "current": "y"
+    },
+    "CONFIG_P4SCAN_CONTINUOUS_SCAN": {
+      "reference": "y",
+      "current": "y"
+    },
+    "CONFIG_P4SCAN_FRAME_MAX_AGE_MS": {
+      "reference": "100",
+      "current": "100"
+    },
+    "CONFIG_P4SCAN_FRAME_STAGE_PIPELINE": {
+      "reference": "y",
+      "current": "y"
+    },
+    "CONFIG_P4SCAN_REALTIME_PIPELINE": {
+      "reference": "y",
+      "current": "y"
+    },
+    "CONFIG_XCR_CODE128_DIRECTION_ATTEMPTS": {
+      "reference": "2",
+      "current": "2"
+    },
+    "CONFIG_XCR_CROSS_SYMBOLOGY_VETO": {
+      "reference": "y",
+      "current": "y"
+    },
+    "CONFIG_XCR_DATAMATRIX_ONLY": {
+      "reference": "y",
+      "current": "y"
+    },
+    "CONFIG_XCR_DECODER_TIMEOUT_MS": {
+      "reference": "2000",
+      "current": "2000"
+    },
+    "CONFIG_XCR_ENABLE_CODE128": {
+      "reference": "y",
+      "current": "y"
+    },
+    "CONFIG_XCR_ENABLE_DATAMATRIX": {
+      "reference": "y",
+      "current": "y"
+    },
+    "CONFIG_XCR_ENABLE_QR": {
+      "reference": "y",
+      "current": "y"
+    },
+    "CONFIG_XCR_ENABLE_UPC_EAN": {
+      "reference": "y",
+      "current": "y"
+    },
+    "CONFIG_XCR_IMAGE_BUDGET_MS": {
+      "reference": "10000",
+      "current": "10000"
+    },
+    "CONFIG_XCR_POLARITY_RETRY": {
+      "reference": "y",
+      "current": "y"
+    },
+    "CONFIG_XCR_REJECT_AMBIGUOUS_RETAIL_NUMERIC": {
+      "reference": "y",
+      "current": "y"
+    }
+  },
+  "failures": [],
+  "passed": true,
+  "retained_adapters": [
+    "AGV power/GPIO35/GPIO36/UART wiring",
+    "startup sensor detection/native UVC dimensions",
+    "E6 image exposure and ISP denoise",
+    "per-sensor measured calibration/NVS",
+    "IDF6/P4v3.2 platform and CPU400MHz"
+  ]
+}

@@ -305,7 +305,6 @@ bool scan_pose_estimate(const XcrBarcodeResult *result, scan_pose_result_t *pose
     scan_camera_calibration_t c;
     scan_pose_get_calibration(&c);
     if (!calibration_valid(&c)) return false;
-    if (!calibration_valid(&c)) return false;
     const float half = side * 0.5f;
     const float object[4][2] = {{-half, half}, {half, half}, {half, -half}, {-half, -half}};
     float image[4][2], source[4][2];
