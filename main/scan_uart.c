@@ -29,14 +29,23 @@ typedef struct {
     char line[SCAN_UART_LINE_CAPACITY];
     uint64_t deadline_us;
     unsigned generation;
+    uint64_t frame_timestamp_us;
+    uint32_t sequence;
 } scan_uart_packet_t;
 
 typedef enum { OUTPUT_COMPACT, OUTPUT_FULL } output_mode_t;
 static atomic_int s_output_mode = OUTPUT_COMPACT;
 static atomic_uint s_output_generation;
+static uint16_t scan_crc16(const char *bytes, size_t length);
 
 static const char *TAG = "p4scan_uart";
 static QueueHandle_t s_packets;
+static QueueHandle_t s_latency_samples;
+
+bool scan_uart_take_latency(scan_uart_latency_t *sample)
+{
+    return sample && s_latency_samples && xQueueReceive(s_latency_samples, sample, 0) == pdTRUE;
+}
 static SemaphoreHandle_t s_tx_lock;
 
 static void uart_send_line(const char *line, size_t length, const unsigned *generation)
@@ -62,8 +71,33 @@ static void scan_uart_task(void *argument)
     for (;;) {
         if (xQueueReceive(s_packets, &packet, portMAX_DELAY) != pdTRUE) continue;
         if (packet.deadline_us && (uint64_t)esp_timer_get_time() >= packet.deadline_us) continue;
-        /* TX has its own driver ring buffer; decoding never waits for the wire. */
-        uart_send_line(packet.line, packet.length, &packet.generation);
+        if (xSemaphoreTake(s_tx_lock, pdMS_TO_TICKS(50)) != pdTRUE) continue;
+        uint64_t now = (uint64_t)esp_timer_get_time();
+        if (packet.generation == atomic_load(&s_output_generation) &&
+            (!packet.deadline_us || now < packet.deadline_us) &&
+            packet.frame_timestamp_us && now >= packet.frame_timestamp_us &&
+            now - packet.frame_timestamp_us <= UINT32_MAX) {
+            int n = snprintf(packet.line + packet.length, sizeof(packet.line) - packet.length,
+                             ",%" PRIu32, (uint32_t)(now - packet.frame_timestamp_us));
+            if (n > 0 && (size_t)n < sizeof(packet.line) - packet.length) {
+                packet.length += n;
+                uint16_t crc = scan_crc16(packet.line, packet.length);
+                n = snprintf(packet.line + packet.length, sizeof(packet.line) - packet.length,
+                             "*%04X\r\n", crc);
+                if (n > 0 && (size_t)n < sizeof(packet.line) - packet.length) {
+                    packet.length += n;
+                    int written = uart_write_bytes(SCAN_UART_PORT, packet.line, packet.length);
+                    if (written == (int)packet.length && s_latency_samples) {
+                        scan_uart_latency_t sample = {packet.sequence, packet.frame_timestamp_us,
+                                                     (uint32_t)(now - packet.frame_timestamp_us)};
+                        xQueueOverwrite(s_latency_samples, &sample);
+                    } else if (written != (int)packet.length) {
+                        ESP_LOGW(TAG, "TX write short: %d/%u", written, (unsigned)packet.length);
+                    }
+                }
+            }
+        }
+        xSemaphoreGive(s_tx_lock);
     }
 }
 
@@ -214,6 +248,8 @@ esp_err_t scan_uart_init(void)
     if (err != ESP_OK) return err;
     s_tx_lock = xSemaphoreCreateMutex();
     if (!s_tx_lock) return ESP_ERR_NO_MEM;
+    s_latency_samples = xQueueCreate(1, sizeof(scan_uart_latency_t));
+    if (!s_latency_samples) return ESP_ERR_NO_MEM;
     s_packets = xQueueCreate(1, sizeof(scan_uart_packet_t));
     if (!s_packets) return ESP_ERR_NO_MEM;
     if (xTaskCreatePinnedToCore(scan_uart_task, "scan_uart", 4096, NULL, 7, NULL, 0) != pdPASS)
@@ -235,12 +271,14 @@ bool scan_uart_submit(const XcrBarcodeResult *result, uint64_t deadline_us)
     }
 
     scan_uart_packet_t packet = {.deadline_us = deadline_us,
-                                .generation = atomic_load(&s_output_generation)};
+                                .generation = atomic_load(&s_output_generation),
+                                .frame_timestamp_us = result->timestamp_us,
+                                .sequence = result->sequence};
     int mode = atomic_load(&s_output_mode);
     scan_pose_result_t pose = {0};
     bool valid = scan_pose_estimate(result, &pose);
     unsigned sequence = result->sequence % SCAN_UART_SEQUENCE_MODULUS;
-    int length = snprintf(packet.line, sizeof(packet.line), "@SCAN,6,%c,%u,%d,%.*s",
+    int length = snprintf(packet.line, sizeof(packet.line), "@SCAN,7,%c,%u,%d,%.*s",
                           mode == OUTPUT_FULL ? 'F' : 'C',
                           sequence, valid,
                           (int)result->length, (const char *)result->data);
@@ -269,9 +307,5 @@ bool scan_uart_submit(const XcrBarcodeResult *result, uint64_t deadline_us)
         if (length < 0 || (size_t)length >= sizeof(packet.line)-packet.length) return false;
         packet.length += length;
     }
-    uint16_t crc = scan_crc16(packet.line, packet.length);
-    length = snprintf(packet.line+packet.length, sizeof(packet.line)-packet.length, "*%04X\r\n", crc);
-    if (length < 0 || (size_t)length >= sizeof(packet.line)-packet.length) return false;
-    packet.length += length;
     return xQueueOverwrite(s_packets, &packet) == pdTRUE;
 }

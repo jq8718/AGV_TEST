@@ -1,6 +1,6 @@
 # HS-USB扫码文本与UVC
 
-GPIO43/42 的 STM32 UART 当前使用协议 v6（CRC16、数字字符串、帧号 0～999 循环），默认发送精简帧，含偏航、码平面垂直距离与沿过道偏移。完整定义、比例、模式命令及 STM32 C 解析器见 [STM32 UART 整数协议](docs/STM32_UART_PROTOCOL.md)。USB CDC 不受 UART 模式开关影响。
+GPIO43/42 的 STM32 UART 当前使用协议 v7（CRC16、数字字符串、帧号 0～999 循环），默认发送精简帧，含偏航、码平面垂直距离与沿过道偏移。完整定义、比例、模式命令及 STM32 C 解析器见 [STM32 UART 整数协议](docs/STM32_UART_PROTOCOL.md)。USB CDC 不受 UART 模式开关影响。
 
 STM32 只使用 GPIO43/42 UART，对接规范统一见 [STM32 UART 协议](docs/STM32_UART_PROTOCOL.md)。本文 USB 内容用于 PC 摄像头调试工具。
 
@@ -45,7 +45,7 @@ GPIO43/42 UART 保持 921600 baud、8N1。姿态和标定命令与 USB CDC 协�
 
 固件根据解码内容最左边一位（首字符）选择打印码体的有效方形边长：`0` 使用 30 mm（3 cm），`1` 使用 50 mm（5 cm），`2` 使用 70 mm（7 cm）。例如 `012345`、`112345`、`212345` 分别选择上述三种尺寸。该边长由打印规格保证，指四角点围成的有效码体，不含白边和外部定位标记。内容按数字字符串保留前导零。姿态和距离只在码体尺寸已知且四角精定位有效时计算；首字符不是 `0`、`1`、`2` 时，整数格式用 `valid=0` 表示姿态无效。
 
-P4ScanE6 OV01C1BDebugger v1.0.0004在USB图片、仅角点和离线样本的本地姿态计算中使用相同映射；导入内参JSON不覆盖尺寸规则。STM32 demo的 `p4_scan_code_side_mm()` 返回上述边长，UART布局与CRC保持v6定义，详见 [STM32 UART协议](docs/STM32_UART_PROTOCOL.md)。
+P4ScanE6 OV01C1BDebugger v1.0.0004在USB图片、仅角点和离线样本的本地姿态计算中使用相同映射；导入内参JSON不覆盖尺寸规则。STM32 demo的 `p4_scan_code_side_mm()` 返回上述边长，UART布局与CRC使用v7定义，详见 [STM32 UART协议](docs/STM32_UART_PROTOCOL.md)。
 
 OV9281默认标定与参考工程一致：1280×720，`fx=733.242515, fy=732.511533, cx=589.273600, cy=359.376026`，畸变 `k1=0.119448, k2=-0.223125, p1=0.000163, p2=-0.000596, k3=0.083362`。可通过 GPIO42 UART 更新，成功后保存到 ESP32-P4 的 NVS Flash，重启后自动加载。配置命令格式如下：
 
@@ -66,7 +66,7 @@ OV9281默认标定与参考工程一致：1280×720，`fx=733.242515, fy=732.511
 
 `payload,x0,y0,x1,y1,x2,y2,x3,y3,sequence,capture_us,age_us,decode_us\r`
 
-`decode_us`为该帧搜索、归一化、解码、四角精定位的总微秒数，不含取图准备、USB传输和UI显示。
+`decode_us`为该帧前端处理开始至解码及四角精定位完成的实际历时（微秒），包含处理阶段之间的排队等待，不含取图准备、USB传输和UI显示。跨帧流水线可并行，不能直接用其倒数推算每秒成功数。
 两级跨帧流水线从 Core 0 开始本帧标记搜索计时，到 Core 1 精修完成为止，包含两核之间的交接等待；
 连续结果频率可约 50 次/秒，而单帧 `decode_us` 仍约 23～24 ms，两者含义不同。
 它不同于`age_us`，无图模式也会上传。`@DEBUGOFF`只关闭图片，不关闭耗时字段。
@@ -174,3 +174,7 @@ Windows 验证工具为 `tools/check_uvc.py`，按 VID/PID 选择目标设备并
 Windows主机接收HS CDC图片时应持续读取并设置足够的串口接收队列（建议2MiB；pyserial使用`set_buffer_size(rx_size=2*1024*1024)`）。并行读取日志时使用非阻塞读取，避免默认小队列溢出导致图片不完整。
 
 双传感器版本保持所有CDC命令与报文格式；E6图片尺寸1024×1024、OV9281图片尺寸1280×720，按帧头宽高解释角点和JPEG。UVC描述符随启动自动识别的传感器匹配，默认MJPEG30fps；USB PID相同，产品名区分E6/OV9281。
+
+## UART 延迟诊断
+
+发送 `@TIMINGON` 启用计时消息，CDC 可能输出 `@UARTLAT,sequence,capture_us,latency_us\r`，依次为完整 32 位采集序号、CSI 缓冲完成时间戳（微秒）、该帧至 UART 发送准备的微秒数。此诊断允许因队列覆盖或 CDC 拥堵丢失；UART 遥测的序号为采集序号取模 1000。发送 `@TIMINGOFF` 关闭。计时边界详见 `docs/STM32_UART_PROTOCOL.md`。

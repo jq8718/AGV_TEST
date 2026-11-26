@@ -67,19 +67,19 @@ int p4_scan_parse_line(const char *line, size_t length, p4_scan_packet_t *output
     memcpy(buffer, line, body_length);
     buffer[body_length] = 0;
     if (memchr(buffer, 0, body_length)) return -1;
-    char *fields[22];
+    char *fields[23];
     unsigned count = 1;
     fields[0] = buffer;
     for (size_t i = 0; i < body_length; ++i) {
         if (buffer[i] == ',') {
-            if (count == 22) return -1;
+            if (count == 23) return -1;
             buffer[i] = 0;
             fields[count++] = buffer+i+1;
         }
     }
-    if (count < 6 || strcmp(fields[1], "6")) return -1;
+    if (count < 6 || strcmp(fields[1], "7")) return -1;
     int compact = !strcmp(fields[2], "C");
-    if ((!compact && strcmp(fields[2], "F")) || count != (compact ? 9u : 22u)) return -1;
+    if ((!compact && strcmp(fields[2], "F")) || count != (compact ? 10u : 23u)) return -1;
     p4_scan_packet_t packet = {0};
     packet.compact = (uint8_t)compact;
     int64_t n;
@@ -97,7 +97,7 @@ int p4_scan_parse_line(const char *line, size_t length, p4_scan_packet_t *output
     unsigned start = 6;
     if (!compact) {
         for (unsigned i = 0; i < 8; ++i) {
-            if (!number(fields[start++], 0, i%2 ? 7200 : 12800, &n)) return -1;
+            if (!number(fields[start++], 0, i%2 ? 10240 : 12800, &n)) return -1;
             packet.corners_x10[i] = (int32_t)n;
         }
     }
@@ -109,6 +109,8 @@ int p4_scan_parse_line(const char *line, size_t length, p4_scan_packet_t *output
         if (!number(text, 1, text[0] == '-' ? 2147483648u : INT32_MAX, &n)) return -1;
         *dest[i] = (int32_t)n;
     }
+    if (!number(fields[start++], 0, UINT32_MAX, &n)) return -1;
+    packet.frame_to_uart_queue_us = (uint32_t)n;
     *output = packet;
     return 1;
 }

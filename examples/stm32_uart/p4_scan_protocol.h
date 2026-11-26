@@ -5,7 +5,7 @@
 
 #define P4_SCAN_SEQUENCE_MAX 999u
 
-/* UART v6: compact == 1 for C (Compact), 0 for F (Full).
+/* UART v7: compact == 1 for C (Compact), 0 for F (Full).
  * Only yaw_mdeg/plane_mm/along_mm are present in Compact.
  * Interpret pose fields only if pose_valid == 1.
  * Call from main loop / UART DMA consumer, not from an interrupt handler.
@@ -13,6 +13,7 @@
 typedef struct {
     uint32_t sequence; /* Capture sequence modulo 1000. */
     uint8_t compact, pose_valid;
+    uint32_t frame_to_uart_queue_us;
     uint16_t payload_length;
     uint8_t payload[255]; /* ASCII '0'..'9'; use payload_length, no terminator guaranteed. */
     int32_t corners_x10[8];

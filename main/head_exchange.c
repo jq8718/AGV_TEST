@@ -12,23 +12,15 @@
 #define TAG "head_exchange"
 #define HEAD_BUTTON_GPIO 36
 
+#include "head_button.h"
+
 static void monitor_button(void *argument)
 {
     (void)argument;
-    bool raw = gpio_get_level(HEAD_BUTTON_GPIO) == 0;
-    bool stable = raw;
-    bool armed = false;
-    int64_t changed = esp_timer_get_time();
+    head_button_state_t state = {.low_since = -1, .high_since = -1};
     for (;;) {
-        bool pressed = gpio_get_level(HEAD_BUTTON_GPIO) == 0;
-        int64_t now = esp_timer_get_time();
-        if (pressed != raw) { raw = pressed; changed = now; }
-        if (now - changed >= 30000) {
-            if (!raw) armed = true;
-            if (stable != raw) {
-                stable = raw;
-                if (stable && armed) head_exchange_power_off();
-            }
+        if (button_long_press(&state, gpio_get_level(HEAD_BUTTON_GPIO) == 0, esp_timer_get_time())) {
+            head_exchange_power_off();
         }
         vTaskDelay(pdMS_TO_TICKS(5));
     }
@@ -76,30 +68,18 @@ void head_exchange_boot(void)
     gpio_set_level(53, 0);
     gpio_set_direction(53, GPIO_MODE_OUTPUT);
     vTaskDelay(pdMS_TO_TICKS(500));
-    ESP_LOGW(TAG, "HEAD OFF: VSYS33=1; EN6/26/28, MCLK21, SENSOR20, AIM18, LIGHT19/22=0; I2C16/17 high-Z. Red LED steady. GPIO36 next press restarts and detects head.");
+    ESP_LOGW(TAG, "HEAD OFF: VSYS33=1; EN6/26/28, MCLK21, SENSOR20, AIM18, LIGHT19/22=0; I2C16/17 high-Z. Red LED steady. Release GPIO36, then hold for 2 seconds to restart and detect head.");
     /* Require a stable release after reboot, so holding the first press
      * cannot immediately turn power back on. */
-    bool raw = gpio_get_level(HEAD_BUTTON_GPIO) == 0;
-    bool stable = raw;
-    bool armed = false;
-    int64_t changed = esp_timer_get_time();
+    head_button_state_t state = {.low_since = -1, .high_since = -1};
     for (;;) {
-        bool pressed = gpio_get_level(HEAD_BUTTON_GPIO) == 0;
-        int64_t now = esp_timer_get_time();
-        if (pressed != raw) { raw = pressed; changed = now; }
-        if (now - changed >= 30000) {
-            if (!raw) armed = true;
-            if (stable != raw) {
-                stable = raw;
-                if (stable && armed) {
-                    err = store_off(false);
-                    if (err == ESP_OK) {
-                        ESP_LOGI(TAG, "GPIO36 resume: restarting for fresh sensor detection and USB enumeration");
-                        esp_restart();
-                    }
-                    ESP_LOGE(TAG, "resume state save failed: %s; head remains off", esp_err_to_name(err));
-                }
+        if (button_long_press(&state, gpio_get_level(HEAD_BUTTON_GPIO) == 0, esp_timer_get_time())) {
+            err = store_off(false);
+            if (err == ESP_OK) {
+                ESP_LOGI(TAG, "GPIO36 resume: restarting for fresh sensor detection and USB enumeration");
+                esp_restart();
             }
+            ESP_LOGE(TAG, "resume state save failed: %s; head remains off", esp_err_to_name(err));
         }
         vTaskDelay(pdMS_TO_TICKS(5));
     }

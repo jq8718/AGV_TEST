@@ -1,4 +1,5 @@
 #include "scan_usb.h"
+#include "scan_uart.h"
 #include "agv_pipeline.h"
 #include "xcr_dmtx.h"
 #include "latest_frame.h"
@@ -441,6 +442,18 @@ static void cdc_task(void *argument)
             int length = snprintf(line, sizeof(line), "@TIMING,%lu,%llu,%lu,%d\r",
                                   (unsigned long)timing.sequence, (unsigned long long)timing.capture_us,
                                   (unsigned long)timing.decode_us, timing.success);
+            if (length > 0 && length < sizeof(line) && tud_cdc_write_available() >= length) {
+                tud_cdc_write(line, length);
+                tud_cdc_write_flush();
+            }
+        }
+        scan_uart_latency_t uart_latency;
+        if (scan_uart_take_latency(&uart_latency) && atomic_load(&s_timing_enabled) && ready) {
+            char line[96];
+            int length = snprintf(line, sizeof(line), "@UARTLAT,%lu,%llu,%lu\r",
+                                  (unsigned long)uart_latency.sequence,
+                                  (unsigned long long)uart_latency.frame_timestamp_us,
+                                  (unsigned long)uart_latency.latency_us);
             if (length > 0 && length < sizeof(line) && tud_cdc_write_available() >= length) {
                 tud_cdc_write(line, length);
                 tud_cdc_write_flush();

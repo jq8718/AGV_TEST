@@ -1,3 +1,5 @@
+> 历史对比记录：此处的 V6 是当时的基线，当前协议请参阅 STM32_UART_PROTOCOL.md 的 V7。
+
 # 与参考工程的角度、距离和串口对齐
 
 参考：D:/XC/2026/P4SCAN/ESP32P4_XCF_OV9281，port/standalone_idf_test/main/scan_pose.c、scan_uart.c。

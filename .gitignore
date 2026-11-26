@@ -18,3 +18,9 @@ __pycache__/
 
 /build_auto/
 /sdkconfig.auto.old
+
+/tools/ov9281_debugger/build/
+/tools/stm32_uart_debugger/build/
+/tools/stm32_uart_debugger/validation/
+/tools/stm32_uart_debugger/P4ScanSTM32UARTDebugger_v*.spec
+/tools/stm32_uart_debugger/AGV3D_UART_Receiver_Simulator_v*.spec
